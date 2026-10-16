@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "soplos-sys-cleaner",
+  "version": "3.0.0-2-beta",
+  "identifier": "org.soplos.syscleaner",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "devUrl": "http://localhost:1424",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "create": false,
+        "title": "Soplos Sys Cleaner",
+        "width": 1100,
+        "height": 720,
+        "minWidth": 900,
+        "minHeight": 600,
+        "resizable": true,
+        "dragDropEnabled": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["deb"],
+    "publisher": "Sergi Perich",
+    "homepage": "https://soplos.org",
+    "copyright": "Copyright © 2026 Sergi Perich",
+    "license": "GPL-3.0-or-later",
+    "licenseFile": "../LICENSE",
+    "category": "Utility",
+    "shortDescription": "System cleaner and maintenance tool for Soplos Linux",
+    "longDescription": "Scans and cleans APT cache, old kernels, unused drivers and firmware, orphaned packages, logs, temporary files, Flatpak/Snap leftovers and more, with a clear preview before anything is removed.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.png"
+    ],
+    "linux": {
+      "deb": {
+        "section": "utils",
+        "priority": "optional",
+        "depends": ["pkexec", "apt", "dpkg", "systemd", "pciutils", "usbutils", "kmod", "dracut | initramfs-tools"],
+        "desktopTemplate": "resources/debian/soplos-sys-cleaner.desktop.hbs",
+        "files": {
+          "/usr/share/metainfo/org.soplos.syscleaner.metainfo.xml": "resources/appstream/org.soplos.syscleaner.metainfo.xml",
+          "/usr/share/doc/soplos-sys-cleaner/copyright": "resources/debian/copyright",
+          "/usr/share/polkit-1/actions/org.soplos.syscleaner.policy": "resources/polkit/org.soplos.syscleaner.policy"
+        }
+      }
+    }
+  }
+}

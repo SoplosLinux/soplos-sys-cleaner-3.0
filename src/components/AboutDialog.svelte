@@ -1,0 +1,72 @@
+<script lang="ts">
+  import { autofocus } from "../lib/autofocus";
+  import { onMount } from "svelte";
+  import { getVersion } from "@tauri-apps/api/app";
+  import { open } from "@tauri-apps/plugin-shell";
+  import { _ } from "svelte-i18n";
+  import { fade, scale } from "svelte/transition";
+  import { modalDepth } from "../lib/ui";
+
+  export let onClose: () => void;
+  // Both programs pass it; the dialog looks the same in each.
+  export let mode: "advanced" | "basic" = "advanced";
+  $: void mode;
+
+  let version = "";
+
+  // Counts this dialog as open, so the keyboard shortcuts stay quiet while it
+  // is. This one must not be async: Svelte ignores the cleanup function that
+  // an async onMount returns, and the count would never go down again, which
+  // silenced every shortcut (F1 included) after the first time it was opened.
+  onMount(() => {
+    modalDepth.update((n) => n + 1);
+    return () => modalDepth.update((n) => Math.max(0, n - 1));
+  });
+
+  onMount(async () => {
+    try {
+      // "3.0.0-1-beta" is shown as "3.0.0-beta": the Debian revision never
+      // appears in the interface.
+      version = (await getVersion()).replace(/-\d+-/, "-");
+    } catch {
+      version = "";
+    }
+  });
+</script>
+
+<div
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+  role="button"
+  transition:fade|global={{ duration: 120 }}
+  tabindex="-1"
+  on:click={onClose}
+  on:keydown={(e) => { if (e.key === "Escape" || (e.key === "Enter" && e.target === e.currentTarget)) onClose(); }}
+>
+  <div
+    class="max-h-[92vh] w-full max-w-[420px] bg-surface border border-border rounded-xl p-6 flex flex-col items-center gap-2 shadow-2xl text-center overflow-y-auto content-scroll"
+    role="presentation"
+    transition:scale|global={{ duration: 140, start: 0.96 }}
+    on:click|stopPropagation
+  >
+    <img src="/assets/icons/org.soplos.syscleaner.png" alt="Soplos Sys Cleaner" class="w-16 h-16 object-contain" />
+    <h2 class="text-text-bright font-semibold text-[1.05rem] mt-1">{$_("app.title")}</h2>
+    <p class="text-[0.78rem] text-text-muted">{version ? $_("about.version", { values: { version } }) : ""}</p>
+    <p class="text-[0.82rem] text-text mt-1">{$_("about.tagline")}</p>
+
+    <div class="w-full border-t border-border my-2"></div>
+
+    <p class="text-[0.75rem] text-text-muted">{$_("about.copyright")}</p>
+    <p class="text-[0.75rem] text-text-muted">{$_("about.license")}</p>
+    <button class="text-[0.8rem] text-primary hover:underline mt-1" on:click={() => open("https://soplos.org")}>
+      {$_("about.website")}
+    </button>
+
+    <button
+      class="mt-4 px-6 py-2 rounded bg-primary hover:bg-primary-hover text-text-bright text-[0.82rem] font-semibold"
+      use:autofocus
+      on:click={onClose}
+    >
+      {$_("common.close")}
+    </button>
+  </div>
+</div>

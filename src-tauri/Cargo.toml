@@ -1,0 +1,46 @@
+[package]
+name = "soplos-sys-cleaner"
+version = "3.0.0-2-beta"
+description = "Soplos Sys Cleaner"
+authors = ["Sergi Perich <info@soploslinux.com>"]
+license = "GPL-3.0-or-later"
+edition = "2021"
+# `cargo run` and `tauri dev` start the advanced program; the basic one is
+# started with `--bin soplos-sys-cleaner-basic`.
+default-run = "soplos-sys-cleaner"
+
+[[bin]]
+name = "soplos-sys-cleaner"
+path = "src/main.rs"
+
+[[bin]]
+name = "soplos-sys-cleaner-basic"
+path = "src/basic_main.rs"
+
+[lib]
+name = "soplos_sys_cleaner_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+# No "devtools" feature here: Tauri already enables the inspector
+# automatically on debug builds (cfg(debug_assertions)); declaring the
+# feature would force it on in release builds too.
+tauri = { version = "2", features = [] }
+tauri-plugin-shell = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-single-instance = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+# Desktop notifications go through the freedesktop D-Bus interface directly,
+# so no extra program (notify-send) is needed on any desktop.
+zbus = "5"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

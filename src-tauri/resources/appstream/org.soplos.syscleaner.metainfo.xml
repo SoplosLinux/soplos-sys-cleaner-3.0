@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.soplos.syscleaner</id>
+  <pkgname>soplos-sys-cleaner</pkgname>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <project_group>org.soploslinux</project_group>
+
+  <name>Soplos Sys Cleaner</name>
+  <summary>System cleaner and maintenance tool for Soplos Linux</summary>
+
+  <description>
+    <p>
+      Soplos Sys Cleaner scans the system for reclaimable disk space — APT
+      cache, old kernels, unused drivers and firmware, unused languages and
+      documentation, orphaned packages, system logs, temporary files, and
+      Flatpak/Snap leftovers — and shows a clear preview of everything it
+      found before removing anything. A basic program offers one standard
+      cleanup, and an advanced one gives access to every page.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">org.soplos.syscleaner.desktop</launchable>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>screenshot01.png</image>
+      <caption>Basic program: health ring and one standard cleanup</caption>
+    </screenshot>
+    <screenshot>
+      <image>screenshot02.png</image>
+      <caption>Advanced program: Overview with space by category, storage and system card</caption>
+    </screenshot>
+    <screenshot>
+      <image>screenshot03.png</image>
+      <caption>Languages: one row per language, with its regional variants grouped and risk labels</caption>
+    </screenshot>
+    <screenshot>
+      <image>screenshot04.png</image>
+      <caption>History with a receipt for every cleanup</caption>
+    </screenshot>
+  </screenshots>
+
+  <provides>
+    <binary>soplos-sys-cleaner</binary>
+    <binary>soplos-sys-cleaner-basic</binary>
+  </provides>
+
+  <url type="homepage">https://soplos.org</url>
+
+  <developer id="org.soploslinux">
+    <name>Soplos Linux</name>
+  </developer>
+
+  <releases>
+    <release version="3.0.0-2-beta" date="2026-10-14">
+      <description>
+        <p>Orphaned packages, every kind of installed app in one list with a reinstall script, animated health rings, and alerts that reach GNOME.</p>
+        <ul>
+          <li>New Orphaned packages page, with a dry run before removing</li>
+          <li>New Residual configuration page, to purge packages that were removed but left their configuration</li>
+          <li>Installed apps now lists APT, Flatpak, Snap and AppImage apps, and exports a script that installs them again after a format</li>
+          <li>APT package cache listed file by file</li>
+          <li>The health rings and the weekly chart animate from zero to their values</li>
+          <li>Search box with a clear button, and a toolbar that stays in place while scrolling</li>
+          <li>Alerts and the test notification are shown on GNOME</li>
+          <li>Footer of the basic program with desktop, display protocol and version</li>
+          <li>The Languages page lists the protected languages again on systems cleaned with localepurge</li>
+          <li>The storage card no longer lists installed snaps as disks</li>
+          <li>The keyboard shortcuts keep working after the About dialog (F1) has been opened</li>
+          <li>Login screens, boot loaders and base packages are never purged, and the login screen link and the GRUB defaults are restored if a cleanup removes them</li>
+          <li>Turning the alerts off clears their settings</li>
+          <li>The user cache cleanup no longer deletes folders with live state, such as the input method socket</li>
+        </ul>
+      </description>
+    </release>
+    <release version="3.0.0-1-beta" date="2026-10-10">
+      <description>
+        <p>A basic program for a one-click standard cleanup, new kernels, drivers, firmware, languages and documentation pages, a safer privileged helper and a richer history.</p>
+        <ul>
+          <li>New basic program with a health ring and a single standard cleanup, next to the advanced one in the same package</li>
+          <li>New Kernels, Drivers, Firmware, Languages and Documentation pages, with risk labels and a dry run before removing packages</li>
+          <li>Privileged operations are now named and validated again as root, with one password prompt per batch</li>
+          <li>Search and sortable columns on every page, and an export of the installed apps list</li>
+          <li>Journal retention by time or by size</li>
+          <li>History receipts with kind, duration, command and result, and CSV export</li>
+          <li>Optional alerts by time or by size, chosen by the user; notification only, never cleans by itself</li>
+          <li>Keyboard shortcuts</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+
+  <content_rating type="oars-1.1" />
+</component>

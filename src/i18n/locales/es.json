@@ -1,0 +1,553 @@
+{
+  "app": {
+    "title": "Soplos Sys Cleaner",
+    "groups": {
+      "cleaning": "Limpieza",
+      "activity": "Actividad"
+    },
+    "tabs": {
+      "overview": {
+        "label": "Resumen",
+        "title": "Resumen",
+        "description": "Escanea tu sistema y mira qué se puede limpiar con seguridad."
+      },
+      "trash": {
+        "description": "Vacía la papelera."
+      },
+      "cache": {
+        "description": "Revisa y borra las carpetas de ~/.cache que ocupan más espacio."
+      },
+      "flatpak": {
+        "label": "Flatpak sin usar",
+        "description": "Runtimes de Flatpak que ya no usa ningún Flatpak instalado."
+      },
+      "snap": {
+        "label": "Revisiones de Snap",
+        "description": "Revisiones antiguas y desactivadas que Snap conserva para poder revertir."
+      },
+      "apps": {
+        "description": "Aplicaciones instaladas manualmente que puedes desinstalar."
+      },
+      "temp": {
+        "description": "Archivos y carpetas en /tmp o /var/tmp. Los modificados en el último día quedan para que los revises."
+      },
+      "aptCache": {
+        "description": "Vacía los paquetes .deb descargados en /var/cache/apt/archives."
+      },
+      "logs": {
+        "description": "Reduce el registro de journald a los últimos 7 días."
+      },
+      "history": {
+        "label": "Historial",
+        "title": "Historial",
+        "description": "Todas las limpiezas que ha hecho Sys Cleaner, con fecha y espacio recuperado."
+      }
+    }
+  },
+  "dashboard": {
+    "health": "Salud",
+    "actions": "Acciones",
+    "recovered7d": "Espacio recuperado · 7 días",
+    "cleanupsAverage": "Limpiezas: {count} · media {size}",
+    "healthHint": "100 = nada seguro que limpiar. Último escaneo: {when}.",
+    "safeToClean": "Seguro de limpiar",
+    "toReview": "A revisar",
+    "safeItems": "Elementos seguros",
+    "protectedItems": "Protegido",
+    "quickDetail": "Papelera + caché de usuario · elementos: {count} · {size} · sin contraseña",
+    "fullDetail": "Categorías: {categories} · elementos: {count} · {size} · pkexec · omite lo marcado como Revisar",
+    "colCategory": "Categoría",
+    "colSafeReview": "Seguro / Revisar",
+    "colSafe": "Seguro",
+    "colReview": "Revisar",
+    "colPermissions": "Permisos",
+    "storageAfter": "Almacenamiento · tras limpiar",
+    "storageHint": "Rayado = lo que liberarías.",
+    "homeWarning": "{mount} está al {percent} %: la limpieza solo toca {size}; el resto son tus archivos.",
+    "spaceRecovered": "Espacio recuperado",
+    "last7dBytes": "{size} en los últimos 7 días",
+    "last7dCleanups": "{count, plural, one {# limpieza} other {# limpiezas}} en los últimos 7 días",
+    "itemsCleaned": "Elementos limpiados",
+    "lastScan": "Último escaneo",
+    "never": "Nunca",
+    "storage": "Almacenamiento",
+    "free": "libres",
+    "spaceByCategory": "Dónde está el espacio",
+    "pendingTotal": "Espacio pendiente",
+    "actionPreview": "{count} elementos · {size}",
+    "allCategories": "Todas las categorías",
+    "needsAdmin": "pide contraseña",
+    "noAdmin": "sin contraseña",
+    "storageOverview": "Resumen de almacenamiento",
+    "quickActions": "Accesos rápidos",
+    "recentActivity": "Actividad reciente",
+    "viewAllActivity": "Ver todo",
+    "noActivity": "Todavía no se ha limpiado nada.",
+    "itemsCount": "{count, plural, one {# elemento} other {# elementos}}",
+    "quickClean": {
+      "title": "Limpieza rápida",
+      "description": "Vacía papelera y caché de usuario al instante, sin pedir contraseña.",
+      "confirmTitle": "¿Ejecutar la limpieza rápida?",
+      "confirmBody": "Esto vacía la papelera y la caché de usuario. No se puede deshacer."
+    },
+    "fullClean": {
+      "title": "Limpieza completa",
+      "description": "Todo lo anterior, más Flatpak, Snap, temporales, caché APT y registros.",
+      "confirmTitle": "¿Ejecutar la limpieza completa?",
+      "confirmBody": "Esto limpia de golpe todas las categorías seguras (papelera, caché de usuario, runtimes Flatpak sin usar, revisiones de Snap, temporales, caché APT y registros). Las aplicaciones instaladas no se tocan: eso requiere elegir cuáles a mano. Puede pedir contraseña de administrador. No se puede deshacer."
+    }
+  },
+  "overview": {
+    "trash": {
+      "title": "Papelera",
+      "description": "{count, plural, one {# elemento} other {# elementos}}",
+      "action": "Vaciar papelera",
+      "confirmTitle": "¿Vaciar la papelera?",
+      "confirmBody": "Esto borra de forma permanente {count, plural, one {# elemento} other {# elementos}} ({size}) de la papelera. No se puede deshacer."
+    },
+    "cache": {
+      "title": "Caché de usuario",
+      "description": "{count, plural, one {# app} other {# apps}}",
+      "action": "Revisar",
+      "detailTitle": "Caché de usuario",
+      "selectedSummary": "{count, plural, one {# seleccionado} other {# seleccionados}} · {size}",
+      "confirmTitle": "¿Borrar la caché seleccionada?",
+      "confirmBody": "Esto borra de forma permanente {count, plural, one {# entrada} other {# entradas}} ({size}) de ~/.cache. No se puede deshacer."
+    },
+    "flatpak": {
+      "title": "Runtimes Flatpak sin usar",
+      "description": "{count, plural, one {# runtime} other {# runtimes}}",
+      "action": "Revisar",
+      "detailTitle": "Runtimes Flatpak sin usar",
+      "selectedSummary": "{count, plural, one {# seleccionado} other {# seleccionados}} · {size}",
+      "confirmTitle": "¿Desinstalar los runtimes seleccionados?",
+      "confirmBody": "Esto desinstala de forma permanente {count, plural, one {# runtime} other {# runtimes}} ({size}) que ningún Flatpak instalado usa ya. Puede pedir contraseña de administrador. No se puede deshacer."
+    },
+    "snap": {
+      "title": "Revisiones antiguas de Snap",
+      "description": "{count, plural, one {# revisión} other {# revisiones}}",
+      "action": "Revisar",
+      "detailTitle": "Revisiones antiguas de Snap",
+      "selectedSummary": "{count, plural, one {# seleccionada} other {# seleccionadas}} · {size}",
+      "confirmTitle": "¿Eliminar las revisiones seleccionadas?",
+      "confirmBody": "Esto elimina de forma permanente {count, plural, one {# revisión desactivada} other {# revisiones desactivadas}} ({size}) que Snap conserva para poder revertir. Puede pedir contraseña de administrador. No se puede deshacer."
+    },
+    "apps": {
+      "title": "Aplicaciones instaladas",
+      "description": "{count, plural, one {# app} other {# apps}}",
+      "action": "Revisar",
+      "detailTitle": "Aplicaciones instaladas",
+      "selectedSummary": "{count, plural, one {# seleccionada} other {# seleccionadas}} · {size}",
+      "confirmTitle": "¿Desinstalar las aplicaciones seleccionadas?",
+      "confirmBody": "Esto desinstala de forma permanente {count, plural, one {# aplicación} other {# aplicaciones}} ({size}). Los archivos de configuración se conservan. Puede pedir contraseña de administrador. No se puede deshacer."
+    }
+  },
+  "system": {
+    "aptCache": {
+      "title": "Caché de paquetes APT",
+      "description": "{count, plural, one {# paquete .deb} other {# paquetes .deb}}",
+      "action": "Vaciar caché",
+      "confirmTitle": "¿Vaciar la caché de paquetes?",
+      "confirmBody": "Esto borra de forma permanente {count, plural, one {# paquete .deb} other {# paquetes .deb}} descargado ({size}) de /var/cache/apt/archives. Puede pedir contraseña de administrador. No se puede deshacer."
+    },
+    "temp": {
+      "title": "Archivos temporales",
+      "description": "{count, plural, one {# elemento} other {# elementos}}",
+      "action": "Revisar",
+      "detailTitle": "Archivos temporales",
+      "selectedSummary": "{count, plural, one {# seleccionado} other {# seleccionados}} · {size}",
+      "confirmTitle": "¿Eliminar los elementos seleccionados?",
+      "confirmBody": "Esto borra de forma permanente {count, plural, one {# elemento} other {# elementos}} ({size}) de /tmp o /var/tmp. Puede pedir contraseña de administrador. No se puede deshacer."
+    },
+    "logs": {
+      "title": "Registros del sistema",
+      "description": "journald",
+      "action": "Vaciar registros antiguos",
+      "confirmTitle": "¿Vaciar los registros antiguos?",
+      "confirmBody": "Esto reduce el registro de journald a los últimos 7 días (ahora ocupa {size}). Puede pedir contraseña de administrador. No se puede deshacer."
+    }
+  },
+  "sidebar": {
+    "switchToLight": "Cambiar a tema claro",
+    "switchToDark": "Cambiar a tema oscuro",
+    "aboutTooltip": "Acerca de Soplos Sys Cleaner (F1)",
+    "language": "Idioma"
+  },
+  "common": {
+    "toggleTheme": "Cambiar tema",
+    "about": "Acerca de",
+    "close": "Cerrar",
+    "delete": "Borrar",
+    "view": "Ver",
+    "selectAll": "Seleccionar todo",
+    "cancel": "Cancelar",
+    "ok": "Aceptar",
+    "run": "Ejecutar"
+  },
+  "shell": {
+    "notes": "Anotaciones",
+    "rescan": "Reescanear",
+    "scanDone": "Escaneo completo"
+  },
+  "page": {
+    "risk": {
+      "safe": "Seguro",
+      "review": "Revisar",
+      "protected": "Protegido"
+    },
+    "filterAll": "Todo",
+    "summary": "Elementos: {count} · seguros: {safe} · a revisar: {review}",
+    "selectedOf": "Seleccionados: {count} de {total}",
+    "onlySafe": "Solo seguros",
+    "selectNone": "Ninguno",
+    "search": "Buscar",
+    "clearSearch": "Borrar la búsqueda",
+    "exportList": "Exportar script de reinstalación",
+    "exportListHint": "Guarda un script que instala de nuevo estas aplicaciones tras formatear (APT, Flatpak y Snap). Los AppImage van listados con su dirección, para descargarlos a mano.",
+    "exportListDone": "Lista exportada: {count, plural, one {# aplicación} other {# aplicaciones}}",
+    "exportListFailed": "No se pudo exportar la lista",
+    "cleanSelection": "Limpiar selección",
+    "nothingHere": "Nada que mostrar aquí",
+    "scanning": "Escaneando...",
+    "conceptTitle": "Concepto",
+    "keepsTitle": "Qué se conserva",
+    "equivalentTitle": "Equivale a",
+    "permUser": "Usuario · sin contraseña",
+    "permAdmin": "pkexec · pide contraseña",
+    "confirmTitle": "Limpiar selección · {name}",
+    "categoriesCount": "categorías: {count}",
+    "rootNote": "Se pedirá la contraseña de administrador (pkexec).",
+    "userNote": "Sin contraseña: solo archivos de tu usuario.",
+    "irreversible": "No se puede deshacer.",
+    "cleanNow": "Limpiar ahora",
+    "cleaning": "Limpiando...",
+    "cleaned": "{size} liberados · elementos: {count}",
+    "failed": "{name}: la limpieza falló o se canceló. No se ha registrado nada."
+  },
+  "kernels": {
+    "title": "Kernels",
+    "description": "Kernels antiguos con sus cabeceras y código fuente, y restos de kernels ya eliminados. El kernel en uso y el más reciente de los demás se conservan siempre.",
+    "concept": "Todos los kernels instalados además del que estás usando. Al quitar uno se eliminan también sus paquetes de imagen, cabeceras y código fuente.",
+    "keep": "El kernel en uso y el más reciente de los demás, siempre. Los kernels instalados a mano nunca se tratan como restos.",
+    "running": "En uso",
+    "reserve": "Reserva",
+    "old": "Anterior",
+    "leftover": "Resto",
+    "noteRunning": "Protegido: es el kernel en uso.",
+    "noteReserve": "Protegido: el kernel más reciente de los demás se conserva siempre como reserva.",
+    "noteOld": "Elimina sus paquetes de imagen, cabeceras y código fuente.",
+    "orphanDir": "Directorio huérfano",
+    "orphanKbuild": "Herramientas de compilación sin uso",
+    "noteOrphanDir": "Lo dejó un kernel que ya no está instalado.",
+    "noteOrphanKbuild": "Ningún kernel instalado usa este paquete.",
+    "colVersion": "Versión",
+    "colPackages": "Paquetes"
+  },
+  "drivers": {
+    "title": "Drivers",
+    "description": "Drivers y herramientas de hardware que este equipo no tiene, y compilaciones DKMS huérfanas.",
+    "concept": "Pilas gráficas, drivers de impresora, herramientas de invitado de hipervisores y paquetes parecidos cuyo hardware no se ha detectado aquí. Al quitar uno se reconstruye también el initramfs.",
+    "keep": "Todo lo de hardware que está presente, las herramientas del hipervisor en el que corre este equipo y clientes remotos como virt-viewer.",
+    "noteAbsent": "No se ha detectado en este equipo el hardware al que sirve este paquete.",
+    "dkmsFor": "Compilación DKMS para el kernel {kernels}",
+    "noteDkms": "Su paquete de origen ya no existe: estos módulos compilados son restos.",
+    "colVendor": "Fabricante"
+  },
+  "firmware": {
+    "title": "Firmware",
+    "description": "Archivos de firmware de hardware que este equipo no tiene.",
+    "concept": "Firmware de /lib/firmware. Una familia solo aparece como eliminable si ninguna capa de detección la reclama: dispositivos PCI y USB, drivers cargados, el registro del kernel y la configuración de dracut.",
+    "keep": "Todo lo que usa este hardware y cualquier familia cuyo driver siga instalado. Al quitar firmware se reconstruye también el initramfs.",
+    "permanent": "Permanente",
+    "temporary": "Vuelve al actualizar",
+    "noOwner": "Sin paquete",
+    "noteHardware": "Protegido: lo usa el hardware de este equipo.",
+    "noteDriver": "Protegido: su driver sigue instalado. Quita primero el driver.",
+    "noteUnused": "Ningún hardware detectado usa este firmware.",
+    "colPackage": "Paquete propietario",
+    "colRemoval": "Eliminación"
+  },
+  "simulation": {
+    "simulating": "Simulando la eliminación...",
+    "packages": "Paquetes que se eliminarán: {count}",
+    "blocked": "Bloqueado: la eliminación quitaría también {name}, que el sistema necesita.",
+    "error": "La simulación ha fallado: {error}"
+  },
+  "languages": {
+    "title": "Idiomas",
+    "description": "Traducciones, ayuda del escritorio y manuales traducidos de idiomas que no usas.",
+    "concept": "Una fila por idioma, con sus variantes regionales agrupadas. Quitar un idioma elimina sus traducciones, la ayuda del escritorio y de KDE y los manuales traducidos.",
+    "keep": "Tu idioma activo, sus códigos de respaldo y el inglés, siempre. Si se conserva tu idioma, sus otras variantes regionales sí se pueden quitar.",
+    "noteActive": "Protegido: es tu idioma activo.",
+    "noteEnglish": "Protegido: el inglés es el idioma de respaldo de todos los programas.",
+    "noteKeeps": "Se conserva tu variante activa; solo se quitan las demás variantes regionales.",
+    "noteUnused": "Elimina sus traducciones, ayuda y manuales traducidos. Vuelven al actualizar sus paquetes.",
+    "colLanguage": "Idioma",
+    "colCodes": "Códigos",
+    "colContent": "Contenido",
+    "place": {
+      "locale": "Traducciones",
+      "help": "Ayuda del escritorio",
+      "kde": "Ayuda de KDE",
+      "man": "Páginas de manual"
+    }
+  },
+  "docs": {
+    "title": "Documentación",
+    "description": "Carpetas de documentación de paquetes y almacenes de documentación. Los archivos de copyright se conservan siempre.",
+    "concept": "Las carpetas de documentación de paquetes que ocupan más de 1 MB en /usr/share/doc, además de las páginas Info y la documentación de Qt, GTK-Doc y Devhelp.",
+    "keep": "Los archivos de copyright de cada paquete, el índice de Info y las páginas de manual. Nunca se ofrece borrar /usr/share/doc ni /usr/share/man enteros.",
+    "item": {
+      "info": "Páginas Info",
+      "qt5": "Documentación de Qt 5",
+      "qt6": "Documentación de Qt 6",
+      "gtkdoc": "Documentación de GTK-Doc",
+      "devhelp": "Libros de Devhelp"
+    },
+    "keepsCopyright": "Conserva el copyright",
+    "keepsIndex": "Conserva el índice",
+    "noteBack": "Vuelve al actualizar o reinstalar el paquete.",
+    "colKeeps": "Se conserva"
+  },
+  "detection": {
+    "firmwareNote": "Protegido: la detección de hardware no está disponible. Instala pciutils, usbutils y kmod.",
+    "driversRow": "Detección de hardware no disponible",
+    "driversNote": "Sin pciutils, usbutils y kmod no se puede juzgar que nada sobre, así que no se lista ningún paquete."
+  },
+  "basic": {
+    "subtitle": "Revisa y limpia tu sistema con seguridad.",
+    "ready": "{size} listos para limpiar",
+    "nothing": "Todo limpio",
+    "items": "Elementos: {count} · categorías: {categories}",
+    "clean": "Limpiar ahora",
+    "lastClean": "Última limpieza: {when} · {size}",
+    "neverCleaned": "Todavía no se ha limpiado nada.",
+    "openAdvanced": "Abrir la versión avanzada",
+    "shortcutAdd": "Añadir un acceso directo de la versión avanzada",
+    "shortcutRemove": "Quitar el acceso directo de la versión avanzada",
+    "shortcutAdded": "Acceso directo añadido al menú de aplicaciones",
+    "shortcutRemoved": "Acceso directo eliminado",
+    "advancedMissing": "No se encuentra la versión avanzada.",
+    "confirmTitle": "Limpieza estándar",
+    "confirmBody": "Se liberarán unos {size}. Solo se limpia lo que es seguro.",
+    "showDetails": "Ver detalles",
+    "hideDetails": "Ocultar detalles",
+    "otherVersion": "Se ha abierto otra versión de Sys Cleaner. Cierra esta primero."
+  },
+  "shortcuts": {
+    "title": "Atajos de teclado",
+    "about": "Acerca de",
+    "quit": "Salir",
+    "sections": "Sección siguiente o anterior",
+    "rescan": "Reescanear",
+    "selectAll": "Seleccionar todo o ninguno",
+    "onlySafe": "Seleccionar solo lo Seguro",
+    "clean": "Limpiar selección",
+    "notes": "Mostrar u ocultar las anotaciones",
+    "export": "Exportar el historial a CSV"
+  },
+  "residual": {
+    "title": "Configuración residual",
+    "description": "Paquetes desinstalados que dejaron sus archivos de configuración (estado rc de dpkg).",
+    "concept": "Paquetes que ya no están instalados pero conservan su configuración en el sistema, lo que pasa cuando se quita un paquete sin purgarlo. Purgar borra esos archivos.",
+    "keep": "Los paquetes instalados y todo lo de tu carpeta personal. Si vuelves a instalar uno de estos paquetes, empieza con su configuración por defecto.",
+    "note": "No está instalado; solo queda su configuración. Purgarlo la borra para siempre.",
+    "noteSystem": "Pantalla de inicio de sesión, cargador de arranque o base del sistema: no se purga, porque su script de purga puede borrar archivos que usan otros paquetes."
+  },
+  "orphans": {
+    "title": "Paquetes huérfanos",
+    "description": "Paquetes instalados como dependencias que ya no necesita nada: lo que quitaría apt autoremove.",
+    "concept": "Paquetes que se instalaron solo porque otro paquete los necesitaba y que ahora no necesita ningún paquete instalado. La lista la da el propio apt.",
+    "keep": "Todo lo demás. Antes se muestra la lista completa de lo que se quitaría, y la limpieza se bloquea si quitara también algo que el sistema necesita.",
+    "note": "Ahora no lo necesita nada instalado: revisa la lista antes de quitarlo."
+  },
+  "alerts": {
+    "title": "Avisos",
+    "description": "Recibe una notificación del escritorio cuando toque limpiar. Solo avisa: nunca limpia nada por sí mismo.",
+    "serviceTitle": "Servicio",
+    "stateOn": "Activado: la comprobación está programada. Tú decides qué limpiar al abrir el programa.",
+    "stateOff": "Desactivado: no hay ningún servicio instalado y no se enviará ningún aviso.",
+    "apply": "Guardar y activar",
+    "applied": "Avisos activados",
+    "turnOff": "Desactivar",
+    "turnedOff": "Avisos desactivados y servicio eliminado",
+    "test": "Enviar un aviso de prueba",
+    "testSent": "Aviso de prueba enviado",
+    "testFailed": "No se pudo enviar el aviso: {error}",
+    "rulesTitle": "Cuándo avisar",
+    "byTime": "Por tiempo",
+    "byTimeHint": "Avisa cuando ha pasado este tiempo desde la última limpieza.",
+    "afterLabel": "Pasado",
+    "byWeight": "Por peso",
+    "byWeightHint": "Avisa cuando hay esta cantidad lista para limpiar, que es lo que liberaría la limpieza estándar.",
+    "aboveLabel": "Más de",
+    "checkTitle": "Comprobar cada",
+    "checkHint": "Cada cuánto mira el programa. Un tiempo menor avisa antes, pero escanea más a menudo.",
+    "unitHours": "horas",
+    "unitDays": "días",
+    "unitWeeks": "semanas",
+    "invalid": "Rellena todos los valores de las opciones que actives y cada cuánto comprobar.",
+    "error": "No se pudieron cambiar los avisos: {error}",
+    "desktopNote": "El aviso aparece en cualquier escritorio. Algunos escritorios abren el programa al pulsarlo; en los demás, ábrelo desde el menú de aplicaciones.",
+    "notifyTitle": "Soplos Sys Cleaner",
+    "notifyTime": "Días desde la última limpieza: {days}. Abre Soplos Sys Cleaner para revisarlo.",
+    "notifyWeight": "Listo para limpiar: {size}. Abre Soplos Sys Cleaner para revisarlo.",
+    "notifyTest": "Este es un aviso de prueba. Si puedes leerlo, los avisos te llegarán."
+  },
+  "journal": {
+    "title": "Retención del journal",
+    "byTime": "Por tiempo",
+    "bySize": "Por tamaño",
+    "days": "{count} d",
+    "estimate": "Se liberarían aprox.: {size}",
+    "nothing": "Nada que liberar con esta retención",
+    "keepsSize": "Hasta {size}",
+    "estimateNote": "Aproximado: elimina los archivos de journal archivados que superan la retención.",
+    "unknownNote": "No se puede estimar la cantidad: libera lo que supere la retención."
+  },
+  "sysinfo": {
+    "title": "Sistema",
+    "distro": "Distribución",
+    "kernel": "Kernel",
+    "session": "Sesión",
+    "uptime": "Tiempo encendido",
+    "uptimeFormat": "{days} d {hours} h {minutes} min",
+    "cpu": "CPU",
+    "threads": "{count} hilos",
+    "usage": "Uso de CPU",
+    "cpuTemperature": "Temperatura de CPU",
+    "gpuTemperature": "Temperatura de GPU",
+    "memory": "Memoria",
+    "swap": "Swap",
+    "gpu": "GPU"
+  },
+  "cols": {
+    "item": "Elemento",
+    "contents": "Contenido",
+    "location": "Ubicación",
+    "path": "Ruta",
+    "reference": "Referencia",
+    "state": "Estado",
+    "revision": "Revisión",
+    "description": "Descripción",
+    "type": "Tipo",
+    "age": "Antigüedad",
+    "retention": "Retención",
+    "size": "Tamaño",
+    "risk": "Riesgo",
+    "source": "Origen",
+    "date": "Fecha",
+    "category": "Categoría",
+    "items": "Elementos",
+    "freed": "Liberado"
+  },
+  "rows": {
+    "disabledRevision": "Revisión deshabilitada",
+    "folder": "Carpeta",
+    "file": "Archivo",
+    "olderThanDay": "Más de 1 día",
+    "recent": "Menos de 1 día",
+    "keepsDays": "Últimos {days} días"
+  },
+  "notes": {
+    "slowRebuild": "Se regenera, pero reconstruirla cuesta tiempo en el siguiente arranque.",
+    "manualApp": "La instalaste tú: revisa si aún la usas.",
+    "recentTemp": "Modificado en el último día: puede estar en uso.",
+    "flatpakApp": "Tus datos de ~/.var/app se conservan.",
+    "snapApp": "Quitarla desinstala el snap entero.",
+    "appImageApp": "Borra el archivo, su lanzador y su icono.",
+    "cacheSocket": "En uso: un programa mantiene aquí su conexión activa. No se limpia.",
+    "cacheLock": "En uso: contiene archivos de bloqueo o de proceso de un programa. No se limpia.",
+    "cacheOpen": "En uso: un programa en marcha lo tiene abierto. No se limpia."
+  },
+  "categories": {
+    "trash": {
+      "concept": "Archivos que ya borraste. Vaciar la papelera libera su espacio definitivamente.",
+      "keep": "Solo se vacía la papelera; no se toca ninguna otra carpeta."
+    },
+    "cache": {
+      "concept": "Datos que las apps reconstruyen solas en ~/.cache. Nunca hay documentos aquí.",
+      "keep": "Cookies, contraseñas y perfiles viven en ~/.mozilla o ~/.config, no en .cache: no se tocan."
+    },
+    "flatpak": {
+      "concept": "Runtimes y extensiones que ninguna app instalada necesita. Cada actualización mayor deja atrás el runtime anterior.",
+      "keep": "Las apps instaladas y los runtimes que usan."
+    },
+    "snap": {
+      "concept": "Snap guarda varias revisiones de cada paquete. Las deshabilitadas no se usan y solo ocupan disco.",
+      "keep": "La revisión activa de cada snap nunca se lista."
+    },
+    "apps": {
+      "concept": "Aplicaciones que instalaste a mano: paquetes APT, aplicaciones Flatpak y Snap, y AppImages de ~/AppImages. Quitar una la desinstala; sus archivos de configuración se conservan. «Exportar script de reinstalación» guarda un script que las instala de nuevo tras formatear (APT, Flatpak y Snap); los AppImage van listados con su dirección de descarga.",
+      "keep": "Todo lo que no se instaló manualmente. Nada viene seleccionado por defecto. Los runtimes de Flatpak y los snaps base tienen sus propias páginas."
+    },
+    "temp": {
+      "concept": "Archivos y carpetas de /tmp y /var/tmp. Los modificados en el último día pueden estar en uso, por eso se marcan como Revisar.",
+      "keep": "Se omiten sockets, tuberías, enlaces simbólicos y directorios privados de systemd."
+    },
+    "aptCache": {
+      "concept": "Los paquetes .deb que descargó apt. Se pueden volver a descargar en cualquier momento; reinstalar solo cuesta ancho de banda.",
+      "keep": "Los paquetes instalados y las listas de repositorios."
+    },
+    "logs": {
+      "concept": "El journal de systemd. Al limpiar solo se conservan los últimos 7 días de registros.",
+      "keep": "Los últimos 7 días de registros, incluida la sesión actual."
+    }
+  },
+  "history": {
+    "colType": "Tipo",
+    "colDuration": "Duración",
+    "kind": { "quick": "Rápida", "full": "Completa", "manual": "Manual" },
+    "ok": "Correcta",
+    "failed": "Fallida",
+    "failedDetail": "La limpieza falló o se canceló. No se liberó nada.",
+    "noDetail": "Sin recibo: esta entrada se registró antes de que existieran los recibos.",
+    "export": "Exportar CSV",
+    "exported": "CSV exportado",
+    "exportFailed": "No se pudo exportar el CSV",
+    "csv": {
+      "date": "Fecha",
+      "time": "Hora",
+      "kind": "Tipo",
+      "category": "Categoría",
+      "result": "Resultado",
+      "items": "Elementos",
+      "bytes": "Bytes liberados",
+      "durationMs": "Duración (ms)",
+      "command": "Comando"
+    },
+    "totalFreed": "Liberado (registrado)",
+    "cleanups": "Limpiezas",
+    "average": "Media por limpieza",
+    "largest": "Mayor",
+    "last7": "Últimos 7 días",
+    "conceptTitle": "Concepto · Historial",
+    "conceptBody": "Bitácora de auditoría: qué se limpió, cuándo y cuánto liberó. Nada ocurre a escondidas."
+  },
+  "cacheView": {
+    "empty": "No hay nada que limpiar en la caché de usuario.",
+    "context": "Datos que las apps reconstruyen solas en ~/.cache. Nunca hay documentos aquí.",
+    "preservedTitle": "Qué se conserva",
+    "preserved": "Cookies, contraseñas y perfiles viven en ~/.mozilla o ~/.config, no en .cache: no se tocan.",
+    "equivalentTitle": "Equivale a"
+  },
+  "flatpakView": {
+    "empty": "No hay runtimes de Flatpak sin usar."
+  },
+  "snapView": {
+    "empty": "No hay revisiones antiguas de Snap."
+  },
+  "appsView": {
+    "empty": "No hay aplicaciones instaladas manualmente."
+  },
+  "tempView": {
+    "empty": "No hay archivos temporales antiguos."
+  },
+  "about": {
+    "version": "Versión {version}",
+    "tagline": "Escanea y limpia tu sistema Soplos Linux con una vista previa clara antes de borrar nada.",
+    "copyright": "Copyright © 2026 Sergi Perich",
+    "license": "GPL-3.0-or-later",
+    "website": "soplos.org"
+  }
+}

@@ -1,0 +1,546 @@
+{
+  "app": {
+    "title": "Soplos Sys Cleaner",
+    "groups": {
+      "cleaning": "Curățare",
+      "activity": "Activitate"
+    },
+    "tabs": {
+      "overview": {
+        "label": "Prezentare generală",
+        "title": "Prezentare generală",
+        "description": "Scanează-ți sistemul și vezi ce se poate curăța în siguranță."
+      },
+      "trash": {
+        "description": "Golește coșul de gunoi."
+      },
+      "cache": {
+        "description": "Verifică și șterge folderele din ~/.cache care ocupă cel mai mult spațiu."
+      },
+      "flatpak": {
+        "label": "Flatpak nefolosit",
+        "description": "Runtime-uri Flatpak pe care nicio aplicație Flatpak instalată nu le mai folosește."
+      },
+      "snap": {
+        "label": "Revizii Snap",
+        "description": "Revizii vechi, dezactivate, pe care Snap le păstrează pentru revenire."
+      },
+      "apps": {
+        "description": "Aplicații instalate manual pe care le poți dezinstala."
+      },
+      "temp": {
+        "description": "Fișiere și foldere din /tmp sau /var/tmp. Cele modificate în ultima zi rămân pentru a le verifica tu."
+      },
+      "aptCache": {
+        "description": "Golește pachetele .deb descărcate din /var/cache/apt/archives."
+      },
+      "logs": {
+        "description": "Reduce jurnalul journald la ultimele 7 zile."
+      },
+      "history": {
+        "label": "Istoric",
+        "title": "Istoric",
+        "description": "Fiecare curățare făcută de Sys Cleaner, cu dată și spațiu recuperat."
+      }
+    }
+  },
+  "dashboard": {
+    "health": "Sănătate",
+    "actions": "Acțiuni",
+    "recovered7d": "Spațiu recuperat · 7 zile",
+    "cleanupsAverage": "Curățări: {count} · medie {size}",
+    "healthHint": "100 = nimic sigur de curățat. Ultima scanare: {when}.",
+    "safeToClean": "Sigur de curățat",
+    "toReview": "De verificat",
+    "safeItems": "Elemente sigure",
+    "protectedItems": "Protejat",
+    "quickDetail": "Coș de gunoi + cache utilizator · elemente: {count} · {size} · fără parolă",
+    "fullDetail": "Categorii: {categories} · elemente: {count} · {size} · pkexec · omite elementele de verificat",
+    "colCategory": "Categorie",
+    "colSafeReview": "Sigur / De verificat",
+    "colSafe": "Sigur",
+    "colReview": "De verificat",
+    "colPermissions": "Permisiuni",
+    "storageAfter": "Stocare · după curățare",
+    "storageHint": "Hașurat = ce ai elibera.",
+    "homeWarning": "{mount} este ocupat în proporție de {percent}%: curățarea atinge doar {size}; restul sunt fișierele tale.",
+    "spaceRecovered": "Spațiu recuperat",
+    "last7dBytes": "{size} în ultimele 7 zile",
+    "last7dCleanups": "{count, plural, one {# curățare} few {# curățări} other {# de curățări}} în ultimele 7 zile",
+    "itemsCleaned": "Elemente curățate",
+    "lastScan": "Ultima scanare",
+    "never": "Niciodată",
+    "storage": "Stocare",
+    "free": "libere",
+    "spaceByCategory": "Unde este spațiul",
+    "needsAdmin": "cere parola",
+    "noAdmin": "fără parolă",
+    "storageOverview": "Prezentare stocare",
+    "quickActions": "Acțiuni rapide",
+    "recentActivity": "Activitate recentă",
+    "viewAllActivity": "Vezi tot",
+    "noActivity": "Nu s-a curățat nimic încă.",
+    "itemsCount": "{count, plural, one {# element} few {# elemente} other {# de elemente}}",
+    "quickClean": {
+      "title": "Curățare rapidă",
+      "description": "Golește coșul de gunoi și cache-ul utilizatorului instantaneu, fără parolă.",
+      "confirmTitle": "Rulezi curățarea rapidă?",
+      "confirmBody": "Acest lucru golește coșul de gunoi și cache-ul utilizatorului. Nu poate fi anulat."
+    },
+    "fullClean": {
+      "title": "Curățare completă",
+      "description": "Tot ce e mai sus, plus Flatpak, Snap, fișiere temporare, cache APT și jurnale.",
+      "confirmTitle": "Rulezi curățarea completă?",
+      "confirmBody": "Acest lucru curăță dintr-o dată toate categoriile sigure (coș de gunoi, cache utilizator, runtime-uri Flatpak nefolosite, revizii Snap vechi, fișiere temporare, cache APT și jurnale). Aplicațiile instalate nu sunt atinse — asta necesită alegerea manuală a lor. Poate cere parola de administrator. Nu poate fi anulat."
+    }
+  },
+  "overview": {
+    "trash": {
+      "title": "Coș de gunoi",
+      "description": "{count, plural, one {# element} few {# elemente} other {# de elemente}}",
+      "action": "Golește coșul",
+      "confirmTitle": "Golești coșul de gunoi?",
+      "confirmBody": "Acest lucru șterge permanent {count, plural, one {# element} few {# elemente} other {# de elemente}} ({size}) din coșul de gunoi. Nu poate fi anulat."
+    },
+    "cache": {
+      "title": "Cache utilizator",
+      "description": "{count, plural, one {# aplicație} few {# aplicații} other {# de aplicații}}",
+      "action": "Verifică",
+      "detailTitle": "Cache utilizator",
+      "selectedSummary": "{count, plural, one {# selectat} few {# selectate} other {# selectate}} · {size}",
+      "confirmTitle": "Ștergi cache-ul selectat?",
+      "confirmBody": "Acest lucru șterge permanent {count, plural, one {# intrare} few {# intrări} other {# de intrări}} ({size}) din ~/.cache. Nu poate fi anulat."
+    },
+    "flatpak": {
+      "title": "Runtime-uri Flatpak nefolosite",
+      "description": "{count, plural, one {# runtime} few {# runtime-uri} other {# de runtime-uri}}",
+      "action": "Verifică",
+      "detailTitle": "Runtime-uri Flatpak nefolosite",
+      "selectedSummary": "{count, plural, one {# selectat} few {# selectate} other {# selectate}} · {size}",
+      "confirmTitle": "Dezinstalezi runtime-urile selectate?",
+      "confirmBody": "Acest lucru dezinstalează permanent {count, plural, one {# runtime} few {# runtime-uri} other {# de runtime-uri}} ({size}) pe care nicio aplicație Flatpak instalată nu le mai folosește. Poate cere parola de administrator. Nu poate fi anulat."
+    },
+    "snap": {
+      "title": "Revizii Snap vechi",
+      "description": "{count, plural, one {# revizie} few {# revizii} other {# de revizii}}",
+      "action": "Verifică",
+      "detailTitle": "Revizii Snap vechi",
+      "selectedSummary": "{count, plural, one {# selectată} few {# selectate} other {# selectate}} · {size}",
+      "confirmTitle": "Elimini reviziile selectate?",
+      "confirmBody": "Acest lucru elimină permanent {count, plural, one {# revizie dezactivată} few {# revizii dezactivate} other {# de revizii dezactivate}} ({size}) pe care Snap le păstrează pentru revenire. Poate cere parola de administrator. Nu poate fi anulat."
+    },
+    "apps": {
+      "title": "Aplicații instalate",
+      "description": "{count, plural, one {# aplicație} few {# aplicații} other {# de aplicații}}",
+      "action": "Verifică",
+      "detailTitle": "Aplicații instalate",
+      "selectedSummary": "{count, plural, one {# selectată} few {# selectate} other {# selectate}} · {size}",
+      "confirmTitle": "Dezinstalezi aplicațiile selectate?",
+      "confirmBody": "Acest lucru dezinstalează permanent {count, plural, one {# aplicație} few {# aplicații} other {# de aplicații}} ({size}). Fișierele de configurare sunt păstrate. Poate cere parola de administrator. Nu poate fi anulat."
+    }
+  },
+  "system": {
+    "aptCache": {
+      "title": "Cache de pachete APT",
+      "description": "{count, plural, one {# pachet .deb} few {# pachete .deb} other {# de pachete .deb}}",
+      "action": "Golește cache-ul",
+      "confirmTitle": "Golești cache-ul de pachete?",
+      "confirmBody": "Acest lucru șterge permanent {count, plural, one {# pachet .deb descărcat} few {# pachete .deb descărcate} other {# de pachete .deb descărcate}} ({size}) din /var/cache/apt/archives. Poate cere parola de administrator. Nu poate fi anulat."
+    },
+    "temp": {
+      "title": "Fișiere temporare",
+      "description": "{count, plural, one {# element} few {# elemente} other {# de elemente}}",
+      "action": "Verifică",
+      "detailTitle": "Fișiere temporare",
+      "selectedSummary": "{count, plural, one {# selectat} few {# selectate} other {# selectate}} · {size}",
+      "confirmTitle": "Ștergi elementele selectate?",
+      "confirmBody": "Acest lucru șterge permanent {count, plural, one {# element} few {# elemente} other {# de elemente}} ({size}) din /tmp sau /var/tmp. Poate cere parola de administrator. Nu poate fi anulat."
+    },
+    "logs": {
+      "title": "Jurnale de sistem",
+      "description": "journald",
+      "action": "Golește jurnalele vechi",
+      "confirmTitle": "Golești jurnalele vechi?",
+      "confirmBody": "Acest lucru reduce jurnalul journald la ultimele 7 zile (acum {size}). Poate cere parola de administrator. Nu poate fi anulat."
+    }
+  },
+  "sidebar": {
+    "switchToLight": "Comută la tema deschisă",
+    "switchToDark": "Comută la tema închisă",
+    "aboutTooltip": "Despre Soplos Sys Cleaner (F1)",
+    "language": "Limbă"
+  },
+  "common": {
+    "toggleTheme": "Comută tema",
+    "about": "Despre",
+    "close": "Închide",
+    "delete": "Șterge",
+    "view": "Vezi",
+    "selectAll": "Selectează tot",
+    "cancel": "Anulează",
+    "ok": "OK",
+    "run": "Rulează"
+  },
+  "shell": {
+    "notes": "Note",
+    "rescan": "Rescanează",
+    "scanDone": "Scanare încheiată"
+  },
+  "page": {
+    "risk": {
+      "safe": "Sigur",
+      "review": "De verificat",
+      "protected": "Protejat"
+    },
+    "filterAll": "Toate",
+    "summary": "Elemente: {count} · sigure: {safe} · de verificat: {review}",
+    "selectedOf": "Selectate: {count} din {total}",
+    "onlySafe": "Doar cele sigure",
+    "selectNone": "Niciunul",
+    "search": "Caută",
+    "clearSearch": "Șterge căutarea",
+    "exportList": "Exportă scriptul de reinstalare",
+    "exportListHint": "Salvează un script care instalează din nou aceste aplicații după formatare (APT, Flatpak și Snap). AppImage-urile sunt listate cu adresa lor, pentru a fi descărcate manual.",
+    "exportListDone": "Listă exportată: {count, plural, one {# aplicație} few {# aplicații} other {# de aplicații}}",
+    "exportListFailed": "Lista nu a putut fi exportată",
+    "cleanSelection": "Curăță selecția",
+    "nothingHere": "Nimic de afișat aici",
+    "scanning": "Se scanează...",
+    "conceptTitle": "Concept",
+    "keepsTitle": "Ce se păstrează",
+    "equivalentTitle": "Echivalent cu",
+    "permUser": "Utilizator · fără parolă",
+    "permAdmin": "pkexec · cere parola",
+    "confirmTitle": "Curăță selecția · {name}",
+    "categoriesCount": "categorii: {count}",
+    "rootNote": "Se va cere parola de administrator (pkexec).",
+    "userNote": "Fără parolă: doar fișiere ale utilizatorului tău.",
+    "irreversible": "Nu poate fi anulat.",
+    "cleanNow": "Curăță acum",
+    "cleaning": "Se curăță...",
+    "cleaned": "{size} eliberați · elemente: {count}",
+    "failed": "{name}: curățarea a eșuat sau a fost anulată. Nu s-a înregistrat nimic."
+  },
+  "kernels": {
+    "title": "Kernele",
+    "description": "Kernele vechi cu antetele și sursele lor, și resturi ale kernelelor eliminate. Kernelul în uz și cel mai nou dintre celelalte sunt păstrate mereu.",
+    "concept": "Toate kernelele instalate în afară de cel pe care îl folosești. Eliminarea unuia șterge și pachetele sale de imagine, anteturi și surse.",
+    "keep": "Kernelul în uz și cel mai nou dintre celelalte, mereu. Kernelele instalate manual nu sunt niciodată tratate ca resturi.",
+    "running": "În uz",
+    "reserve": "Rezervă",
+    "old": "Mai vechi",
+    "leftover": "Rest",
+    "noteRunning": "Protejat: este kernelul în uz.",
+    "noteReserve": "Protejat: cel mai nou dintre celelalte kernele este păstrat mereu ca rezervă.",
+    "noteOld": "Elimină pachetele sale de imagine, anteturi și surse.",
+    "orphanDir": "Director orfan",
+    "orphanKbuild": "Unelte de compilare nefolosite",
+    "noteOrphanDir": "Lăsat de un kernel care nu mai este instalat.",
+    "noteOrphanKbuild": "Niciun kernel instalat nu folosește acest pachet.",
+    "colVersion": "Versiune",
+    "colPackages": "Pachete"
+  },
+  "drivers": {
+    "title": "Drivere",
+    "description": "Drivere și unelte pentru hardware pe care acest calculator nu îl are, și build-uri DKMS orfane.",
+    "concept": "Stive grafice, drivere de imprimantă, unelte guest ale hipervizoarelor și pachete similare al căror hardware nu a fost detectat aici. Eliminarea unuia reconstruiește și initramfs.",
+    "keep": "Tot ce ține de hardware prezent, uneltele hipervizorului pe care rulează acest calculator și clienții la distanță precum virt-viewer.",
+    "noteAbsent": "Hardware-ul căruia îi servește acest pachet nu a fost detectat pe acest calculator.",
+    "dkmsFor": "Build DKMS pentru kernelul {kernels}",
+    "noteDkms": "Pachetul sursă nu mai există: aceste module compilate sunt resturi.",
+    "colVendor": "Producător"
+  },
+  "firmware": {
+    "title": "Firmware",
+    "description": "Fișiere firmware pentru hardware pe care acest calculator nu îl are.",
+    "concept": "Firmware din /lib/firmware. O familie apare ca eliminabilă doar dacă niciun nivel de detecție nu o revendică: dispozitive PCI și USB, drivere încărcate, jurnalul kernelului și configurația dracut.",
+    "keep": "Tot ce folosește acest hardware și orice familie al cărei driver este încă instalat. Eliminarea firmware-ului reconstruiește și initramfs.",
+    "permanent": "Permanent",
+    "temporary": "Revine la actualizare",
+    "noOwner": "Fără pachet",
+    "noteHardware": "Protejat: îl folosește hardware-ul acestui calculator.",
+    "noteDriver": "Protejat: driverul său este încă instalat. Elimină întâi driverul.",
+    "noteUnused": "Niciun hardware detectat nu folosește acest firmware.",
+    "colPackage": "Pachet proprietar",
+    "colRemoval": "Eliminare"
+  },
+  "simulation": {
+    "simulating": "Se simulează eliminarea...",
+    "packages": "Pachete de eliminat: {count}",
+    "blocked": "Blocat: eliminarea ar scoate și {name}, de care sistemul are nevoie.",
+    "error": "Simularea a eșuat: {error}"
+  },
+  "languages": {
+    "title": "Limbi",
+    "description": "Traduceri, ajutor desktop și pagini de manual traduse ale limbilor pe care nu le folosești.",
+    "concept": "Un rând pe limbă, cu variantele regionale grupate. Eliminarea unei limbi șterge traducerile, ajutorul desktopului și al KDE și paginile de manual traduse.",
+    "keep": "Limba ta activă, codurile ei de rezervă și engleza, mereu. Dacă limba ta este păstrată, celelalte variante regionale pot fi totuși eliminate.",
+    "noteActive": "Protejat: este limba ta activă.",
+    "noteEnglish": "Protejat: engleza este limba de rezervă a tuturor programelor.",
+    "noteKeeps": "Varianta ta activă este păstrată; se elimină doar celelalte variante regionale.",
+    "noteUnused": "Elimină traducerile, ajutorul și paginile de manual traduse. Revin la actualizarea pachetelor lor.",
+    "colLanguage": "Limbă",
+    "colCodes": "Coduri",
+    "colContent": "Conținut",
+    "place": {
+      "locale": "Traduceri",
+      "help": "Ajutor desktop",
+      "kde": "Ajutor KDE",
+      "man": "Pagini de manual"
+    }
+  },
+  "docs": {
+    "title": "Documentație",
+    "description": "Dosare de documentație ale pachetelor și depozite de documentație. Fișierele de copyright sunt păstrate mereu.",
+    "concept": "Dosarele de documentație ale pachetelor care ocupă peste 1 MB în /usr/share/doc, plus paginile Info și documentația Qt, GTK-Doc și Devhelp.",
+    "keep": "Fișierele de copyright ale fiecărui pachet, indexul Info și paginile de manual. /usr/share/doc și /usr/share/man nu sunt oferite niciodată întregi.",
+    "item": {
+      "info": "Pagini Info",
+      "qt5": "Documentația Qt 5",
+      "qt6": "Documentația Qt 6",
+      "gtkdoc": "Documentația GTK-Doc",
+      "devhelp": "Cărți Devhelp"
+    },
+    "keepsCopyright": "Păstrează copyright-ul",
+    "keepsIndex": "Păstrează indexul",
+    "noteBack": "Revine la actualizarea sau reinstalarea pachetului.",
+    "colKeeps": "Rămâne"
+  },
+  "detection": {
+    "firmwareNote": "Protejat: detecția hardware nu este disponibilă. Instalează pciutils, usbutils și kmod.",
+    "driversRow": "Detecția hardware nu este disponibilă",
+    "driversNote": "Fără pciutils, usbutils și kmod nimic nu poate fi considerat nefolosit, deci nu este listat niciun pachet."
+  },
+  "basic": {
+    "subtitle": "Verifică și curăță sistemul în siguranță.",
+    "ready": "{size} gata de curățat",
+    "nothing": "Totul este curat",
+    "items": "Elemente: {count} · categorii: {categories}",
+    "clean": "Curăță acum",
+    "lastClean": "Ultima curățare: {when} · {size}",
+    "neverCleaned": "Nu s-a curățat nimic încă.",
+    "openAdvanced": "Deschide versiunea avansată",
+    "shortcutAdd": "Adaugă o scurtătură pentru versiunea avansată",
+    "shortcutRemove": "Elimină scurtătura versiunii avansate",
+    "shortcutAdded": "Scurtătură adăugată în meniul de aplicații",
+    "shortcutRemoved": "Scurtătură eliminată",
+    "advancedMissing": "Versiunea avansată nu a fost găsită.",
+    "confirmTitle": "Curățare standard",
+    "confirmBody": "Se vor elibera aproximativ {size}. Se curăță doar ce este sigur.",
+    "showDetails": "Arată detaliile",
+    "hideDetails": "Ascunde detaliile",
+    "otherVersion": "A fost deschisă o altă versiune de Sys Cleaner. Închide-o mai întâi pe aceasta."
+  },
+  "shortcuts": {
+    "title": "Comenzi rapide de la tastatură",
+    "about": "Despre",
+    "quit": "Ieșire",
+    "sections": "Secțiunea următoare sau anterioară",
+    "rescan": "Rescanează",
+    "selectAll": "Selectează tot sau nimic",
+    "onlySafe": "Selectează doar ce este sigur",
+    "clean": "Curăță selecția",
+    "notes": "Arată sau ascunde notele",
+    "export": "Exportă istoricul în CSV"
+  },
+  "residual": {
+    "title": "Configurație reziduală",
+    "description": "Pachete eliminate care și-au lăsat fișierele de configurare (starea rc din dpkg).",
+    "concept": "Pachete care nu mai sunt instalate, dar și-au păstrat configurația în sistem, ceea ce se întâmplă când un pachet este eliminat fără purge. Purge șterge acele fișiere.",
+    "keep": "Pachetele instalate și tot ce se află în dosarul tău personal. Dacă reinstalezi unul dintre aceste pachete, pornește cu setările implicite.",
+    "note": "Nu este instalat; a rămas doar configurația. Purge o șterge definitiv.",
+    "noteSystem": "Ecranul de autentificare, încărcătorul de pornire sau baza sistemului: nu se elimină cu purge, deoarece scriptul său de purge poate șterge fișiere folosite de alte pachete."
+  },
+  "orphans": {
+    "title": "Pachete orfane",
+    "description": "Pachete instalate ca dependențe de care nu mai are nevoie nimic: ce ar elimina apt autoremove.",
+    "concept": "Pachete instalate doar pentru că un alt pachet avea nevoie de ele și de care acum nu mai are nevoie niciun pachet instalat. Lista o oferă apt însuși.",
+    "keep": "Tot restul. Mai întâi se arată lista completă a ceea ce s-ar elimina, iar curățarea este blocată dacă ar elimina și ceva de care sistemul are nevoie.",
+    "note": "Acum nimic instalat nu are nevoie de el: verifică lista înainte de a elimina."
+  },
+  "alerts": {
+    "title": "Alerte",
+    "description": "Primește o notificare pe desktop când este momentul să cureți. Doar anunță: nu curăță niciodată nimic singură.",
+    "serviceTitle": "Serviciu",
+    "stateOn": "Activat: verificarea este programată. Tu decizi ce să cureți când deschizi programul.",
+    "stateOff": "Dezactivat: niciun serviciu nu este instalat și nu se va trimite nicio notificare.",
+    "apply": "Salvează și activează",
+    "applied": "Alertele sunt activate",
+    "turnOff": "Dezactivează",
+    "turnedOff": "Alertele sunt dezactivate, iar serviciul a fost eliminat",
+    "test": "Trimite o notificare de test",
+    "testSent": "Notificare de test trimisă",
+    "testFailed": "Notificarea nu a putut fi trimisă: {error}",
+    "rulesTitle": "Când să anunțe",
+    "byTime": "După timp",
+    "byTimeHint": "Anunță când a trecut atât timp de la ultima curățare.",
+    "afterLabel": "După",
+    "byWeight": "După dimensiune",
+    "byWeightHint": "Anunță când este atât de mult pregătit pentru curățare, adică ce ar elibera curățarea standard.",
+    "aboveLabel": "Peste",
+    "checkTitle": "Verifică la fiecare",
+    "checkHint": "Cât de des se uită programul. Un timp mai scurt observă mai devreme, dar scanează mai des.",
+    "unitHours": "ore",
+    "unitDays": "zile",
+    "unitWeeks": "săptămâni",
+    "invalid": "Completează toate valorile opțiunilor activate și cât de des se verifică.",
+    "error": "Alertele nu au putut fi modificate: {error}",
+    "desktopNote": "Notificarea apare pe orice desktop. Unele desktopuri deschid programul la clic; pe celelalte, deschide-l din meniul de aplicații.",
+    "notifyTitle": "Soplos Sys Cleaner",
+    "notifyTime": "Zile de la ultima curățare: {days}. Deschide Soplos Sys Cleaner pentru a verifica.",
+    "notifyWeight": "Gata de curățat: {size}. Deschide Soplos Sys Cleaner pentru a verifica.",
+    "notifyTest": "Aceasta este o notificare de test. Dacă o poți citi, alertele vor ajunge la tine."
+  },
+  "journal": {
+    "title": "Păstrarea jurnalului",
+    "byTime": "După timp",
+    "bySize": "După dimensiune",
+    "days": "{count} z",
+    "estimate": "Eliberare estimată: {size}",
+    "nothing": "Nimic de eliberat cu această păstrare",
+    "keepsSize": "Până la {size}",
+    "estimateNote": "Aproximativ: elimină fișierele de jurnal arhivate peste limita de păstrare.",
+    "unknownNote": "Cantitatea nu poate fi estimată: se eliberează ce depășește limita de păstrare."
+  },
+  "sysinfo": {
+    "title": "Sistem",
+    "distro": "Distribuție",
+    "kernel": "Kernel",
+    "session": "Sesiune",
+    "uptime": "Timp de funcționare",
+    "uptimeFormat": "{days} z {hours} h {minutes} min",
+    "cpu": "CPU",
+    "threads": "{count} fire",
+    "usage": "Utilizare CPU",
+    "cpuTemperature": "Temperatură CPU",
+    "gpuTemperature": "Temperatură GPU",
+    "memory": "Memorie",
+    "swap": "Swap",
+    "gpu": "GPU"
+  },
+  "cols": {
+    "item": "Element",
+    "contents": "Conținut",
+    "location": "Locație",
+    "path": "Cale",
+    "reference": "Referință",
+    "state": "Stare",
+    "revision": "Revizie",
+    "description": "Descriere",
+    "type": "Tip",
+    "age": "Vechime",
+    "retention": "Păstrare",
+    "size": "Dimensiune",
+    "risk": "Risc",
+    "source": "Sursă",
+    "date": "Data",
+    "category": "Categorie",
+    "items": "Elemente",
+    "freed": "Eliberat"
+  },
+  "rows": {
+    "disabledRevision": "Revizie dezactivată",
+    "folder": "Dosar",
+    "file": "Fișier",
+    "olderThanDay": "Peste 1 zi",
+    "recent": "Sub 1 zi",
+    "keepsDays": "Ultimele {days} zile"
+  },
+  "notes": {
+    "slowRebuild": "Se regenerează, dar reconstruirea costă timp la următoarea pornire.",
+    "manualApp": "Ai instalat-o tu: verifică dacă o mai folosești.",
+    "recentTemp": "Modificat în ultima zi: poate fi încă în uz.",
+    "flatpakApp": "Datele tale din ~/.var/app sunt păstrate.",
+    "snapApp": "Eliminarea dezinstalează întregul snap.",
+    "appImageApp": "Șterge fișierul, lansatorul și pictograma sa.",
+    "cacheSocket": "În uz: un program își ține aici conexiunea activă. Nu se curăță.",
+    "cacheLock": "În uz: conține fișiere de blocare sau de proces ale unui program. Nu se curăță.",
+    "cacheOpen": "În uz: un program în execuție îl are deschis. Nu se curăță."
+  },
+  "categories": {
+    "trash": {
+      "concept": "Fișiere pe care le-ai șters deja. Golirea coșului eliberează definitiv spațiul lor.",
+      "keep": "Se golește doar coșul; niciun alt dosar nu este atins."
+    },
+    "cache": {
+      "concept": "Date pe care aplicațiile le reconstruiesc singure în ~/.cache. Aici nu există niciodată documente.",
+      "keep": "Cookie-urile, parolele și profilurile se află în ~/.mozilla sau ~/.config, nu în .cache: nu sunt atinse."
+    },
+    "flatpak": {
+      "concept": "Runtime-uri și extensii de care nu are nevoie nicio aplicație instalată. Fiecare actualizare majoră lasă în urmă runtime-ul anterior.",
+      "keep": "Aplicațiile instalate și runtime-urile pe care le folosesc."
+    },
+    "snap": {
+      "concept": "Snap păstrează mai multe revizii ale fiecărui pachet. Cele dezactivate nu sunt folosite și ocupă doar spațiu pe disc.",
+      "keep": "Revizia activă a fiecărui snap nu este niciodată listată."
+    },
+    "apps": {
+      "concept": "Aplicații instalate manual: pachete APT, aplicații Flatpak și Snap și AppImage din ~/AppImages. Eliminarea uneia o dezinstalează; fișierele sale de configurare sunt păstrate. „Exportă scriptul de reinstalare” salvează un script care le instalează din nou după formatare (APT, Flatpak și Snap); AppImage-urile sunt listate în el cu adresa de descărcare.",
+      "keep": "Tot ce nu a fost instalat manual. Implicit nu este selectat nimic. Runtime-urile Flatpak și snap-urile de bază au pagini proprii."
+    },
+    "temp": {
+      "concept": "Fișiere și dosare din /tmp și /var/tmp. Cele modificate în ultima zi pot fi încă în uz, deci sunt marcate Verifică.",
+      "keep": "Socket-urile, pipe-urile, legăturile simbolice și directoarele private systemd sunt omise."
+    },
+    "aptCache": {
+      "concept": "Pachetele .deb descărcate de apt. Pot fi descărcate din nou oricând; reinstalarea costă doar lățime de bandă.",
+      "keep": "Pachetele instalate și listele de depozite."
+    },
+    "logs": {
+      "concept": "Jurnalul systemd. Curățarea păstrează doar ultimele 7 zile de jurnale.",
+      "keep": "Ultimele 7 zile de jurnale, inclusiv sesiunea curentă."
+    }
+  },
+  "history": {
+    "colType": "Tip",
+    "colDuration": "Durată",
+    "kind": { "quick": "Rapidă", "full": "Completă", "manual": "Manuală" },
+    "ok": "Reușită",
+    "failed": "Eșuată",
+    "failedDetail": "Curățarea a eșuat sau a fost anulată. Nu s-a eliberat nimic.",
+    "noDetail": "Fără chitanță: această intrare a fost înregistrată înainte să existe chitanțe.",
+    "export": "Exportă CSV",
+    "exported": "CSV exportat",
+    "exportFailed": "CSV-ul nu a putut fi exportat",
+    "csv": {
+      "date": "Data",
+      "time": "Ora",
+      "kind": "Tip",
+      "category": "Categorie",
+      "result": "Rezultat",
+      "items": "Elemente",
+      "bytes": "Octeți eliberați",
+      "durationMs": "Durată (ms)",
+      "command": "Comandă"
+    },
+    "totalFreed": "Eliberat (înregistrat)",
+    "cleanups": "Curățări",
+    "average": "Medie pe curățare",
+    "largest": "Cea mai mare",
+    "last7": "Ultimele 7 zile",
+    "conceptTitle": "Concept · Istoric",
+    "conceptBody": "Jurnal de audit: ce s-a curățat, când și cât a eliberat. Nimic nu se întâmplă pe ascuns."
+  },
+  "cacheView": {
+    "empty": "Nimic de curățat în cache-ul utilizatorului."
+  },
+  "flatpakView": {
+    "empty": "Niciun runtime Flatpak nefolosit."
+  },
+  "snapView": {
+    "empty": "Nicio revizie Snap veche."
+  },
+  "appsView": {
+    "empty": "Nicio aplicație instalată manual."
+  },
+  "tempView": {
+    "empty": "Niciun fișier temporar vechi."
+  },
+  "about": {
+    "version": "Versiunea {version}",
+    "tagline": "Scanează și curăță sistemul tău Soplos Linux cu o previzualizare clară înainte de a șterge ceva.",
+    "copyright": "Copyright © 2026 Sergi Perich",
+    "license": "GPL-3.0-or-later",
+    "website": "soplos.org"
+  }
+}
