@@ -2,6 +2,15 @@
 
 All notable changes to Soplos Sys Cleaner are documented in this file.
 
+## [3.0.0-3-beta] - 2026-10-19
+
+### Added
+
+- Added Unix manual page documentation (`soplos-sys-cleaner.1`) installed to `/usr/share/man/man1/`.
+- Full 8-language translations for desktop entry (`soplos-sys-cleaner.desktop.hbs`) and AppStream metainfo.
+- Packaged application screenshots into `/usr/share/doc/soplos-sys-cleaner/screenshots/`.
+- Updated Debian packaging metadata and bumped project release to `3.0.0-3-beta`.
+
 ## [3.0.0-2-beta] - 2026-10-14
 
 ### Added

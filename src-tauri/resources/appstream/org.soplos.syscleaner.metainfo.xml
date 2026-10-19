@@ -7,7 +7,24 @@
   <project_group>org.soploslinux</project_group>
 
   <name>Soplos Sys Cleaner</name>
+  <name xml:lang="en">Soplos Sys Cleaner</name>
+  <name xml:lang="es">Limpiador del Sistema de Soplos</name>
+  <name xml:lang="fr">Nettoyeur du Système de Soplos</name>
+  <name xml:lang="de">Soplos Systembereinigung</name>
+  <name xml:lang="pt">Limpeza do Sistema do Soplos</name>
+  <name xml:lang="it">Pulitore di Sistema di Soplos</name>
+  <name xml:lang="ro">Curățare Sistem Soplos</name>
+  <name xml:lang="ru">Очистка системы Soplos</name>
+
   <summary>System cleaner and maintenance tool for Soplos Linux</summary>
+  <summary xml:lang="en">System cleaner and maintenance tool for Soplos Linux</summary>
+  <summary xml:lang="es">Herramienta de limpieza y mantenimiento del sistema para Soplos Linux</summary>
+  <summary xml:lang="fr">Outil de nettoyage et de maintenance du système pour Soplos Linux</summary>
+  <summary xml:lang="de">Systembereinigungs- und Wartungswerkzeug für Soplos Linux</summary>
+  <summary xml:lang="pt">Ferramenta de limpeza e manutenção do sistema para o Soplos Linux</summary>
+  <summary xml:lang="it">Strumento di pulizia e manutenzione del sistema per Soplos Linux</summary>
+  <summary xml:lang="ro">Instrument de curățare și întreținere a sistemului pentru Soplos Linux</summary>
+  <summary xml:lang="ru">Инструмент очистки и обслуживания системы для Soplos Linux</summary>
 
   <description>
     <p>
@@ -18,6 +35,53 @@
       found before removing anything. A basic program offers one standard
       cleanup, and an advanced one gives access to every page.
     </p>
+    <p xml:lang="es">
+      El Limpiador del Sistema de Soplos analiza el sistema en busca de espacio
+      recuperable: caché de APT, núcleos antiguos, controladores y firmware sin
+      usar, idiomas y manuales no utilizados, paquetes huérfanos, registros del
+      sistema, archivos temporales y restos de Flatpak/Snap, mostrando una vista
+      previa detallada antes de borrar nada. Incluye un modo básico con limpieza
+      estándar en un clic y un modo avanzado con control total.
+    </p>
+    <p xml:lang="fr">
+      Le nettoyeur du système de Soplos recherche l'espace disque récupérable :
+      cache APT, anciens noyaux, pilotes et microprogrammes inutilisés, langues
+      et documentations inutilisées, paquets orphelins, journaux, fichiers temporaires
+      et résidus Flatpak/Snap. Un programme simple propose un nettoyage standard
+      et un mode avancé offre un contrôle total.
+    </p>
+    <p xml:lang="de">
+      Die Soplos Systembereinigung analysiert das System auf freigebbaren Speicherplatz:
+      APT-Cache, alte Kernel, ungenutzte Treiber und Firmware, nicht benötigte Sprachen,
+      verwaiste Pakete, Protokolle, temporäre Dateien und Flatpak/Snap-Reste mit einer
+      präzisen Vorschau vor jeder Bereinigung. Beinhaltet ein Standard-Programm sowie
+      einen erweiterten Modus mit allen Detailseiten.
+    </p>
+    <p xml:lang="pt">
+      O utilitário de Limpeza do Sistema do Soplos analisa o sistema em busca de espaço
+      recuperável: cache APT, kernels antigos, controladores e firmware não utilizados,
+      idiomas e manuais secundários, pacotes órfãos, registos do sistema, ficheiros temporários
+      e resíduos de Flatpak/Snap. Disponibiliza um modo básico com limpeza padrão e um modo
+      avançado para cada secção.
+    </p>
+    <p xml:lang="it">
+      Il Pulitore di Sistema di Soplos esamina il sistema per liberare spazio su disco:
+      cache APT, vecchi kernel, driver e firmware inutilizzati, lingue non utilizzate,
+      pacchetti orfani, log, file temporanei e residui Flatpak/Snap. Include un programma
+      base per una pulizia rapida e uno avanzato per un controllo totale.
+    </p>
+    <p xml:lang="ro">
+      Curățare Sistem Soplos scanează sistemul pentru recuperarea spațiului pe disc:
+      cache APT, kerneluri vechi, drivere și firmware nefolosite, pachete orfane, jurnale,
+      fișiere temporare și reziduuri Flatpak/Snap. Include un mod de bază cu o curățare
+      standard și un mod avansat complet.
+    </p>
+    <p xml:lang="ru">
+      Очистка системы Soplos сканирует систему для освобождения места на диске: кэш APT,
+      старые ядра, неиспользуемые драйверы и прошивки, неиспользуемые языки, потерянные
+      пакеты, журналы, временные файлы и остатки Flatpak/Snap с предварительным просмотром.
+      Включает базовый режим для очистки в один клик и расширенный режим.
+    </p>
   </description>
 
   <launchable type="desktop-id">org.soplos.syscleaner.desktop</launchable>
@@ -26,18 +90,50 @@
     <screenshot type="default">
       <image>screenshot01.png</image>
       <caption>Basic program: health ring and one standard cleanup</caption>
+      <caption xml:lang="es">Programa básico: anillo de salud y limpieza estándar en un clic</caption>
+      <caption xml:lang="en">Basic program: health ring and one standard cleanup</caption>
+      <caption xml:lang="fr">Programme de base : jauge de santé et nettoyage standard</caption>
+      <caption xml:lang="de">Basisprogramm: Systemzustandsring und Standardbereinigung</caption>
+      <caption xml:lang="pt">Programa básico: indicador de saúde e limpeza padrão</caption>
+      <caption xml:lang="it">Programma base: anello di stato e pulizia standard</caption>
+      <caption xml:lang="ro">Program de bază: inel de stare și o curățare standard</caption>
+      <caption xml:lang="ru">Базовая программа: кольцо состояния и стандартная очистка</caption>
     </screenshot>
     <screenshot>
       <image>screenshot02.png</image>
       <caption>Advanced program: Overview with space by category, storage and system card</caption>
+      <caption xml:lang="es">Programa avanzado: visión general con espacio por categoría y tarjeta del sistema</caption>
+      <caption xml:lang="en">Advanced program: Overview with space by category, storage and system card</caption>
+      <caption xml:lang="fr">Programme avancé : vue d'ensemble avec espace par catégorie et carte système</caption>
+      <caption xml:lang="de">Erweitertes Programm: Übersicht mit Speicher nach Kategorie und Systemkarte</caption>
+      <caption xml:lang="pt">Programa avançado: visão geral com espaço por categoria e estado do sistema</caption>
+      <caption xml:lang="it">Programma avanzato: panoramica con spazio per categoria e scheda di sistema</caption>
+      <caption xml:lang="ro">Program avansat: prezentare generală cu spațiu pe categorii și card de sistem</caption>
+      <caption xml:lang="ru">Расширенная программа: обзор с местом по категориям и карточка системы</caption>
     </screenshot>
     <screenshot>
       <image>screenshot03.png</image>
       <caption>Languages: one row per language, with its regional variants grouped and risk labels</caption>
+      <caption xml:lang="es">Idiomas: una fila por idioma con variantes regionales agrupadas y etiquetas de riesgo</caption>
+      <caption xml:lang="en">Languages: one row per language, with its regional variants grouped and risk labels</caption>
+      <caption xml:lang="fr">Langues : une ligne par langue avec variantes régionales et étiquettes de risque</caption>
+      <caption xml:lang="de">Sprachen: eine Zeile pro Sprache mit Varianten und Risikokennzeichnung</caption>
+      <caption xml:lang="pt">Idiomas: uma linha por idioma com variantes agrupadas e etiquetas de risco</caption>
+      <caption xml:lang="it">Lingue: una riga per lingua con varianti raggruppate ed etichette di rischio</caption>
+      <caption xml:lang="ro">Limbi: un rând pe limbă cu variante regionale grupate și etichete de risc</caption>
+      <caption xml:lang="ru">Языки: одна строка на язык с группировкой региональных вариантов и метками риска</caption>
     </screenshot>
     <screenshot>
       <image>screenshot04.png</image>
       <caption>History with a receipt for every cleanup</caption>
+      <caption xml:lang="es">Historial con informe detallado de cada limpieza realizada</caption>
+      <caption xml:lang="en">History with a receipt for every cleanup</caption>
+      <caption xml:lang="fr">Historique avec reçu détaillé pour chaque nettoyage</caption>
+      <caption xml:lang="de">Verlauf mit detailliertem Protokoll für jede Bereinigung</caption>
+      <caption xml:lang="pt">Histórico com relatório detalhado de cada limpeza realizada</caption>
+      <caption xml:lang="it">Cronologia con ricevuta dettagliata per ogni pulizia</caption>
+      <caption xml:lang="ro">Istoric cu raport detaliat pentru fiecare curățare</caption>
+      <caption xml:lang="ru">История с подробным отчётом по каждой очистке</caption>
     </screenshot>
   </screenshots>
 
@@ -49,10 +145,17 @@
   <url type="homepage">https://soplos.org</url>
 
   <developer id="org.soploslinux">
-    <name>Soplos Linux</name>
+    <name>Sergi Perich</name>
   </developer>
 
   <releases>
+    <release version="3.0.0-3-beta" date="2026-10-19">
+      <description>
+        <p>Full 8-language internationalization across desktop launchers and AppStream metadata.</p>
+        <p>Added Unix manual page documentation (soplos-sys-cleaner.1) installed to /usr/share/man/man1/.</p>
+        <p>Updated Debian packaging and application documentation.</p>
+      </description>
+    </release>
     <release version="3.0.0-2-beta" date="2026-10-14">
       <description>
         <p>Orphaned packages, every kind of installed app in one list with a reinstall script, animated health rings, and alerts that reach GNOME.</p>

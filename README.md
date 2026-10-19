@@ -1,5 +1,8 @@
 # Soplos Sys Cleaner 3.0
 
+[![License: GPL-3.0+](https://img.shields.io/badge/License-GPL--3.0%2B-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Version](https://img.shields.io/badge/version-3.0.0--3--beta-green.svg)]()
+
 System cleaner and maintenance tool for Soplos Linux.
 
 Scans the system for reclaimable space (caches, logs, temporary files, Flatpak and Snap leftovers, old kernels, unused drivers and firmware, languages and documentation you do not use), shows exactly what it found and what each item is, and only removes what you confirm.
@@ -8,8 +11,8 @@ Scans the system for reclaimable space (caches, logs, temporary files, Flatpak a
 
 | | |
 |---|---|
-| ![Basic program](src-tauri/resources/screenshots/screenshot01.png) Basic program: health ring and one standard cleanup | ![Overview](src-tauri/resources/screenshots/screenshot02.png) Advanced program: Overview with space by category, storage and system card |
-| ![Languages](src-tauri/resources/screenshots/screenshot03.png) Languages: one row per language, with its regional variants grouped and risk labels | ![History](src-tauri/resources/screenshots/screenshot04.png) History with a receipt for every cleanup |
+| ![Basic program](src-tauri/resources/screenshots/screenshot01.png) **Basic mode**: health ring, summary metrics and one standard cleanup | ![Overview](src-tauri/resources/screenshots/screenshot02.png) **Advanced mode**: space overview by category, storage details and live system card |
+| ![Languages](src-tauri/resources/screenshots/screenshot03.png) **Languages**: locale management with regional grouping and safety risk labels | ![History](src-tauri/resources/screenshots/screenshot04.png) **History**: audit receipt log for every cleanup with CSV export |
 
 ## Two programs, one package
 
@@ -69,10 +72,26 @@ Open Soplos Sys Cleaner from the applications menu. Press F1 for the About dialo
 
 Shortcuts do nothing while a dialog is open, and Enter alone never confirms a cleanup.
 
+## Documentation
+
+A Unix manual page is included and installed with the package:
+
+```bash
+man soplos-sys-cleaner
+```
+
 ## Languages
 
-The interface is available in English, Spanish, German, French, Italian, Portuguese, Romanian and Russian. It starts in the system language and falls back to English.
+The interface is available in 8 languages: English, Español, Deutsch, Français, Italiano, Português, Română and Русский. It starts in the system language and falls back to English.
+
+## Building
+
+```bash
+npm install
+npm run tauri dev      # development
+./package.sh           # builds the .deb and moves it to ~/Descargas/SoplosApps
+```
 
 ## License
 
-GPL-3.0-or-later. See `LICENSE`.
+Copyright © 2026 Sergi Perich <info@soploslinux.com>. Published under the GPL-3.0-or-later license. See `LICENSE`.

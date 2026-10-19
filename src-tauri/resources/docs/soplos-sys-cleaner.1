@@ -1,0 +1,54 @@
+.TH "SOPLOS-SYS-CLEANER" "1" "2026-10-19" "Soplos Linux" "User Commands"
+.SH NAME
+soplos-sys-cleaner \- System cleaner and maintenance tool for Soplos Linux
+.SH SYNOPSIS
+.B soplos-sys-cleaner
+[\fIOPTIONS\fR]
+.br
+.B soplos-sys-cleaner-basic
+[\fIOPTIONS\fR]
+.SH DESCRIPTION
+.B soplos-sys-cleaner
+is the official maintenance and disk space recovery application for Soplos Linux.
+Built with Tauri 2, Rust, and Svelte architecture, it provides an intuitive, high-performance interface with dry-run verification and Polkit-authenticated security:
+.IP \[bu] 2
+Two tailored modes: a basic one-click standard cleanup interface (\fBsoplos-sys-cleaner-basic\fR) and an advanced granular maintenance suite (\fBsoplos-sys-cleaner\fR).
+.IP \[bu]
+APT package cache cleaner with per-file inspection and disk space recovery.
+.IP \[bu]
+Old kernel and module cleaner with strict protection for active and fallback kernels.
+.IP \[bu]
+Unused hardware drivers and firmware cleaner with dracut and modinfo verification.
+.IP \[bu]
+Orphaned packages and residual configuration (dpkg state rc) purge.
+.IP \[bu]
+Language pack cleaner with protection for system locales.
+.IP \[bu]
+Flatpak runtime and Snap application leftovers removal.
+.IP \[bu]
+Application inventory supporting APT, Flatpak, Snap, and AppImages, with reinstall script export.
+.IP \[bu]
+System journal, crash dump, and temporary cache cleaner.
+.SH OPTIONS
+.TP
+.B \-h, \-\-help
+Show summary of options.
+.SH FILES
+.TP
+.I /usr/share/polkit-1/actions/org.soplos.syscleaner.policy
+Polkit policy defining administrative privileges for cleanup actions.
+.TP
+.I ~/.local/share/soplos-sys-cleaner/stats.json
+User cleanup history and statistics.
+.SH AUTHOR
+Written by Sergi Perich <info@soploslinux.com> for the Soplos Linux project.
+.SH COPYRIGHT
+Copyright \(co 2026 Sergi Perich <info@soploslinux.com>.
+.br
+License: GPL-3.0-or-later <https://www.gnu.org/licenses/gpl-3.0.html>.
+.br
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+.SH SEE ALSO
+.BR soplos-store (1),
+.BR soplos-welcome (1)
