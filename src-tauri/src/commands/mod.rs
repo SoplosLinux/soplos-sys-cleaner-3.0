@@ -19,6 +19,7 @@ pub mod privileged;
 pub mod residual;
 pub mod simulate;
 pub mod snap;
+pub mod snapshots;
 pub mod stats;
 pub mod system_info;
 pub mod temp_files;

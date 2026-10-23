@@ -292,8 +292,35 @@
       "man": "Manual pages"
     }
   },
+  "snapshots": {
+    "title": "Snapshots",
+    "description": "Restore points made by Timeshift and Snapper. Reading them needs the administrator password.",
+    "concept": "The system snapshots that Timeshift (in its rsync or BTRFS mode) and Snapper keep. Each one holds the state of the system at a moment, and keeping many takes a lot of space.",
+    "keep": "The newest snapshot of each tool is always kept, so there is always a point to go back to. Nothing is deleted without being chosen and confirmed.",
+    "colSource": "Made by",
+    "source": {
+      "timeshiftRsync": "Timeshift · rsync",
+      "timeshiftBtrfs": "Timeshift · BTRFS",
+      "snapper": "Snapper · {config}"
+    },
+    "noteNewest": "The newest snapshot is always kept.",
+    "noteReview": "A deleted snapshot cannot be recovered. Check that you will not need to go back to it.",
+    "gate": "Listing the snapshots needs the administrator password.",
+    "failed": "The snapshots could not be listed. The password was not given, or neither Timeshift nor Snapper is installed.",
+    "show": "Show the snapshots",
+    "reading": "Reading...",
+    "listedAt": "Listed at {time}",
+    "reload": "Read again",
+    "noTool": "Timeshift or Snapper is not installed.",
+    "where": "Where to make it",
+    "comment": "Comment of the new snapshot",
+    "create": "Make a snapshot",
+    "creating": "Making it...",
+    "created": "Snapshot made.",
+    "createFailed": "The snapshot could not be made."
+  },
   "docs": {
-    "title": "Documentation",
+    "title":"Documentation",
     "description": "Package documentation folders and documentation stores. Copyright files are always kept.",
     "concept": "The documentation folders of packages that take over 1 MB under /usr/share/doc, plus Info pages, Qt, GTK-Doc and Devhelp documentation.",
     "keep": "The copyright files of every package, the Info index, and the manual pages. The whole /usr/share/doc and /usr/share/man are never offered.",
@@ -525,7 +552,11 @@
     "conceptBody": "Audit log: what was cleaned, when and how much it freed. Nothing happens behind your back."
   },
   "cacheView": {
-    "empty": "Nothing to clean in the user cache."
+    "empty": "Nothing to clean in the user cache.",
+    "context": "Data the apps rebuild on their own in ~/.cache. There are never documents here.",
+    "preservedTitle": "What is kept",
+    "preserved": "Cookies, passwords and profiles live in ~/.mozilla or ~/.config, not in .cache: they are not touched.",
+    "equivalentTitle": "Equivalent to"
   },
   "flatpakView": {
     "empty": "No unused Flatpak runtimes."

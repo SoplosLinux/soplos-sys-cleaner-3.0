@@ -4,7 +4,7 @@
   <pkgname>soplos-sys-cleaner</pkgname>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
-  <project_group>org.soploslinux</project_group>
+  <project_group>org.soplos</project_group>
 
   <name>Soplos Sys Cleaner</name>
   <name xml:lang="en">Soplos Sys Cleaner</name>
@@ -84,11 +84,75 @@
     </p>
   </description>
 
+  <categories>
+    <category>System</category>
+    <category>Settings</category>
+  </categories>
+
+  <keywords>
+    <keyword>cleaner</keyword>
+    <keyword>maintenance</keyword>
+    <keyword>disk space</keyword>
+    <keyword>cache</keyword>
+    <keyword>kernels</keyword>
+    <keyword>system</keyword>
+    <keyword>cleanup</keyword>
+    <keyword xml:lang="es">limpiador</keyword>
+    <keyword xml:lang="es">mantenimiento</keyword>
+    <keyword xml:lang="es">espacio en disco</keyword>
+    <keyword xml:lang="es">caché</keyword>
+    <keyword xml:lang="es">núcleos</keyword>
+    <keyword xml:lang="es">sistema</keyword>
+    <keyword xml:lang="es">limpieza</keyword>
+    <keyword xml:lang="fr">nettoyeur</keyword>
+    <keyword xml:lang="fr">maintenance</keyword>
+    <keyword xml:lang="fr">espace disque</keyword>
+    <keyword xml:lang="fr">cache</keyword>
+    <keyword xml:lang="fr">noyaux</keyword>
+    <keyword xml:lang="fr">système</keyword>
+    <keyword xml:lang="fr">nettoyage</keyword>
+    <keyword xml:lang="de">bereinigung</keyword>
+    <keyword xml:lang="de">wartung</keyword>
+    <keyword xml:lang="de">speicherplatz</keyword>
+    <keyword xml:lang="de">cache</keyword>
+    <keyword xml:lang="de">kernel</keyword>
+    <keyword xml:lang="de">system</keyword>
+    <keyword xml:lang="de">aufräumen</keyword>
+    <keyword xml:lang="pt">limpeza</keyword>
+    <keyword xml:lang="pt">manutenção</keyword>
+    <keyword xml:lang="pt">espaço em disco</keyword>
+    <keyword xml:lang="pt">cache</keyword>
+    <keyword xml:lang="pt">kernels</keyword>
+    <keyword xml:lang="pt">sistema</keyword>
+    <keyword xml:lang="pt">otimização</keyword>
+    <keyword xml:lang="it">pulizia</keyword>
+    <keyword xml:lang="it">manutenzione</keyword>
+    <keyword xml:lang="it">spazio disco</keyword>
+    <keyword xml:lang="it">cache</keyword>
+    <keyword xml:lang="it">kernel</keyword>
+    <keyword xml:lang="it">sistema</keyword>
+    <keyword xml:lang="it">ottimizzazione</keyword>
+    <keyword xml:lang="ro">curățare</keyword>
+    <keyword xml:lang="ro">întreținere</keyword>
+    <keyword xml:lang="ro">spațiu disc</keyword>
+    <keyword xml:lang="ro">cache</keyword>
+    <keyword xml:lang="ro">kernel</keyword>
+    <keyword xml:lang="ro">sistem</keyword>
+    <keyword xml:lang="ro">mentenanță</keyword>
+    <keyword xml:lang="ru">очистка</keyword>
+    <keyword xml:lang="ru">обслуживание</keyword>
+    <keyword xml:lang="ru">дисковое пространство</keyword>
+    <keyword xml:lang="ru">кэш</keyword>
+    <keyword xml:lang="ru">ядра</keyword>
+    <keyword xml:lang="ru">система</keyword>
+    <keyword xml:lang="ru">оптимизация</keyword>
+  </keywords>
+
   <launchable type="desktop-id">org.soplos.syscleaner.desktop</launchable>
 
   <screenshots>
     <screenshot type="default">
-      <image>screenshot01.png</image>
+      <image>https://raw.githubusercontent.com/SoplosLinux/soplos-sys-cleaner-3.0/main/src-tauri/resources/screenshots/screenshot01.png</image>
       <caption>Basic program: health ring and one standard cleanup</caption>
       <caption xml:lang="es">Programa básico: anillo de salud y limpieza estándar en un clic</caption>
       <caption xml:lang="en">Basic program: health ring and one standard cleanup</caption>
@@ -100,7 +164,7 @@
       <caption xml:lang="ru">Базовая программа: кольцо состояния и стандартная очистка</caption>
     </screenshot>
     <screenshot>
-      <image>screenshot02.png</image>
+      <image>https://raw.githubusercontent.com/SoplosLinux/soplos-sys-cleaner-3.0/main/src-tauri/resources/screenshots/screenshot02.png</image>
       <caption>Advanced program: Overview with space by category, storage and system card</caption>
       <caption xml:lang="es">Programa avanzado: visión general con espacio por categoría y tarjeta del sistema</caption>
       <caption xml:lang="en">Advanced program: Overview with space by category, storage and system card</caption>
@@ -112,7 +176,7 @@
       <caption xml:lang="ru">Расширенная программа: обзор с местом по категориям и карточка системы</caption>
     </screenshot>
     <screenshot>
-      <image>screenshot03.png</image>
+      <image>https://raw.githubusercontent.com/SoplosLinux/soplos-sys-cleaner-3.0/main/src-tauri/resources/screenshots/screenshot03.png</image>
       <caption>Languages: one row per language, with its regional variants grouped and risk labels</caption>
       <caption xml:lang="es">Idiomas: una fila por idioma con variantes regionales agrupadas y etiquetas de riesgo</caption>
       <caption xml:lang="en">Languages: one row per language, with its regional variants grouped and risk labels</caption>
@@ -124,7 +188,7 @@
       <caption xml:lang="ru">Языки: одна строка на язык с группировкой региональных вариантов и метками риска</caption>
     </screenshot>
     <screenshot>
-      <image>screenshot04.png</image>
+      <image>https://raw.githubusercontent.com/SoplosLinux/soplos-sys-cleaner-3.0/main/src-tauri/resources/screenshots/screenshot04.png</image>
       <caption>History with a receipt for every cleanup</caption>
       <caption xml:lang="es">Historial con informe detallado de cada limpieza realizada</caption>
       <caption xml:lang="en">History with a receipt for every cleanup</caption>
@@ -144,11 +208,18 @@
 
   <url type="homepage">https://soplos.org</url>
 
-  <developer id="org.soploslinux">
+  <developer id="org.soplos">
     <name>Sergi Perich</name>
   </developer>
 
   <releases>
+    <release version="3.0.0-4-beta" date="2026-10-23">
+      <description>
+        <p>New Snapshots category: lists, deletes and makes the restore points of Timeshift (rsync and BTRFS) and Snapper, always keeping the newest one of each.</p>
+        <p>The window follows the light or dark theme of the desktop (Xfce, Plasma and GNOME), and the button of the sidebar still lets you choose.</p>
+        <p>Wider sidebar whose scroll bar no longer sits on the figures, and the type errors of the project fixed.</p>
+      </description>
+    </release>
     <release version="3.0.0-3-beta" date="2026-10-19">
       <description>
         <p>Full 8-language internationalization across desktop launchers and AppStream metadata.</p>
@@ -190,6 +261,11 @@
           <li>Optional alerts by time or by size, chosen by the user; notification only, never cleans by itself</li>
           <li>Keyboard shortcuts</li>
         </ul>
+      </description>
+    </release>
+    <release version="3.0.0-beta" date="2026-10-10">
+      <description>
+        <p>First version of Soplos Sys Cleaner on Tauri 2, with a Rust backend and a Svelte frontend, replacing the Python 3 and GTK3 application.</p>
       </description>
     </release>
   </releases>

@@ -292,8 +292,35 @@
       "man": "Pages de manuel"
     }
   },
+  "snapshots": {
+    "title": "Instantanés",
+    "description": "Points de restauration de Timeshift et Snapper. Les lire demande le mot de passe administrateur.",
+    "concept": "Les instantanés du système que gardent Timeshift (en mode rsync ou BTRFS) et Snapper. Chacun conserve l'état du système à un moment donné, et en garder beaucoup prend beaucoup de place.",
+    "keep": "L'instantané le plus récent de chaque outil est toujours conservé, pour qu'il reste un point où revenir. Rien n'est supprimé sans être choisi et confirmé.",
+    "colSource": "Créé par",
+    "source": {
+      "timeshiftRsync": "Timeshift · rsync",
+      "timeshiftBtrfs": "Timeshift · BTRFS",
+      "snapper": "Snapper · {config}"
+    },
+    "noteNewest": "L'instantané le plus récent est toujours conservé.",
+    "noteReview": "Un instantané supprimé ne peut pas être récupéré. Vérifiez que vous n'aurez pas besoin d'y revenir.",
+    "gate": "Lister les instantanés demande le mot de passe administrateur.",
+    "failed": "Les instantanés n'ont pas pu être listés. Le mot de passe n'a pas été donné, ou ni Timeshift ni Snapper ne sont installés.",
+    "show": "Afficher les instantanés",
+    "reading": "Lecture...",
+    "listedAt": "Liste de {time}",
+    "reload": "Relire",
+    "noTool": "Ni Timeshift ni Snapper ne sont installés.",
+    "where": "Où le créer",
+    "comment": "Commentaire du nouvel instantané",
+    "create": "Créer un instantané",
+    "creating": "Création...",
+    "created": "Instantané créé.",
+    "createFailed": "L'instantané n'a pas pu être créé."
+  },
   "docs": {
-    "title": "Documentation",
+    "title":"Documentation",
     "description": "Dossiers de documentation des paquets et dépôts de documentation. Les fichiers de copyright sont toujours conservés.",
     "concept": "Les dossiers de documentation des paquets de plus de 1 Mo dans /usr/share/doc, ainsi que les pages Info et la documentation de Qt, GTK-Doc et Devhelp.",
     "keep": "Les fichiers de copyright de chaque paquet, l'index Info et les pages de manuel. /usr/share/doc et /usr/share/man ne sont jamais proposés en entier.",
@@ -525,7 +552,11 @@
     "conceptBody": "Journal d'audit : ce qui a été nettoyé, quand et combien d'espace cela a libéré. Rien ne se passe dans votre dos."
   },
   "cacheView": {
-    "empty": "Rien à nettoyer dans le cache utilisateur."
+    "empty": "Rien à nettoyer dans le cache utilisateur.",
+    "context": "Des données que les applications reconstruisent d'elles-mêmes dans ~/.cache. Il n'y a jamais de documents ici.",
+    "preservedTitle": "Ce qui est conservé",
+    "preserved": "Les cookies, les mots de passe et les profils se trouvent dans ~/.mozilla ou ~/.config, pas dans .cache : ils ne sont pas touchés.",
+    "equivalentTitle": "Équivaut à"
   },
   "flatpakView": {
     "empty": "Aucun runtime Flatpak inutilisé."

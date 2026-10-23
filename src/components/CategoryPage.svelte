@@ -13,6 +13,7 @@
   import RiskBadge from "./RiskBadge.svelte";
   import CleanDialog from "./CleanDialog.svelte";
   import JournalRetention from "./JournalRetention.svelte";
+  import SnapshotsGate from "./SnapshotsGate.svelte";
 
   // The single page template every cleaning category uses: filter chips,
   // selectable table with risk labels, selection footer, and the notes panel.
@@ -158,6 +159,8 @@
   <div class="flex min-w-0 flex-col gap-2.5">
   {#if id === "logs"}
     <JournalRetention />
+  {:else if id === "snapshots"}
+    <SnapshotsGate />
   {/if}
   <div class="min-w-0 rounded-lg border border-border bg-surface px-3 py-2.5">
     <!-- Stays at the top of the page while the list scrolls. The strip above

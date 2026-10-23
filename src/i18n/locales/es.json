@@ -292,8 +292,35 @@
       "man": "Páginas de manual"
     }
   },
+  "snapshots": {
+    "title": "Snapshots",
+    "description": "Puntos de restauración de Timeshift y Snapper. Leerlos necesita la contraseña de administrador.",
+    "concept": "Las copias del sistema que guardan Timeshift (en su modo rsync o BTRFS) y Snapper. Cada una conserva el estado del sistema en un momento, y tener muchas ocupa mucho espacio.",
+    "keep": "El snapshot más reciente de cada herramienta se conserva siempre, para que haya un punto al que volver. No se borra nada sin elegirlo y confirmarlo.",
+    "colSource": "Hecho por",
+    "source": {
+      "timeshiftRsync": "Timeshift · rsync",
+      "timeshiftBtrfs": "Timeshift · BTRFS",
+      "snapper": "Snapper · {config}"
+    },
+    "noteNewest": "El snapshot más reciente se conserva siempre.",
+    "noteReview": "Un snapshot borrado no se puede recuperar. Comprueba que no vas a necesitar volver a él.",
+    "gate": "Listar los snapshots necesita la contraseña de administrador.",
+    "failed": "No se pudieron listar los snapshots. No se dio la contraseña, o no hay ni Timeshift ni Snapper instalados.",
+    "show": "Mostrar los snapshots",
+    "reading": "Leyendo...",
+    "listedAt": "Listados a las {time}",
+    "reload": "Leer de nuevo",
+    "noTool": "No está instalado Timeshift ni Snapper.",
+    "where": "Dónde hacerlo",
+    "comment": "Comentario del nuevo snapshot",
+    "create": "Hacer un snapshot",
+    "creating": "Haciéndolo...",
+    "created": "Snapshot hecho.",
+    "createFailed": "No se pudo hacer el snapshot."
+  },
   "docs": {
-    "title": "Documentación",
+    "title":"Documentación",
     "description": "Carpetas de documentación de paquetes y almacenes de documentación. Los archivos de copyright se conservan siempre.",
     "concept": "Las carpetas de documentación de paquetes que ocupan más de 1 MB en /usr/share/doc, además de las páginas Info y la documentación de Qt, GTK-Doc y Devhelp.",
     "keep": "Los archivos de copyright de cada paquete, el índice de Info y las páginas de manual. Nunca se ofrece borrar /usr/share/doc ni /usr/share/man enteros.",

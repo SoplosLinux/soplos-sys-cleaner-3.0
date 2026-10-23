@@ -1,5 +1,5 @@
 import type { ComponentType } from "svelte";
-import { Trash2, Archive, Box, RotateCcw, AppWindow, FolderClock, PackageX, PackageMinus, FileX, ScrollText, Cpu, Plug, Microchip, Languages, BookOpen } from "lucide-svelte";
+import { Trash2, Archive, Box, RotateCcw, AppWindow, FolderClock, PackageX, PackageMinus, FileX, ScrollText, Cpu, Plug, Microchip, Languages, BookOpen, Camera } from "lucide-svelte";
 import { journalCommand, type JournalPolicy } from "./journal";
 
 export type CategoryId =
@@ -14,6 +14,7 @@ export type CategoryId =
   | "residual"
   | "logs"
   | "kernels"
+  | "snapshots"
   | "drivers"
   | "firmware"
   | "languages"
@@ -203,6 +204,18 @@ export const CATEGORIES: CategoryDef[] = [
     headers: ["kernels.colVersion", "kernels.colPackages", "cols.state"],
     conceptKey: "kernels.concept",
     keepKey: "kernels.keep",
+  },
+  {
+    id: "snapshots",
+    icon: Camera,
+    labelKey: "snapshots.title",
+    titleKey: "snapshots.title",
+    descriptionKey: "snapshots.description",
+    admin: true,
+    command: "timeshift --delete --snapshot <name> | snapper -c <config> delete <number>",
+    headers: ["cols.item", "cols.description", "snapshots.colSource"],
+    conceptKey: "snapshots.concept",
+    keepKey: "snapshots.keep",
   },
   {
     id: "drivers",

@@ -2,6 +2,30 @@
 
 All notable changes to Soplos Sys Cleaner are documented in this file.
 
+## [3.0.0-4-beta] - 2026-10-23
+
+### Added
+
+- New category, Snapshots: the restore points of Timeshift (in its rsync and its BTRFS mode) and of Snapper. Reading them needs the administrator password, so nothing is listed until the page asks for it with a button, and a scan of the window never asks for it. The snapshots are always for review, never preselected and never part of the quick cleanups, and the newest one of each tool (and Snapper configuration) is locked, so there is always a point to go back to. The helper that runs as root accepts a delete only for a snapshot that the tool itself lists at that moment and never for the newest of its set, and, when the boot menu lists snapshots (grub-btrfs) and its daemon is not running, it makes the menu again. The size is shown for rsync snapshots kept on the root device (what only that snapshot holds) and for Snapper when its quota is on; the other cases show none. The page can also make a snapshot now, in Timeshift or in a Snapper configuration, with a short comment.
+- `CHANGELOG.md` is installed as `/usr/share/doc/soplos-sys-cleaner/changelog.gz`.
+- AppStream metainfo: categories and keywords in the eight languages, the same ones as the desktop entry, and the `3.0.0-beta` release.
+- The Debian copyright now declares Lucide (ISC), used for the interface icons.
+- README: version, license, platform, Tauri, Rust and Svelte badges.
+
+### Changed
+
+- The sidebar is wider (258 pixels) and only its list scrolls, so the title and the footer stay in view; its orange bar is thin and keeps its own room, and no longer sits on the figures of the rows.
+- The window follows the light or dark theme of the desktop. It starts in the theme of the desktop and notices when it changes. The theme is read from the XDG portal and, when that says nothing, from each desktop: the colors of `kdeglobals` on Plasma, the name of the GTK theme on Xfce (a guess from words such as "dark") and the color scheme of GNOME. The button of the sidebar still switches the theme and keeps what it chose; switching to the theme the desktop has goes back to following it.
+- Manual page rewritten: both programs, the risk labels, every cleaning page, the privilege model, the options `--check`, `--notify` and `--run-ops`, all keyboard shortcuts and the files of the history, the alerts and the advanced launcher. It is installed compressed, as `/usr/share/man/man1/soplos-sys-cleaner.1.gz`.
+
+### Fixed
+
+- The type errors and the warning that the project had: the journal scanner did not declare its rows, the page of a category took the name of the tab as a plain string, and the About dialog did not use its `mode`.
+- AppStream metainfo: the developer and project group identifiers were `org.soploslinux`. They are now `org.soplos`, matching the soplos.org domain and the other Soplos apps.
+- AppStream metainfo: the screenshots were bare file names instead of web addresses, so software centers could not show them and the file did not validate. They now use their `raw.githubusercontent.com` address.
+- Italian, Portuguese, Romanian and Russian were missing `dashboard.pendingTotal`, `dashboard.actionPreview` and `dashboard.allCategories`.
+- The texts of the user cache page (`cacheView.context`, `cacheView.preservedTitle`, `cacheView.preserved` and `cacheView.equivalentTitle`) existed only in Spanish, so the page showed raw keys in the other seven languages, English included. They are now in all eight.
+
 ## [3.0.0-3-beta] - 2026-10-19
 
 ### Added
@@ -78,6 +102,6 @@ All notable changes to Soplos Sys Cleaner are documented in this file.
 - The polkit message now describes what the action does.
 - The recorded recovered space no longer includes cancelled or failed cleanups, and translation keys that were shown raw in the interface were added in all eight languages.
 
-## [3.0.0-beta]
+## [3.0.0-beta] - 2026-10-10
 
 First version of Soplos Sys Cleaner on Tauri 2, with a Rust backend and a Svelte frontend, replacing the Python 3 and GTK3 application.

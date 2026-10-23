@@ -74,3 +74,13 @@
 .content-scroll::-webkit-scrollbar-thumb:hover {
   background: theme("colors.primary.hover");
 }
+
+/* The sidebar keeps room for its bar, thinner than the content one, so the
+   bar never sits on the figures at the right of the rows. */
+.sidebar-scroll {
+  scrollbar-gutter: stable;
+}
+
+.sidebar-scroll::-webkit-scrollbar {
+  width: 5px;
+}

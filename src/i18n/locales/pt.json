@@ -73,6 +73,9 @@
     "storage": "Armazenamento",
     "free": "livres",
     "spaceByCategory": "Onde está o espaço",
+    "pendingTotal": "Espaço pendente",
+    "actionPreview": "{count} elementos · {size}",
+    "allCategories": "Todas as categorias",
     "needsAdmin": "pede palavra-passe",
     "noAdmin": "sem palavra-passe",
     "storageOverview": "Resumo do armazenamento",
@@ -289,8 +292,35 @@
       "man": "Páginas de manual"
     }
   },
+  "snapshots": {
+    "title": "Snapshots",
+    "description": "Pontos de restauro do Timeshift e do Snapper. Lê-los exige a palavra-passe de administrador.",
+    "concept": "Os snapshots do sistema que o Timeshift (no modo rsync ou BTRFS) e o Snapper guardam. Cada um conserva o estado do sistema num momento, e ter muitos ocupa muito espaço.",
+    "keep": "O snapshot mais recente de cada ferramenta é sempre conservado, para que haja sempre um ponto a que voltar. Nada é apagado sem ser escolhido e confirmado.",
+    "colSource": "Feito por",
+    "source": {
+      "timeshiftRsync": "Timeshift · rsync",
+      "timeshiftBtrfs": "Timeshift · BTRFS",
+      "snapper": "Snapper · {config}"
+    },
+    "noteNewest": "O snapshot mais recente é sempre conservado.",
+    "noteReview": "Um snapshot apagado não pode ser recuperado. Verifique que não vai precisar de voltar a ele.",
+    "gate": "Listar os snapshots exige a palavra-passe de administrador.",
+    "failed": "Não foi possível listar os snapshots. A palavra-passe não foi dada, ou nem o Timeshift nem o Snapper estão instalados.",
+    "show": "Mostrar os snapshots",
+    "reading": "A ler...",
+    "listedAt": "Listados às {time}",
+    "reload": "Ler de novo",
+    "noTool": "Nem o Timeshift nem o Snapper estão instalados.",
+    "where": "Onde o fazer",
+    "comment": "Comentário do novo snapshot",
+    "create": "Fazer um snapshot",
+    "creating": "A fazer...",
+    "created": "Snapshot feito.",
+    "createFailed": "Não foi possível fazer o snapshot."
+  },
   "docs": {
-    "title": "Documentação",
+    "title":"Documentação",
     "description": "Pastas de documentação de pacotes e repositórios de documentação. Os ficheiros de copyright são sempre mantidos.",
     "concept": "As pastas de documentação de pacotes com mais de 1 MB em /usr/share/doc, além das páginas Info e da documentação de Qt, GTK-Doc e Devhelp.",
     "keep": "Os ficheiros de copyright de cada pacote, o índice do Info e as páginas de manual. /usr/share/doc e /usr/share/man nunca são oferecidos por inteiro.",
@@ -522,7 +552,11 @@
     "conceptBody": "Registo de auditoria: o que foi limpo, quando e quanto libertou. Nada acontece às escondidas."
   },
   "cacheView": {
-    "empty": "Nada para limpar na cache do utilizador."
+    "empty": "Nada para limpar na cache do utilizador.",
+    "context": "Dados que as aplicações reconstroem sozinhas em ~/.cache. Nunca há documentos aqui.",
+    "preservedTitle": "O que é conservado",
+    "preserved": "Cookies, palavras-passe e perfis ficam em ~/.mozilla ou ~/.config, não em .cache: não são tocados.",
+    "equivalentTitle": "Equivale a"
   },
   "flatpakView": {
     "empty": "Sem runtimes Flatpak não usados."

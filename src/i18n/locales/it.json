@@ -73,6 +73,9 @@
     "storage": "Archiviazione",
     "free": "liberi",
     "spaceByCategory": "Dove si trova lo spazio",
+    "pendingTotal": "Spazio in sospeso",
+    "actionPreview": "{count} elementi · {size}",
+    "allCategories": "Tutte le categorie",
     "needsAdmin": "chiede la password",
     "noAdmin": "senza password",
     "storageOverview": "Panoramica archiviazione",
@@ -289,8 +292,35 @@
       "man": "Pagine di manuale"
     }
   },
+  "snapshots": {
+    "title": "Snapshot",
+    "description": "Punti di ripristino di Timeshift e Snapper. Leggerli richiede la password di amministratore.",
+    "concept": "Gli snapshot del sistema che Timeshift (in modalità rsync o BTRFS) e Snapper conservano. Ognuno mantiene lo stato del sistema in un momento, e averne molti occupa molto spazio.",
+    "keep": "Lo snapshot più recente di ogni strumento viene sempre conservato, così c'è sempre un punto a cui tornare. Non si elimina nulla senza averlo scelto e confermato.",
+    "colSource": "Creato da",
+    "source": {
+      "timeshiftRsync": "Timeshift · rsync",
+      "timeshiftBtrfs": "Timeshift · BTRFS",
+      "snapper": "Snapper · {config}"
+    },
+    "noteNewest": "Lo snapshot più recente viene sempre conservato.",
+    "noteReview": "Uno snapshot eliminato non si può recuperare. Controlla di non aver bisogno di tornare a esso.",
+    "gate": "Elencare gli snapshot richiede la password di amministratore.",
+    "failed": "Non è stato possibile elencare gli snapshot. La password non è stata data, oppure né Timeshift né Snapper sono installati.",
+    "show": "Mostra gli snapshot",
+    "reading": "Lettura...",
+    "listedAt": "Elencati alle {time}",
+    "reload": "Leggi di nuovo",
+    "noTool": "Né Timeshift né Snapper sono installati.",
+    "where": "Dove crearlo",
+    "comment": "Commento del nuovo snapshot",
+    "create": "Crea uno snapshot",
+    "creating": "Creazione...",
+    "created": "Snapshot creato.",
+    "createFailed": "Non è stato possibile creare lo snapshot."
+  },
   "docs": {
-    "title": "Documentazione",
+    "title":"Documentazione",
     "description": "Cartelle di documentazione dei pacchetti e raccolte di documentazione. I file di copyright vengono sempre conservati.",
     "concept": "Le cartelle di documentazione dei pacchetti che superano 1 MB in /usr/share/doc, più le pagine Info e la documentazione di Qt, GTK-Doc e Devhelp.",
     "keep": "I file di copyright di ogni pacchetto, l'indice di Info e le pagine di manuale. /usr/share/doc e /usr/share/man non vengono mai proposti per intero.",
@@ -522,7 +552,11 @@
     "conceptBody": "Registro di controllo: cosa è stato pulito, quando e quanto ha liberato. Niente accade di nascosto."
   },
   "cacheView": {
-    "empty": "Niente da pulire nella cache utente."
+    "empty": "Niente da pulire nella cache utente.",
+    "context": "Dati che le app ricostruiscono da sole in ~/.cache. Qui non ci sono mai documenti.",
+    "preservedTitle": "Cosa viene conservato",
+    "preserved": "Cookie, password e profili si trovano in ~/.mozilla o ~/.config, non in .cache: non vengono toccati.",
+    "equivalentTitle": "Equivale a"
   },
   "flatpakView": {
     "empty": "Nessun runtime Flatpak inutilizzato."

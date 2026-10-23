@@ -292,8 +292,35 @@
       "man": "Handbuchseiten"
     }
   },
+  "snapshots": {
+    "title": "Snapshots",
+    "description": "Wiederherstellungspunkte von Timeshift und Snapper. Sie zu lesen erfordert das Administratorpasswort.",
+    "concept": "Die Systemsnapshots, die Timeshift (im rsync- oder BTRFS-Modus) und Snapper aufbewahren. Jeder hält den Zustand des Systems zu einem Zeitpunkt fest, und viele davon brauchen viel Platz.",
+    "keep": "Der neueste Snapshot jedes Werkzeugs bleibt immer erhalten, damit es stets einen Punkt zum Zurückgehen gibt. Nichts wird gelöscht, ohne ausgewählt und bestätigt zu sein.",
+    "colSource": "Erstellt von",
+    "source": {
+      "timeshiftRsync": "Timeshift · rsync",
+      "timeshiftBtrfs": "Timeshift · BTRFS",
+      "snapper": "Snapper · {config}"
+    },
+    "noteNewest": "Der neueste Snapshot bleibt immer erhalten.",
+    "noteReview": "Ein gelöschter Snapshot lässt sich nicht wiederherstellen. Prüfen Sie, dass Sie nicht darauf zurückgreifen müssen.",
+    "gate": "Das Auflisten der Snapshots erfordert das Administratorpasswort.",
+    "failed": "Die Snapshots konnten nicht aufgelistet werden. Das Passwort wurde nicht eingegeben, oder weder Timeshift noch Snapper ist installiert.",
+    "show": "Snapshots anzeigen",
+    "reading": "Wird gelesen...",
+    "listedAt": "Aufgelistet um {time}",
+    "reload": "Erneut lesen",
+    "noTool": "Weder Timeshift noch Snapper ist installiert.",
+    "where": "Wo erstellen",
+    "comment": "Kommentar des neuen Snapshots",
+    "create": "Snapshot erstellen",
+    "creating": "Wird erstellt...",
+    "created": "Snapshot erstellt.",
+    "createFailed": "Der Snapshot konnte nicht erstellt werden."
+  },
   "docs": {
-    "title": "Dokumentation",
+    "title":"Dokumentation",
     "description": "Dokumentationsordner von Paketen und Dokumentationsspeicher. Copyright-Dateien bleiben immer erhalten.",
     "concept": "Die Dokumentationsordner von Paketen, die unter /usr/share/doc mehr als 1 MB belegen, sowie Info-Seiten, Qt-, GTK-Doc- und Devhelp-Dokumentation.",
     "keep": "Die Copyright-Dateien jedes Pakets, der Info-Index und die Handbuchseiten. /usr/share/doc und /usr/share/man werden nie als Ganzes angeboten.",
@@ -525,7 +552,11 @@
     "conceptBody": "Prüfprotokoll: was bereinigt wurde, wann und wie viel es freigegeben hat. Nichts geschieht hinter deinem Rücken."
   },
   "cacheView": {
-    "empty": "Nichts im Benutzer-Cache zu bereinigen."
+    "empty": "Nichts im Benutzer-Cache zu bereinigen.",
+    "context": "Daten, die die Apps in ~/.cache selbst neu aufbauen. Hier liegen nie Dokumente.",
+    "preservedTitle": "Was erhalten bleibt",
+    "preserved": "Cookies, Passwörter und Profile liegen in ~/.mozilla oder ~/.config, nicht in .cache: sie werden nicht angetastet.",
+    "equivalentTitle": "Entspricht"
   },
   "flatpakView": {
     "empty": "Keine ungenutzten Flatpak-Runtimes."

@@ -1,4 +1,5 @@
 mod commands;
+mod system_theme;
 pub(crate) mod utils;
 
 pub use commands::alerts::{run_check, run_notify};
@@ -71,6 +72,7 @@ pub fn run(mode: AppMode) {
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
+            system_theme::get_system_theme,
             commands::environment::get_environment_info,
             commands::jobs::poll_job,
             commands::trash::scan_trash,

@@ -1,7 +1,11 @@
 # Soplos Sys Cleaner 3.0
 
-[![License: GPL-3.0+](https://img.shields.io/badge/License-GPL--3.0%2B-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Version](https://img.shields.io/badge/version-3.0.0--3--beta-green.svg)]()
+![Version](https://img.shields.io/badge/version-3.0.0--4--beta-blue)
+![License](https://img.shields.io/badge/license-GPL--3.0--or--later-green)
+![Platform](https://img.shields.io/badge/platform-Linux-lightgrey)
+![Tauri](https://img.shields.io/badge/Tauri-2-orange)
+![Rust](https://img.shields.io/badge/Rust-1.80+-orange)
+![Svelte](https://img.shields.io/badge/Svelte-4-red)
 
 System cleaner and maintenance tool for Soplos Linux.
 

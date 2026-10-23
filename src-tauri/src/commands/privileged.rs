@@ -19,7 +19,7 @@ use std::sync::atomic::{AtomicU64, Ordering};
 use super::hardware::PKG_MODULES;
 use super::jobs::{failed_job, start_job};
 use super::packages::{command_exists, installed_packages};
-use super::{docs, drivers, firmware, kernels, languages, orphans, other_apps, residual};
+use super::{docs, drivers, firmware, kernels, languages, orphans, other_apps, residual, snapshots};
 
 #[derive(Serialize, Deserialize, Clone, Copy, PartialEq)]
 #[serde(rename_all = "lowercase")]
@@ -72,6 +72,13 @@ pub enum Op {
     // The privileged side finds the paths itself; the request never names one.
     LanguageRemove { codes: Vec<String> },
     DocsRemove { ids: Vec<String> },
+    // Lists the Timeshift and Snapper snapshots: one `@@snapshot <json>` line
+    // for each, printed for the window to read.
+    SnapshotList,
+    // Snapshots the tool itself lists now; never the newest of a set.
+    SnapshotDelete { items: Vec<snapshots::SnapshotRef> },
+    // A snapshot made now, with a short plain comment.
+    SnapshotCreate { tool: String, config: String, comment: String },
 }
 
 // Names of packages, modules and firmware families: a leading letter or
@@ -252,6 +259,14 @@ pub fn validate(op: &Op) -> Result<(), String> {
                 None => Ok(()),
             }
         }
+        Op::SnapshotList => Ok(()),
+        Op::SnapshotDelete { items } => {
+            if items.is_empty() {
+                return Err("No snapshots given".to_string());
+            }
+            items.iter().try_for_each(snapshots::validate_ref)
+        }
+        Op::SnapshotCreate { tool, config, comment } => snapshots::validate_create(tool, config, comment),
     }
 }
 
@@ -269,6 +284,7 @@ fn validate_system(op: &Op) -> Result<(), String> {
         Op::FirmwareRemove { families } => firmware::validate_firmware_families(families),
         Op::LanguageRemove { codes } => languages::validate_languages(codes),
         Op::DocsRemove { ids } => docs::validate_docs(ids),
+        Op::SnapshotDelete { items } => snapshots::validate_delete(items),
         _ => Ok(()),
     }
 }
@@ -485,6 +501,9 @@ fn execute(op: &Op) -> bool {
         Op::FirmwareRemove { families } => remove_firmware(families),
         Op::LanguageRemove { codes } => languages::remove_languages(codes),
         Op::DocsRemove { ids } => docs::remove_docs(ids),
+        Op::SnapshotList => snapshots::print_list(),
+        Op::SnapshotDelete { items } => snapshots::delete(items),
+        Op::SnapshotCreate { tool, config, comment } => snapshots::create(tool, config, comment),
     }
 }
 

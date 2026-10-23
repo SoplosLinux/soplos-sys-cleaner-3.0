@@ -8,9 +8,9 @@
   import { modalDepth } from "../lib/ui";
 
   export let onClose: () => void;
-  // Both programs pass it; the dialog looks the same in each.
+  // Both programs pass it; the dialog looks the same in each, and the mode
+  // only marks the window for the tests and the styles.
   export let mode: "advanced" | "basic" = "advanced";
-  $: void mode;
 
   let version = "";
 
@@ -36,6 +36,7 @@
 
 <div
   class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+  data-mode={mode}
   role="button"
   transition:fade|global={{ duration: 120 }}
   tabindex="-1"

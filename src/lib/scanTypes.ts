@@ -234,3 +234,15 @@ export interface DiskInfo {
   usedBytes: number;
   totalBytes: number;
 }
+
+// Mirrors src-tauri/src/commands/snapshots.rs.
+export interface SnapshotEntry {
+  tool: "timeshift" | "snapper";
+  config: string;
+  id: string;
+  date: string;
+  kind: string;
+  tags: string;
+  description: string;
+  sizeBytes: number;
+}

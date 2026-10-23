@@ -6,7 +6,7 @@
   import { _ } from "svelte-i18n";
   import { Eye, RefreshCw, LayoutDashboard, History, Bell } from "lucide-svelte";
   import { api } from "./lib/api";
-  import { CATEGORIES, bytesOf } from "./lib/categories";
+  import { CATEGORIES, bytesOf, type CategoryId } from "./lib/categories";
   import { scan, stats, refresh, loadStats } from "./lib/scan";
   import { showNotes, toast, modalDepth } from "./lib/ui";
   import { formatBytes } from "./lib/format";
@@ -106,6 +106,8 @@
   setContext("openAbout", () => (aboutOpen = true));
 
   $: activeTab = tabs.find((t) => t.id === active)!;
+  // Every tab that is not one of the three pages of its own is a category.
+  $: categoryId = active as CategoryId;
 
   let aboutOpen = false;
 
@@ -202,7 +204,7 @@
         {:else if active === "alerts"}
           <AlertsView />
         {:else}
-          <CategoryPage id={active} />
+          <CategoryPage id={categoryId} />
         {/if}
       {/key}
     </div>

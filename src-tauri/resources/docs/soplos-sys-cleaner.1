@@ -1,4 +1,4 @@
-.TH "SOPLOS-SYS-CLEANER" "1" "2026-10-19" "Soplos Linux" "User Commands"
+.TH "SOPLOS-SYS-CLEANER" "1" "2026-10-21" "Soplos Linux" "User Commands"
 .SH NAME
 soplos-sys-cleaner \- System cleaner and maintenance tool for Soplos Linux
 .SH SYNOPSIS
@@ -6,40 +6,175 @@ soplos-sys-cleaner \- System cleaner and maintenance tool for Soplos Linux
 [\fIOPTIONS\fR]
 .br
 .B soplos-sys-cleaner-basic
-[\fIOPTIONS\fR]
 .SH DESCRIPTION
 .B soplos-sys-cleaner
-is the official maintenance and disk space recovery application for Soplos Linux.
-Built with Tauri 2, Rust, and Svelte architecture, it provides an intuitive, high-performance interface with dry-run verification and Polkit-authenticated security:
+scans the system for reclaimable space, shows exactly what it found and what
+each item is, and only removes what the user confirms. Built with Tauri 2,
+Rust, and Svelte, it is installed as two programs that share one history:
 .IP \[bu] 2
-Two tailored modes: a basic one-click standard cleanup interface (\fBsoplos-sys-cleaner-basic\fR) and an advanced granular maintenance suite (\fBsoplos-sys-cleaner\fR).
+.B soplos-sys-cleaner-basic
+is the one in the applications menu: a health ring and a single standard
+cleanup that only touches what is safe to remove. It asks for the
+administrator password at most once.
 .IP \[bu]
-APT package cache cleaner with per-file inspection and disk space recovery.
+.B soplos-sys-cleaner
+is the advanced program, with every page. It is opened from the basic
+program, which can also add a launcher for it to the applications menu.
+.P
+Only one of them runs at a time. Everything cleaned from one shows up in the
+Overview of the other.
+.P
+Every item is labeled
+.BR Safe ,
+.B Review
+or
+.BR Protected .
+Review items are never preselected and are never part of the quick or the
+full cleanup. Before any package is removed, a dry run
+.RB ( "apt-get -s" )
+shows everything that would go with it, and the cleanup is blocked if it would
+remove something the system needs.
+.P
+The advanced program covers:
+.IP \[bu] 2
+.B APT package cache,
+listed file by file so single
+.B .deb
+files can be picked. The
+.BR apt (8)
+command deletes its files after installing while
+.BR apt-get (8)
+keeps them, so the cache is often empty after updating with
+.BR apt .
 .IP \[bu]
-Old kernel and module cleaner with strict protection for active and fallback kernels.
+.B Old kernels and modules.
+The running kernel and the newest other kernel are always protected, and
+kernels installed by hand are never treated as leftovers.
 .IP \[bu]
-Unused hardware drivers and firmware cleaner with dracut and modinfo verification.
+.B Drivers and firmware
+not in use, detected from the dracut configuration, PCI and USB devices,
+loaded modules and the kernel log. A firmware family stays protected while its
+driver is installed, and nothing is offered as unused if the detection tools
+are missing.
 .IP \[bu]
-Orphaned packages and residual configuration (dpkg state rc) purge.
+.B Orphaned packages
+(what
+.B apt autoremove
+would remove) and
+.B residual configuration
+(packages removed but left their configuration files, dpkg state
+.BR rc ),
+always as Review, with a dry run first.
 .IP \[bu]
-Language pack cleaner with protection for system locales.
+.B Languages,
+grouped per language, always keeping the active language and English, and
+.B documentation
+the user does not need.
 .IP \[bu]
-Flatpak runtime and Snap application leftovers removal.
+.B Flatpak
+runtimes without use and
+.B Snap
+old revisions.
 .IP \[bu]
-Application inventory supporting APT, Flatpak, Snap, and AppImages, with reinstall script export.
+.B User cache,
+temporary files, the trash and crash dumps.
 .IP \[bu]
-System journal, crash dump, and temporary cache cleaner.
+.B System journal,
+with retention by time or by size and an estimate of what it frees.
+.IP \[bu]
+.B Installed apps
+from APT, Flatpak, Snap and AppImage, each with its source, with export of a
+reinstall script. APT, Flatpak and Snap apps are installed again by command;
+AppImages are listed with their download address.
+.IP \[bu]
+.B History
+with a receipt for every cleanup (kind, duration, command, items and result)
+and export to CSV.
+.IP \[bu]
+.B Alerts.
+The user chooses when to be notified: time since the last cleanup, size ready
+to clean, or both. It only sends a desktop notification and never cleans by
+itself. It is off by default, and while it is off there is no service.
+.P
+The window never runs as root. Everything that needs administrator rights goes
+through a single Polkit-gated helper that receives named operations, never
+scripts, and validates each one again as root before running it. Several
+operations travel in one
+.BR pkexec (1)
+call, so one password covers a whole cleanup.
+.P
+The interface is available in English, Spanish, German, French, Italian,
+Portuguese, Romanian and Russian, with light and dark themes. It starts in the
+system language and falls back to English.
 .SH OPTIONS
 .TP
 .B \-h, \-\-help
 Show summary of options.
+.TP
+.B \-\-check
+Run the alerts check without opening a window: read-only, and it sends a
+notification only if a cleanup is due. Started by the alerts timer.
+.TP
+.B \-\-notify \fITITLE\fR \fIBODY\fR
+Send a single desktop notification and exit. Used by the test button of the
+alerts page, through systemd.
+.TP
+.B \-\-run-ops \fIFILE\fR
+Internal Polkit-authenticated task: validate and run the named operations
+stored in
+.IR FILE .
+Used by the application itself through
+.BR pkexec (1)
+and not meant to be called by hand.
+.SH KEYBOARD SHORTCUTS
+.TP
+.B F1
+About dialog.
+.TP
+.B Ctrl+Q
+Quit the application.
+.TP
+.B Ctrl+Tab, Ctrl+Shift+Tab
+Next or previous section (advanced program).
+.TP
+.B F5, Ctrl+R
+Rescan.
+.TP
+.B Ctrl+A
+Select all or none (cleaning pages).
+.TP
+.B Ctrl+Shift+A
+Select only the Safe items (cleaning pages).
+.TP
+.B Ctrl+Enter
+Clean the selection (cleaning pages).
+.TP
+.B Ctrl+I
+Show or hide the notes (advanced program).
+.TP
+.B Ctrl+E
+Export the history as CSV.
+.P
+Shortcuts do nothing while a dialog is open, and Enter alone never confirms a cleanup.
 .SH FILES
 .TP
 .I /usr/share/polkit-1/actions/org.soplos.syscleaner.policy
-Polkit policy defining administrative privileges for cleanup actions.
+Polkit policy defining the administrator privileges for cleanup operations.
 .TP
 .I ~/.local/share/soplos-sys-cleaner/stats.json
-User cleanup history and statistics.
+Cleanup history and statistics, shared by both programs.
+.TP
+.I ~/.config/soplos-sys-cleaner/alerts.json
+Alerts settings. Present only after the alerts are configured.
+.TP
+.I ~/.config/systemd/user/soplos-sys-cleaner-alerts.service
+.TQ
+.I ~/.config/systemd/user/soplos-sys-cleaner-alerts.timer
+Systemd user units of the alerts. Created when the alerts are turned on and
+removed when they are turned off.
+.TP
+.I ~/.local/share/applications/soplos-sys-cleaner-advanced.desktop
+Launcher of the advanced program, if the user added it to the applications menu.
 .SH AUTHOR
 Written by Sergi Perich <info@soploslinux.com> for the Soplos Linux project.
 .SH COPYRIGHT
@@ -50,5 +185,8 @@ License: GPL-3.0-or-later <https://www.gnu.org/licenses/gpl-3.0.html>.
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 .SH SEE ALSO
+.BR apt (8),
+.BR apt-get (8),
+.BR journalctl (1),
 .BR soplos-store (1),
 .BR soplos-welcome (1)

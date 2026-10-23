@@ -26,7 +26,10 @@ type Op =
   | { op: "dkms-remove"; items: { module: string; version: string }[] }
   | { op: "firmware-remove"; families: string[] }
   | { op: "language-remove"; codes: string[] }
-  | { op: "docs-remove"; ids: string[] };
+  | { op: "docs-remove"; ids: string[] }
+  | { op: "snapshot-list" }
+  | { op: "snapshot-delete"; items: { tool: string; config: string; id: string }[] }
+  | { op: "snapshot-create"; tool: string; config: string; comment: string };
 
 export interface CleanResult {
   id: CategoryId;
@@ -89,6 +92,8 @@ function opsFor(id: CategoryId, rows: Row[], policy: JournalPolicy): Op[] {
       return [{ op: "language-remove", codes: rows.map((r) => r.id) }];
     case "docs":
       return [{ op: "docs-remove", ids: rows.map((r) => r.id) }];
+    case "snapshots":
+      return [{ op: "snapshot-delete", items: rows.map((r) => ({ tool: r.payload!.tool, config: r.payload!.config, id: r.payload!.id })) }];
     default:
       throw new Error(`Category ${id} does not run privileged operations`);
   }

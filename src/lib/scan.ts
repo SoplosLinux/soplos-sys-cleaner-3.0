@@ -3,6 +3,7 @@ import { api } from "./api";
 import { CATEGORIES, type CategoryId, type Row } from "./categories";
 import { journalPolicy, MB, type JournalPolicy } from "./journal";
 import { formatBytes } from "./format";
+import { snapshotState, loadSnapshots } from "./snapshots";
 import type {
   TrashInfo,
   CacheEntry,
@@ -307,6 +308,12 @@ const scanners: Record<CategoryId, () => Promise<Row[]>> = {
   // Large package documentation folders and a short catalogue of documentation
   // stores. Nothing here is offered as a whole: copyright files and the info
   // index stay.
+  // Listing snapshots needs a password, so a scan only returns what the page
+  // has already read; the page asks for the list itself (see SnapshotsGate).
+  async snapshots() {
+    return get(snapshotState).rows;
+  },
+
   async docs() {
     const entries = await api.invoke<DocEntry[]>("scan_docs");
     return entries.map((e) => {
@@ -401,7 +408,7 @@ const scanners: Record<CategoryId, () => Promise<Row[]>> = {
     }));
   },
 
-  async logs() {
+  async logs(): Promise<Row[]> {
     const info = await api.invoke<JournaldInfo>("scan_journald");
     if (info.sizeBytes === 0) return [];
     const policy = get(journalPolicy);
@@ -481,6 +488,9 @@ export function refresh(): Promise<void> {
 
 // Rescan a single category after cleaning it.
 export async function refreshOne(id: CategoryId): Promise<void> {
+  // After a cleanup the list is read again, which the password granted a
+  // moment ago still covers.
+  if (id === "snapshots") await loadSnapshots();
   const list = await scanCategory(id);
   scan.update((s) => ({ ...s, rows: { ...s.rows, [id]: list } }));
 }

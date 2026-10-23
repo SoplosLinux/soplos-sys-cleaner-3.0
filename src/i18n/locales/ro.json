@@ -73,6 +73,9 @@
     "storage": "Stocare",
     "free": "libere",
     "spaceByCategory": "Unde este spațiul",
+    "pendingTotal": "Spațiu în așteptare",
+    "actionPreview": "{count} elemente · {size}",
+    "allCategories": "Toate categoriile",
     "needsAdmin": "cere parola",
     "noAdmin": "fără parolă",
     "storageOverview": "Prezentare stocare",
@@ -289,8 +292,35 @@
       "man": "Pagini de manual"
     }
   },
+  "snapshots": {
+    "title": "Snapshot-uri",
+    "description": "Puncte de restaurare făcute de Timeshift și Snapper. Citirea lor cere parola de administrator.",
+    "concept": "Snapshot-urile sistemului pe care le păstrează Timeshift (în modul rsync sau BTRFS) și Snapper. Fiecare conservă starea sistemului la un moment dat, iar a avea multe ocupă mult spațiu.",
+    "keep": "Cel mai recent snapshot al fiecărui instrument este păstrat întotdeauna, ca să existe mereu un punct la care să te întorci. Nu se șterge nimic fără a fi ales și confirmat.",
+    "colSource": "Făcut de",
+    "source": {
+      "timeshiftRsync": "Timeshift · rsync",
+      "timeshiftBtrfs": "Timeshift · BTRFS",
+      "snapper": "Snapper · {config}"
+    },
+    "noteNewest": "Cel mai recent snapshot este păstrat întotdeauna.",
+    "noteReview": "Un snapshot șters nu poate fi recuperat. Verifică să nu ai nevoie să te întorci la el.",
+    "gate": "Listarea snapshot-urilor cere parola de administrator.",
+    "failed": "Snapshot-urile nu au putut fi listate. Parola nu a fost dată, sau nici Timeshift, nici Snapper nu sunt instalate.",
+    "show": "Arată snapshot-urile",
+    "reading": "Se citește...",
+    "listedAt": "Listate la {time}",
+    "reload": "Citește din nou",
+    "noTool": "Nici Timeshift, nici Snapper nu sunt instalate.",
+    "where": "Unde să se facă",
+    "comment": "Comentariul noului snapshot",
+    "create": "Fă un snapshot",
+    "creating": "Se face...",
+    "created": "Snapshot făcut.",
+    "createFailed": "Snapshot-ul nu a putut fi făcut."
+  },
   "docs": {
-    "title": "Documentație",
+    "title":"Documentație",
     "description": "Dosare de documentație ale pachetelor și depozite de documentație. Fișierele de copyright sunt păstrate mereu.",
     "concept": "Dosarele de documentație ale pachetelor care ocupă peste 1 MB în /usr/share/doc, plus paginile Info și documentația Qt, GTK-Doc și Devhelp.",
     "keep": "Fișierele de copyright ale fiecărui pachet, indexul Info și paginile de manual. /usr/share/doc și /usr/share/man nu sunt oferite niciodată întregi.",
@@ -522,7 +552,11 @@
     "conceptBody": "Jurnal de audit: ce s-a curățat, când și cât a eliberat. Nimic nu se întâmplă pe ascuns."
   },
   "cacheView": {
-    "empty": "Nimic de curățat în cache-ul utilizatorului."
+    "empty": "Nimic de curățat în cache-ul utilizatorului.",
+    "context": "Date pe care aplicațiile le reconstruiesc singure în ~/.cache. Aici nu există niciodată documente.",
+    "preservedTitle": "Ce se păstrează",
+    "preserved": "Cookie-urile, parolele și profilurile se află în ~/.mozilla sau ~/.config, nu în .cache: nu sunt atinse.",
+    "equivalentTitle": "Echivalent cu"
   },
   "flatpakView": {
     "empty": "Niciun runtime Flatpak nefolosit."
