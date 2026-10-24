@@ -6,7 +6,10 @@ export default defineConfig({
   plugins: [svelte()],
   clearScreen: false,
   // Two pages: the advanced program (index.html) and the basic one.
+  // The page is loaded from the disk by a desktop window, so the size of a
+  // chunk does not matter the way it does on the web: no warning about it.
   build: {
+    chunkSizeWarningLimit: 2000,
     rollupOptions: {
       input: {
         main: "index.html",
