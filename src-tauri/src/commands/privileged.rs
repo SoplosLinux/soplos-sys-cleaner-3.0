@@ -19,7 +19,7 @@ use std::sync::atomic::{AtomicU64, Ordering};
 use super::hardware::PKG_MODULES;
 use super::jobs::{failed_job, start_job};
 use super::packages::{command_exists, installed_packages};
-use super::{docs, drivers, firmware, kernels, languages, orphans, other_apps, residual, snapshots};
+use super::{disk, docs, drivers, firmware, kernels, languages, orphans, other_apps, residual, snapshots};
 
 #[derive(Serialize, Deserialize, Clone, Copy, PartialEq)]
 #[serde(rename_all = "lowercase")]
@@ -79,6 +79,9 @@ pub enum Op {
     SnapshotDelete { items: Vec<snapshots::SnapshotRef> },
     // A snapshot made now, with a short plain comment.
     SnapshotCreate { tool: String, config: String, comment: String },
+    // Reads the space each entry of a folder takes, as root, so the folders
+    // a user cannot open are counted. It only reads: one `@@disk <json>` line.
+    DiskList { path: String },
 }
 
 // Names of packages, modules and firmware families: a leading letter or
@@ -260,6 +263,7 @@ pub fn validate(op: &Op) -> Result<(), String> {
             }
         }
         Op::SnapshotList => Ok(()),
+        Op::DiskList { path } => disk::validate_path(path),
         Op::SnapshotDelete { items } => {
             if items.is_empty() {
                 return Err("No snapshots given".to_string());
@@ -502,6 +506,7 @@ fn execute(op: &Op) -> bool {
         Op::LanguageRemove { codes } => languages::remove_languages(codes),
         Op::DocsRemove { ids } => docs::remove_docs(ids),
         Op::SnapshotList => snapshots::print_list(),
+        Op::DiskList { path } => disk::print_listing(path),
         Op::SnapshotDelete { items } => snapshots::delete(items),
         Op::SnapshotCreate { tool, config, comment } => snapshots::create(tool, config, comment),
     }

@@ -4,7 +4,7 @@
   import { getVersion } from "@tauri-apps/api/app";
   import { listen } from "@tauri-apps/api/event";
   import { _ } from "svelte-i18n";
-  import { Eye, RefreshCw, LayoutDashboard, History, Bell } from "lucide-svelte";
+  import { Eye, RefreshCw, LayoutDashboard, History, Bell, HardDrive } from "lucide-svelte";
   import { api } from "./lib/api";
   import { CATEGORIES, bytesOf, type CategoryId } from "./lib/categories";
   import { scan, stats, refresh, loadStats } from "./lib/scan";
@@ -17,6 +17,7 @@
   import Overview from "./views/Overview.svelte";
   import HistoryView from "./views/HistoryView.svelte";
   import AlertsView from "./views/AlertsView.svelte";
+  import DiskView from "./views/DiskView.svelte";
   import { initAlerts } from "./lib/alerts";
 
   interface Tab {
@@ -44,6 +45,14 @@
       description: $_(c.descriptionKey),
       group: $_("app.groups.cleaning"),
     })),
+    {
+      id: "disk",
+      icon: HardDrive,
+      label: $_("disk.title"),
+      title: $_("disk.title"),
+      description: $_("disk.description"),
+      group: $_("app.groups.analysis"),
+    },
     {
       id: "history",
       icon: History,
@@ -144,7 +153,7 @@
       if (!$scan.loading) rescan();
     } else if (key === "i") {
       e.preventDefault();
-      if (active !== "overview" && active !== "alerts") showNotes.update((v) => !v);
+      if (active !== "overview" && active !== "alerts" && active !== "disk") showNotes.update((v) => !v);
     } else if (e.code === "Tab") {
       e.preventDefault();
       const dir = e.shiftKey ? -1 : 1;
@@ -170,7 +179,7 @@
           <p class="mt-0.5 text-[12px] text-white/70">{activeTab.description}</p>
         </div>
         <div class="ml-auto flex shrink-0 flex-wrap gap-1.5">
-          {#if active !== "overview" && active !== "alerts"}
+          {#if active !== "overview" && active !== "alerts" && active !== "disk"}
             <button
               class="flex items-center gap-1.5 rounded-md border bg-black/45 px-[9px] py-1 hover:bg-black/60 {$showNotes
                 ? 'border-primary text-primary'
@@ -183,6 +192,7 @@
               {$_("shell.notes")}
             </button>
           {/if}
+          {#if active !== "disk"}
           <button
             class="flex items-center gap-1.5 rounded-md border border-white/25 bg-black/45 px-[9px] py-1 text-white hover:bg-black/60 disabled:cursor-not-allowed disabled:opacity-50"
             disabled={$scan.loading}
@@ -192,6 +202,7 @@
             <RefreshCw size={13} class={$scan.loading ? "animate-spin" : ""} />
             {$_("shell.rescan")}
           </button>
+          {/if}
         </div>
       </div>
     </div>
@@ -203,6 +214,8 @@
           <HistoryView />
         {:else if active === "alerts"}
           <AlertsView />
+        {:else if active === "disk"}
+          <DiskView />
         {:else}
           <CategoryPage id={categoryId} />
         {/if}

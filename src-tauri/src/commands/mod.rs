@@ -1,6 +1,7 @@
 pub mod alerts;
 pub mod apps;
 pub mod apt_cache;
+pub mod disk;
 pub mod docs;
 pub mod drivers;
 pub mod environment;

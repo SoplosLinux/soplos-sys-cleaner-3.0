@@ -2,6 +2,16 @@
 
 All notable changes to Soplos Sys Cleaner are documented in this file.
 
+## [3.0.0-5-beta] - 2026-10-24
+
+### Added
+
+- New page, Disk space, in a new "Analysis" group of the sidebar: where the space goes, folder by folder, the largest first, with a bar and the share of each entry, breadcrumbs and a button to go up. It has two scopes, the user's home and the whole system, and shows how much is free on the disk. It only shows: there is no delete button, because what to free is the user's decision, made in the folders. Sizes are the space taken on the disk, a hard-linked file counts once and other filesystems are not added to their parent. The system scope can be read again as administrator (new `disk-list` operation of the privileged helper) to count the folders the user cannot open.
+
+### Changed
+
+- Documentation: every package folder under `/usr/share/doc` that holds more than its copyright file is listed, whatever its size. Before, only the ones over 1 MB were, so apps with small documentation, such as the screenshots of Repo Selector, AppImage Manager and WebApp Manager, never appeared. The user chooses what goes; the copyright files still stay.
+
 ## [3.0.0-4-beta] - 2026-10-23
 
 ### Added

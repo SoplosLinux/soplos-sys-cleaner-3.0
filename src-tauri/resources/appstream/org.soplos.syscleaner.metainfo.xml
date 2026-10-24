@@ -213,6 +213,13 @@
   </developer>
 
   <releases>
+    <release version="3.0.0-5-beta" date="2026-10-24">
+      <description>
+        <p>New Disk space page, in a new Analysis group: where the space goes, folder by folder, for your user or the whole system, with the option to read as administrator. It only shows; nothing is deleted from there.</p>
+        <p>Documentation: every package folder under /usr/share/doc is listed, whatever its size, so the user chooses what goes. Before, only the ones over 1 MB were.</p>
+        <p>Long paths no longer widen the table past the window.</p>
+      </description>
+    </release>
     <release version="3.0.0-4-beta" date="2026-10-23">
       <description>
         <p>New Snapshots category: lists, deletes and makes the restore points of Timeshift (rsync and BTRFS) and Snapper, always keeping the newest one of each.</p>

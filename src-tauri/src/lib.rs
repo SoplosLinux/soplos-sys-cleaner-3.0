@@ -99,6 +99,8 @@ pub fn run(mode: AppMode) {
             commands::firmware::scan_firmware,
             commands::languages::scan_languages,
             commands::docs::scan_docs,
+            commands::disk::scan_disk,
+            commands::disk::disk_home,
             commands::simulate::simulate_removal,
             commands::stats::get_stats,
             commands::stats::record_cleanup,

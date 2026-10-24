@@ -3,7 +3,8 @@
     "title": "Soplos Sys Cleaner",
     "groups": {
       "cleaning": "Bereinigung",
-      "activity": "Aktivität"
+      "activity": "Aktivität",
+      "analysis": "Analyse"
     },
     "tabs": {
       "overview": {
@@ -319,10 +320,36 @@
     "created": "Snapshot erstellt.",
     "createFailed": "Der Snapshot konnte nicht erstellt werden."
   },
+  "disk": {
+    "title": "Speicherplatz",
+    "description": "Zeigt, welche Ordner am meisten Platz belegen. Nur Anzeige: Freigeben liegt bei dir, in den Ordnern.",
+    "readOnly": "Diese Seite zeigt nur, wohin der Platz geht. Zum Freigeben löschst du selbst, was du nicht brauchst, in deinem Dateimanager.",
+    "scope": "Wo suchen",
+    "scopeUser": "Mein Benutzer",
+    "scopeSystem": "System",
+    "admin": "Als Administrator lesen",
+    "adminHint": "Zählt auch Ordner mit, die dein Benutzer nicht öffnen kann. Fragt nach dem Passwort.",
+    "adminOn": "Wird als Administrator gelesen",
+    "reload": "Neu laden",
+    "copyPath": "Pfad kopieren",
+    "copied": "Pfad kopiert",
+    "up": "Übergeordneter Ordner",
+    "colName": "Name",
+    "colShare": "Anteil",
+    "colSize": "Größe",
+    "reading": "Ordner wird vermessen...",
+    "failed": "Dieser Ordner konnte nicht gelesen werden.",
+    "empty": "Der Ordner ist leer.",
+    "free": "{free} frei von {total} auf diesem Datenträger",
+    "folderTotal": "Dieser Ordner: {size}",
+    "otherFs": "Anderes Dateisystem",
+    "partial": "Teilweise",
+    "unreadable": "Einige Ordner konnten nicht geöffnet werden, ihre Größe ist daher ein Mindestwert."
+  },
   "docs": {
     "title":"Dokumentation",
     "description": "Dokumentationsordner von Paketen und Dokumentationsspeicher. Copyright-Dateien bleiben immer erhalten.",
-    "concept": "Die Dokumentationsordner von Paketen, die unter /usr/share/doc mehr als 1 MB belegen, sowie Info-Seiten, Qt-, GTK-Doc- und Devhelp-Dokumentation.",
+    "concept": "Die Dokumentationsordner aller Pakete unter /usr/share/doc, sowie Info-Seiten, Qt-, GTK-Doc- und Devhelp-Dokumentation.",
     "keep": "Die Copyright-Dateien jedes Pakets, der Info-Index und die Handbuchseiten. /usr/share/doc und /usr/share/man werden nie als Ganzes angeboten.",
     "item": {
       "info": "Info-Seiten",

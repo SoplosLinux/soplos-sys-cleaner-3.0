@@ -3,7 +3,8 @@
     "title": "Soplos Sys Cleaner",
     "groups": {
       "cleaning": "Nettoyage",
-      "activity": "Activité"
+      "activity": "Activité",
+      "analysis": "Analyse"
     },
     "tabs": {
       "overview": {
@@ -319,10 +320,36 @@
     "created": "Instantané créé.",
     "createFailed": "L'instantané n'a pas pu être créé."
   },
+  "disk": {
+    "title": "Espace disque",
+    "description": "Voyez quels dossiers prennent le plus de place. Affichage seulement : libérer l'espace vous revient, dans les dossiers.",
+    "readOnly": "Cette page montre seulement où va l'espace. Pour le libérer, supprimez vous-même ce dont vous n'avez pas besoin, depuis votre gestionnaire de fichiers.",
+    "scope": "Où regarder",
+    "scopeUser": "Mon utilisateur",
+    "scopeSystem": "Système",
+    "admin": "Lire en administrateur",
+    "adminHint": "Compte aussi les dossiers que votre utilisateur ne peut pas ouvrir. Demande le mot de passe.",
+    "adminOn": "Lecture en administrateur",
+    "reload": "Recharger",
+    "copyPath": "Copier le chemin",
+    "copied": "Chemin copié",
+    "up": "Dossier parent",
+    "colName": "Nom",
+    "colShare": "Part",
+    "colSize": "Taille",
+    "reading": "Mesure du dossier...",
+    "failed": "Ce dossier n'a pas pu être lu.",
+    "empty": "Le dossier est vide.",
+    "free": "{free} libres sur {total} sur ce disque",
+    "folderTotal": "Ce dossier : {size}",
+    "otherFs": "Autre système de fichiers",
+    "partial": "Partiel",
+    "unreadable": "Certains dossiers n'ont pas pu être ouverts : leur taille est un minimum."
+  },
   "docs": {
     "title":"Documentation",
     "description": "Dossiers de documentation des paquets et dépôts de documentation. Les fichiers de copyright sont toujours conservés.",
-    "concept": "Les dossiers de documentation des paquets de plus de 1 Mo dans /usr/share/doc, ainsi que les pages Info et la documentation de Qt, GTK-Doc et Devhelp.",
+    "concept": "Les dossiers de documentation de tous les paquets dans /usr/share/doc, ainsi que les pages Info et la documentation de Qt, GTK-Doc et Devhelp.",
     "keep": "Les fichiers de copyright de chaque paquet, l'index Info et les pages de manuel. /usr/share/doc et /usr/share/man ne sont jamais proposés en entier.",
     "item": {
       "info": "Pages Info",

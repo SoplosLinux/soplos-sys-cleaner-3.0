@@ -270,10 +270,11 @@
                   {/if}
                 </td>
                 {#if columns > 1}
-                  <td class="border-b border-border px-1.5 py-[5px] align-top">{cellText(row.detail, $_, $locale)}</td>
+                  <!-- A long path breaks inside its cell instead of widening the table past the window -->
+                  <td class="border-b border-border px-1.5 py-[5px] align-top break-all">{cellText(row.detail, $_, $locale)}</td>
                 {/if}
                 {#if columns > 2}
-                  <td class="border-b border-border px-1.5 py-[5px] align-top">{cellText(row.extra, $_, $locale)}</td>
+                  <td class="border-b border-border px-1.5 py-[5px] align-top min-w-[8rem]">{cellText(row.extra, $_, $locale)}</td>
                 {/if}
                 <td class="border-b border-border px-1.5 py-[5px] text-right align-top whitespace-nowrap tabular-nums">
                   {formatBytes(row.sizeBytes)}

@@ -1,6 +1,7 @@
 // Documentation that can go without breaking anything: a fixed catalogue of
-// documentation stores, and the large per-package folders under
-// /usr/share/doc. Compared with 2.x, what is not documentation is gone from
+// documentation stores, and every per-package folder under /usr/share/doc
+// that holds more than its copyright file, whatever its size: the user
+// decides what goes, so nothing is left out of the list. Compared with 2.x, what is not documentation is gone from
 // the list: the Xfce helpers (preferred applications), doc-base (dpkg's
 // registry), KDE doctools, the CUPS web interface and the Soplos Welcome
 // content. The manual pages and /usr/share/doc itself are never offered as a
@@ -18,8 +19,6 @@ use std::path::{Path, PathBuf};
 use std::process::Command;
 
 const DOC_DIR: &str = "/usr/share/doc";
-// Package documentation folders smaller than this are not worth listing.
-const MIN_PACKAGE_DOC_BYTES: u64 = 1024 * 1024;
 
 struct Source {
     id: &'static str,
@@ -108,7 +107,8 @@ fn scan_blocking() -> Vec<DocEntry> {
     }
     for path in packages {
         let size_bytes = removable_size(&path, PACKAGE_KEEP, &sizes);
-        if size_bytes >= MIN_PACKAGE_DOC_BYTES {
+        // A folder that holds nothing but the copyright file has nothing to remove.
+        if size_bytes > 0 {
             let name = path.file_name().map(|n| n.to_string_lossy().into_owned()).unwrap_or_default();
             entries.push(DocEntry { id: format!("pkg:{name}"), path: path.to_string_lossy().into_owned(), size_bytes, keeps: PACKAGE_KEEP.iter().map(|s| s.to_string()).collect() });
         }

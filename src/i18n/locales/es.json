@@ -3,7 +3,8 @@
     "title": "Soplos Sys Cleaner",
     "groups": {
       "cleaning": "Limpieza",
-      "activity": "Actividad"
+      "activity": "Actividad",
+      "analysis": "Análisis"
     },
     "tabs": {
       "overview": {
@@ -319,10 +320,36 @@
     "created": "Snapshot hecho.",
     "createFailed": "No se pudo hacer el snapshot."
   },
+  "disk": {
+    "title": "Espacio en disco",
+    "description": "Mira qué carpetas ocupan más espacio. Solo muestra: liberarlo lo decides tú, en las carpetas.",
+    "readOnly": "Esta página solo muestra dónde se va el espacio. Para liberarlo, borra tú lo que no necesites desde tu gestor de archivos.",
+    "scope": "Dónde mirar",
+    "scopeUser": "Mi usuario",
+    "scopeSystem": "Sistema",
+    "admin": "Leer como administrador",
+    "adminHint": "Cuenta también las carpetas que tu usuario no puede abrir. Pide la contraseña.",
+    "adminOn": "Leyendo como administrador",
+    "reload": "Recargar",
+    "copyPath": "Copiar ruta",
+    "copied": "Ruta copiada",
+    "up": "Carpeta superior",
+    "colName": "Nombre",
+    "colShare": "Peso",
+    "colSize": "Tamaño",
+    "reading": "Midiendo la carpeta...",
+    "failed": "No se pudo leer esta carpeta.",
+    "empty": "La carpeta está vacía.",
+    "free": "{free} libres de {total} en este disco",
+    "folderTotal": "Esta carpeta: {size}",
+    "otherFs": "Otro sistema de archivos",
+    "partial": "Parcial",
+    "unreadable": "Algunas carpetas no se pudieron abrir, así que su tamaño es como mínimo ese."
+  },
   "docs": {
     "title":"Documentación",
     "description": "Carpetas de documentación de paquetes y almacenes de documentación. Los archivos de copyright se conservan siempre.",
-    "concept": "Las carpetas de documentación de paquetes que ocupan más de 1 MB en /usr/share/doc, además de las páginas Info y la documentación de Qt, GTK-Doc y Devhelp.",
+    "concept": "Las carpetas de documentación de todos los paquetes en /usr/share/doc, además de las páginas Info y la documentación de Qt, GTK-Doc y Devhelp.",
     "keep": "Los archivos de copyright de cada paquete, el índice de Info y las páginas de manual. Nunca se ofrece borrar /usr/share/doc ni /usr/share/man enteros.",
     "item": {
       "info": "Páginas Info",

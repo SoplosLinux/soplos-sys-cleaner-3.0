@@ -3,7 +3,8 @@
     "title": "Soplos Sys Cleaner",
     "groups": {
       "cleaning": "Curățare",
-      "activity": "Activitate"
+      "activity": "Activitate",
+      "analysis": "Analiză"
     },
     "tabs": {
       "overview": {
@@ -319,10 +320,36 @@
     "created": "Snapshot făcut.",
     "createFailed": "Snapshot-ul nu a putut fi făcut."
   },
+  "disk": {
+    "title": "Spațiu pe disc",
+    "description": "Vezi ce dosare ocupă cel mai mult spațiu. Doar afișează: eliberarea ține de tine, în dosare.",
+    "readOnly": "Această pagină arată doar unde se duce spațiul. Pentru a-l elibera, șterge tu ce nu-ți trebuie din managerul tău de fișiere.",
+    "scope": "Unde să se caute",
+    "scopeUser": "Utilizatorul meu",
+    "scopeSystem": "Sistem",
+    "admin": "Citește ca administrator",
+    "adminHint": "Numără și dosarele pe care utilizatorul tău nu le poate deschide. Cere parola.",
+    "adminOn": "Se citește ca administrator",
+    "reload": "Reîncarcă",
+    "copyPath": "Copiază calea",
+    "copied": "Cale copiată",
+    "up": "Dosar părinte",
+    "colName": "Nume",
+    "colShare": "Pondere",
+    "colSize": "Dimensiune",
+    "reading": "Se măsoară dosarul...",
+    "failed": "Acest dosar nu a putut fi citit.",
+    "empty": "Dosarul este gol.",
+    "free": "{free} libere din {total} pe acest disc",
+    "folderTotal": "Acest dosar: {size}",
+    "otherFs": "Alt sistem de fișiere",
+    "partial": "Parțial",
+    "unreadable": "Unele dosare nu au putut fi deschise, deci dimensiunea lor este un minim."
+  },
   "docs": {
     "title":"Documentație",
     "description": "Dosare de documentație ale pachetelor și depozite de documentație. Fișierele de copyright sunt păstrate mereu.",
-    "concept": "Dosarele de documentație ale pachetelor care ocupă peste 1 MB în /usr/share/doc, plus paginile Info și documentația Qt, GTK-Doc și Devhelp.",
+    "concept": "Dosarele de documentație ale tuturor pachetelor din /usr/share/doc, plus paginile Info și documentația Qt, GTK-Doc și Devhelp.",
     "keep": "Fișierele de copyright ale fiecărui pachet, indexul Info și paginile de manual. /usr/share/doc și /usr/share/man nu sunt oferite niciodată întregi.",
     "item": {
       "info": "Pagini Info",

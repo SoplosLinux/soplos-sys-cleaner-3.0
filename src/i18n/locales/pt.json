@@ -3,7 +3,8 @@
     "title": "Soplos Sys Cleaner",
     "groups": {
       "cleaning": "Limpeza",
-      "activity": "Atividade"
+      "activity": "Atividade",
+      "analysis": "Análise"
     },
     "tabs": {
       "overview": {
@@ -319,10 +320,36 @@
     "created": "Snapshot feito.",
     "createFailed": "Não foi possível fazer o snapshot."
   },
+  "disk": {
+    "title": "Espaço em disco",
+    "description": "Vê que pastas ocupam mais espaço. Apenas mostra: libertá-lo cabe-te a ti, nas pastas.",
+    "readOnly": "Esta página só mostra para onde vai o espaço. Para o libertar, apaga tu o que não precisas, no teu gestor de ficheiros.",
+    "scope": "Onde ver",
+    "scopeUser": "O meu utilizador",
+    "scopeSystem": "Sistema",
+    "admin": "Ler como administrador",
+    "adminHint": "Conta também as pastas que o teu utilizador não pode abrir. Pede a palavra-passe.",
+    "adminOn": "A ler como administrador",
+    "reload": "Recarregar",
+    "copyPath": "Copiar caminho",
+    "copied": "Caminho copiado",
+    "up": "Pasta superior",
+    "colName": "Nome",
+    "colShare": "Peso",
+    "colSize": "Tamanho",
+    "reading": "A medir a pasta...",
+    "failed": "Não foi possível ler esta pasta.",
+    "empty": "A pasta está vazia.",
+    "free": "{free} livres de {total} neste disco",
+    "folderTotal": "Esta pasta: {size}",
+    "otherFs": "Outro sistema de ficheiros",
+    "partial": "Parcial",
+    "unreadable": "Algumas pastas não puderam ser abertas, por isso o seu tamanho é um mínimo."
+  },
   "docs": {
     "title":"Documentação",
     "description": "Pastas de documentação de pacotes e repositórios de documentação. Os ficheiros de copyright são sempre mantidos.",
-    "concept": "As pastas de documentação de pacotes com mais de 1 MB em /usr/share/doc, além das páginas Info e da documentação de Qt, GTK-Doc e Devhelp.",
+    "concept": "As pastas de documentação de todos os pacotes em /usr/share/doc, além das páginas Info e da documentação de Qt, GTK-Doc e Devhelp.",
     "keep": "Os ficheiros de copyright de cada pacote, o índice do Info e as páginas de manual. /usr/share/doc e /usr/share/man nunca são oferecidos por inteiro.",
     "item": {
       "info": "Páginas Info",

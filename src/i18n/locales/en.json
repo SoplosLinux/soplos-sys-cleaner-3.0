@@ -3,7 +3,8 @@
     "title": "Soplos Sys Cleaner",
     "groups": {
       "cleaning": "Cleaning",
-      "activity": "Activity"
+      "activity": "Activity",
+      "analysis": "Analysis"
     },
     "tabs": {
       "overview": {
@@ -319,10 +320,36 @@
     "created": "Snapshot made.",
     "createFailed": "The snapshot could not be made."
   },
+  "disk": {
+    "title": "Disk space",
+    "description": "See which folders take the most space. It only shows: freeing it is up to you, in the folders.",
+    "readOnly": "This page only shows where the space goes. To free it, delete what you do not need yourself, in your file manager.",
+    "scope": "Where to look",
+    "scopeUser": "My user",
+    "scopeSystem": "System",
+    "admin": "Read as administrator",
+    "adminHint": "Also counts the folders your user cannot open. It asks for the password.",
+    "adminOn": "Reading as administrator",
+    "reload": "Reload",
+    "copyPath": "Copy path",
+    "copied": "Path copied",
+    "up": "Parent folder",
+    "colName": "Name",
+    "colShare": "Share",
+    "colSize": "Size",
+    "reading": "Measuring the folder...",
+    "failed": "This folder could not be read.",
+    "empty": "The folder is empty.",
+    "free": "{free} free of {total} on this disk",
+    "folderTotal": "This folder: {size}",
+    "otherFs": "Other filesystem",
+    "partial": "Partial",
+    "unreadable": "Some folders could not be opened, so their size is a minimum."
+  },
   "docs": {
     "title":"Documentation",
     "description": "Package documentation folders and documentation stores. Copyright files are always kept.",
-    "concept": "The documentation folders of packages that take over 1 MB under /usr/share/doc, plus Info pages, Qt, GTK-Doc and Devhelp documentation.",
+    "concept": "The documentation folders of every package under /usr/share/doc, plus Info pages, Qt, GTK-Doc and Devhelp documentation.",
     "keep": "The copyright files of every package, the Info index, and the manual pages. The whole /usr/share/doc and /usr/share/man are never offered.",
     "item": {
       "info": "Info pages",
