@@ -1,13 +1,16 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
   import { RefreshCw, Camera, Lock } from "lucide-svelte";
   import { snapshotState, loadSnapshots, createSnapshot, type SnapshotTarget } from "../lib/snapshots";
-  import { refreshOne } from "../lib/scan";
+  import { syncOne } from "../lib/scan";
   import { toast } from "../lib/ui";
 
   // The top of the snapshots page. Reading the snapshots needs the password, so
-  // nothing is listed until it is asked for; afterwards it offers to read the
-  // list again and to make a snapshot now.
+  // it is asked for when the page opens, once: the list is not part of the scan
+  // that runs when the window opens. If the password is refused or the read
+  // fails, the page keeps the button to try again. Afterwards it offers to read
+  // the list again and to make a snapshot now.
   let comment = "";
   let targetIndex = 0;
   let creating = false;
@@ -19,8 +22,14 @@
     : "";
 
   async function show() {
-    if (await loadSnapshots()) await refreshOne("snapshots");
+    if (await loadSnapshots()) await syncOne("snapshots");
   }
+
+  // Only the first time: a refused password leaves the button, it does not ask
+  // again every time the page is opened.
+  onMount(() => {
+    if (!$snapshotState.loaded && !$snapshotState.loading && !$snapshotState.failed) void show();
+  });
 
   async function create() {
     if (!target || creating) return;
@@ -29,7 +38,8 @@
     creating = false;
     if (ok) {
       comment = "";
-      await refreshOne("snapshots");
+      // createSnapshot has already read the list again.
+      await syncOne("snapshots");
       toast($_("snapshots.created"));
     } else {
       toast($_("snapshots.createFailed"));

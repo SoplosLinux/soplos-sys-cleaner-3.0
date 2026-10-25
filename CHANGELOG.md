@@ -2,6 +2,16 @@
 
 All notable changes to Soplos Sys Cleaner are documented in this file.
 
+## [3.0.0-6-beta] - 2026-10-25
+
+### Changed
+
+- Snapshots: the page now reads the list when it is opened, asking for the password once, and no longer waits for the button. If the password is refused or the read fails, the button stays to try again. Reading the list and making a snapshot no longer read it twice, so only one password is asked.
+
+### Fixed
+
+- The Timeshift snapshots in BTRFS mode were all shown as 0 B, because no size was calculated for them. The size of each one is now what it holds that nothing else does, read from the BTRFS quotas (qgroups), which have to be on, as Timeshift also needs for its own sizes. When a size cannot be told, because the quotas are off or the tool gives none, the page shows a dash and not 0 B.
+
 ## [3.0.0-5-beta] - 2026-10-24
 
 ### Added

@@ -213,6 +213,11 @@
   </developer>
 
   <releases>
+    <release version="3.0.0-6-beta" date="2026-10-25">
+      <description>
+        <p>Snapshots: the list is read when the page opens, with a single password. Timeshift snapshots in BTRFS mode now show their size when the BTRFS quotas are on, and a dash instead of 0 B when the size cannot be told.</p>
+      </description>
+    </release>
     <release version="3.0.0-5-beta" date="2026-10-24">
       <description>
         <p>New Disk space page, in a new Analysis group: where the space goes, folder by folder, for your user or the whole system, with the option to read as administrator. It only shows; nothing is deleted from there.</p>

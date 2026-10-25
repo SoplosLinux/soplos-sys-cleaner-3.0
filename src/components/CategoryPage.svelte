@@ -277,7 +277,8 @@
                   <td class="border-b border-border px-1.5 py-[5px] align-top min-w-[8rem]">{cellText(row.extra, $_, $locale)}</td>
                 {/if}
                 <td class="border-b border-border px-1.5 py-[5px] text-right align-top whitespace-nowrap tabular-nums">
-                  {formatBytes(row.sizeBytes)}
+                  <!-- A snapshot whose size cannot be told is not one of 0 bytes -->
+                  {id === "snapshots" && row.sizeBytes <= 0 ? "—" : formatBytes(row.sizeBytes)}
                 </td>
                 <td class="border-b border-border px-1.5 py-[5px] align-top"><RiskBadge risk={row.risk} /></td>
               </tr>

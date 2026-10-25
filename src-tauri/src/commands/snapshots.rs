@@ -152,6 +152,63 @@ fn timeshift_sizes(entries: &mut [SnapshotEntry]) {
     }
 }
 
+/// The subvolumes of a BTRFS file system, from `btrfs subvolume list`, whose
+/// lines look like `ID 257 gen 10 top level 5 path timeshift-btrfs/snapshots/2024-05-01_10-00-00/@`:
+/// the id and the path from the top of the file system.
+pub fn parse_subvolume_list(text: &str) -> Vec<(u64, String)> {
+    text.lines()
+        .filter_map(|line| {
+            let line = line.trim();
+            let id: u64 = line.strip_prefix("ID ")?.split_whitespace().next()?.parse().ok()?;
+            let path = line.split_once(" path ")?.1.trim();
+            Some((id, path.trim_start_matches("<FS_TREE>/").to_string()))
+        })
+        .collect()
+}
+
+/// What each subvolume holds on its own, in bytes, from
+/// `btrfs qgroup show --raw`: rows of `0/<id> <referenced> <exclusive>`.
+pub fn parse_qgroup_exclusive(text: &str) -> Vec<(u64, u64)> {
+    text.lines()
+        .filter_map(|line| {
+            let mut parts = line.split_whitespace();
+            let (level, id) = parts.next()?.split_once('/')?;
+            if level != "0" {
+                return None;
+            }
+            let id: u64 = id.parse().ok()?;
+            let _referenced: u64 = parts.next()?.parse().ok()?;
+            let exclusive: u64 = parts.next()?.parse().ok()?;
+            Some((id, exclusive))
+        })
+        .collect()
+}
+
+/// The size of BTRFS snapshots: what each one holds that nothing else does,
+/// which is what deleting it gives back. BTRFS only tells that when quotas
+/// (qgroups) are on, which is Timeshift's own condition for showing sizes; with
+/// them off the sizes stay 0, which the window shows as unknown.
+fn timeshift_btrfs_sizes(entries: &mut [SnapshotEntry]) {
+    let Some(list) = run("btrfs", &["subvolume", "list", "/"]) else {
+        return;
+    };
+    let Some(groups) = run("btrfs", &["qgroup", "show", "--raw", "/"]) else {
+        return;
+    };
+    let subvolumes = parse_subvolume_list(&list);
+    let exclusive = parse_qgroup_exclusive(&groups);
+    for entry in entries.iter_mut() {
+        // A snapshot is one subvolume for each part of the system it covers
+        // (@, @home), all under the folder named after it.
+        let prefix = format!("timeshift-btrfs/snapshots/{}/", entry.id);
+        entry.size_bytes = subvolumes
+            .iter()
+            .filter(|(_, path)| path.starts_with(&prefix))
+            .filter_map(|(id, _)| exclusive.iter().find(|(group, _)| group == id).map(|(_, bytes)| *bytes))
+            .sum();
+    }
+}
+
 fn list_timeshift() -> Vec<SnapshotEntry> {
     if !has_command("timeshift") {
         return Vec::new();
@@ -162,6 +219,8 @@ fn list_timeshift() -> Vec<SnapshotEntry> {
     let (mode, mut entries) = parse_timeshift(&text);
     if mode == "rsync" {
         timeshift_sizes(&mut entries);
+    } else if mode == "btrfs" {
+        timeshift_btrfs_sizes(&mut entries);
     }
     entries
 }
@@ -393,6 +452,23 @@ mod tests {
         assert_eq!(entries[3].tags, "");
         assert_eq!(entries[3].description, "My notes here");
         assert!(entries.iter().all(|e| e.kind == "rsync" && e.tool == "timeshift"));
+    }
+
+    #[test]
+    fn the_subvolumes_of_a_btrfs_file_system_come_with_their_paths() {
+        let text = "ID 256 gen 900 top level 5 path @\nID 257 gen 901 top level 5 path @home\nID 300 gen 800 top level 5 path timeshift-btrfs/snapshots/2024-05-01_10-00-00/@\nID 301 gen 800 top level 5 path timeshift-btrfs/snapshots/2024-05-01_10-00-00/@home\nnot a line\n";
+        let list = parse_subvolume_list(text);
+        assert_eq!(list.len(), 4);
+        assert_eq!(list[2], (300, "timeshift-btrfs/snapshots/2024-05-01_10-00-00/@".to_string()));
+        assert!(parse_subvolume_list("").is_empty());
+    }
+
+    #[test]
+    fn the_exclusive_size_of_each_subvolume_comes_from_its_qgroup() {
+        let text = "Qgroupid    Referenced    Exclusive\n--------    ----------    ---------\n0/5              16384        16384\n0/300       2147483648    104857600\n0/301        536870912      4194304\n1/0         2684354560    109051904\n";
+        let groups = parse_qgroup_exclusive(text);
+        assert_eq!(groups, vec![(5, 16384), (300, 104857600), (301, 4194304)]);
+        assert!(parse_qgroup_exclusive("ERROR: quota not enabled\n").is_empty());
     }
 
     #[test]

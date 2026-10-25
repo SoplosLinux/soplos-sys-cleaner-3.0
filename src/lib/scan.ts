@@ -491,6 +491,13 @@ export async function refreshOne(id: CategoryId): Promise<void> {
   // After a cleanup the list is read again, which the password granted a
   // moment ago still covers.
   if (id === "snapshots") await loadSnapshots();
+  await syncOne(id);
+}
+
+// Puts what a category holds now on its page, without reading anything that
+// asks for the password again: the snapshots page uses it right after it read
+// the list itself.
+export async function syncOne(id: CategoryId): Promise<void> {
   const list = await scanCategory(id);
   scan.update((s) => ({ ...s, rows: { ...s.rows, [id]: list } }));
 }
