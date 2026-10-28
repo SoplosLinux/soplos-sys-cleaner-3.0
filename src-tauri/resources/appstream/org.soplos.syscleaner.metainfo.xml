@@ -213,6 +213,11 @@
   </developer>
 
   <releases>
+    <release version="3.0.0-7-beta" date="2026-10-28">
+      <description>
+        <p>New application icon, new hero image and new screenshots, taken with the interface in English.</p>
+      </description>
+    </release>
     <release version="3.0.0-6-beta" date="2026-10-25">
       <description>
         <p>Snapshots: the list is read when the page opens, with a single password. Timeshift snapshots in BTRFS mode now show their size when the BTRFS quotas are on, and a dash instead of 0 B when the size cannot be told.</p>

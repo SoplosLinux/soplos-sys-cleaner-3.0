@@ -2,6 +2,14 @@
 
 All notable changes to Soplos Sys Cleaner are documented in this file.
 
+## [3.0.0-7-beta] - 2026-10-28
+
+### Changed
+
+- New application icon, in the sizes of the package, the window and the interface.
+- New hero image, with the circuit style of the other Soplos 3.0 programs, for the advanced and the basic program.
+- New screenshots of the basic program, the overview, Languages and History, taken with the interface in English.
+
 ## [3.0.0-6-beta] - 2026-10-25
 
 ### Changed
