@@ -36,8 +36,14 @@ fn create_main_window(app: &tauri::App, mode: AppMode) -> tauri::Result<()> {
         AppMode::Basic => {
             WebviewWindowBuilder::new(app, "main", WebviewUrl::App("basic.html".into()))
                 .title("Soplos Sys Cleaner")
-                .inner_size(780.0, 440.0)
-                .min_inner_size(640.0, 420.0)
+                // No frame of the system: a card with rounded corners, as the
+                // advanced one gets from tauri.conf.json. The heights have 16
+                // points more than before (440 and 420) for the strip that
+                // holds the window buttons.
+                .decorations(false)
+                .transparent(true)
+                .inner_size(780.0, 456.0)
+                .min_inner_size(640.0, 436.0)
                 .center()
                 .build()?;
         }

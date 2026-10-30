@@ -112,12 +112,20 @@
       getCurrentWindow().close();
     }
   }
+  import WindowControls from "./components/WindowControls.svelte";
+  import { frameless, maximized } from "./lib/window";
 </script>
 
 <svelte:window on:click={() => (menuOpen = false)} on:keydown={onKeydown} />
 
-<div class="flex h-screen flex-col overflow-hidden">
-  <div class="shrink-0 px-4 pt-3">
+<div class="h-screen bg-dark {$frameless && !$maximized ? 'window-card' : ''}">
+<div class="flex h-full flex-col overflow-hidden">
+  {#if $frameless}
+    <div class="relative h-7 shrink-0" data-tauri-drag-region>
+      <div class="absolute right-2 top-[3px]"><WindowControls /></div>
+    </div>
+  {/if}
+  <div class="shrink-0 px-4 {$frameless ? 'pt-0' : 'pt-3'}" data-tauri-drag-region="deep">
     <div
       class="relative flex min-h-[100px] items-end gap-3 overflow-hidden rounded border border-border p-4"
       style="background: linear-gradient(rgba(20, 20, 22, 0.25), rgba(20, 20, 22, 0.82)), url('/assets/hero/sys-cleaner-background.jpg'); background-size: cover; background-position: center;"
@@ -244,3 +252,4 @@
 {/if}
 
 <Toast />
+</div>

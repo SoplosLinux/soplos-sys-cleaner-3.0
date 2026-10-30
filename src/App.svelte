@@ -161,15 +161,23 @@
       select(tabs[(idx + dir + tabs.length) % tabs.length].id);
     }
   }
+  import WindowControls from "./components/WindowControls.svelte";
+  import { frameless, maximized } from "./lib/window";
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
 
-<div class="flex h-screen overflow-hidden">
+<div class="h-screen bg-dark {$frameless && !$maximized ? 'window-card' : ''}">
+<div class="flex h-full overflow-hidden">
   <Sidebar {tabs} {active} onSelect={select} {badges} {appVersion} {envInfo} />
 
   <div class="flex min-w-0 flex-1 flex-col overflow-hidden">
-    <div class="shrink-0 px-4 pt-3">
+    {#if $frameless}
+      <div class="relative h-7 shrink-0" data-tauri-drag-region>
+        <div class="absolute right-2 top-[3px]"><WindowControls /></div>
+      </div>
+    {/if}
+    <div class="shrink-0 px-4 {$frameless ? 'pt-0' : 'pt-3'}" data-tauri-drag-region="deep">
       <div
         class="relative flex min-h-[100px] items-end gap-3 overflow-hidden rounded border border-border p-4"
         style="background: linear-gradient(rgba(20, 20, 22, 0.25), rgba(20, 20, 22, 0.82)), url('/assets/hero/sys-cleaner-background.jpg'); background-size: cover; background-position: center;"
@@ -229,3 +237,4 @@
 {/if}
 
 <Toast />
+</div>

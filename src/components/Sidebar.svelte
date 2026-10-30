@@ -44,7 +44,7 @@
   $: footerLabel = [envLabel, cleanVersion].filter(Boolean).join(" · ") || "Soplos Sys Cleaner";
 </script>
 
-<aside class="flex w-[258px] shrink-0 flex-col gap-px overflow-hidden border-r border-border bg-panel px-2 py-2.5">
+<aside class="flex w-[258px] shrink-0 flex-col gap-px overflow-hidden border-r border-border bg-panel px-2 py-2.5" data-tauri-drag-region>
   <div class="flex items-center gap-2 px-2 pb-2 pt-1 text-[15px] font-bold text-text-bright">
     <img src="/assets/icons/org.soplos.syscleaner.png" alt="Soplos" class="h-[22px] w-[22px] shrink-0 object-contain" />
     <span class="whitespace-nowrap">Sys Cleaner</span>

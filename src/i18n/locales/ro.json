@@ -1,5 +1,11 @@
 {
   "app": {
+    "window": {
+      "minimize": "Minimizează",
+      "maximize": "Maximizează",
+      "restore": "Restaurează",
+      "close": "Închide"
+    },
     "title": "Soplos Sys Cleaner",
     "groups": {
       "cleaning": "Curățare",
