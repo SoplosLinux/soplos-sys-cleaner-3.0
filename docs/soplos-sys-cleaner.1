@@ -1,4 +1,4 @@
-.TH "SOPLOS-SYS-CLEANER" "1" "2026-10-21" "Soplos Linux" "User Commands"
+.TH "SOPLOS-SYS-CLEANER" "1" "2026-11-04" "Soplos Linux" "User Commands"
 .SH NAME
 soplos-sys-cleaner \- System cleaner and maintenance tool for Soplos Linux
 .SH SYNOPSIS
@@ -81,6 +81,19 @@ temporary files, the trash and crash dumps.
 .IP \[bu]
 .B System journal,
 with retention by time or by size and an estimate of what it frees.
+.IP \[bu]
+.B Snapshots
+of Timeshift (in its rsync and its BTRFS mode) and of Snapper, always as
+Review. Reading them needs the administrator password, so nothing is listed
+until the page asks for it with a button. The newest snapshot of each tool, and
+of each Snapper configuration, is locked, so there is always a point to go back
+to. The page can also make a snapshot now, with a short comment.
+.IP \[bu]
+.B Disk space,
+in the Analysis group of the sidebar: where the space goes, folder by folder,
+the largest first, for the home of the user or for the whole system, and how
+much is free on the disk. It only shows: it has no delete button, because what
+to free is decided in the folders.
 .IP \[bu]
 .B Installed apps
 from APT, Flatpak, Snap and AppImage, each with its source, with export of a

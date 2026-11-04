@@ -2,6 +2,17 @@
 
 All notable changes to Soplos Sys Cleaner are documented in this file.
 
+## [3.0.0-9-beta] - 2026-11-04
+
+### Changed
+
+- The button that cleans the selection stays fixed at the bottom of the window in every page, so it is always in reach without scrolling down a long list.
+- The manual page describes the Snapshots page and the Disk space page.
+
+### Fixed
+
+- The application metadata points to the launcher that the package installs, so the software centers link the entry of the menu with the program.
+
 ## [3.0.0-8-beta] - 2026-10-29
 
 ### Changed

@@ -288,7 +288,15 @@
       </table>
     </div>
 
-    <div class="mt-2 flex flex-wrap items-center gap-2.5">
+    <!-- Stays at the bottom of the window while the list scrolls, so the button
+         is never a long scroll away. It covers the bottom edge of the card
+         (its own border is the card's), and the strip under it (after:) has the
+         page colour, so the page padding below never shows rows passing between
+         this bar and the edge of the window. At the end of the list it sits
+         where the card ends. -->
+    <div
+      class="sticky bottom-0 z-10 mt-2 -mx-[calc(0.75rem+1px)] -mb-[calc(0.625rem+1px)] flex flex-wrap items-center gap-2.5 rounded-b-lg border border-border bg-surface px-[calc(0.75rem+1px)] py-2 after:absolute after:inset-x-0 after:top-full after:h-8 after:bg-dark"
+    >
       <span>
         {$_("page.selectedOf", { values: { count: selectedRows.length, total: selectable.length } })} ·
         <b class="text-text-bright">{formatBytes(selectedBytes)}</b>
