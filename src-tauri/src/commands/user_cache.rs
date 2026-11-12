@@ -51,19 +51,19 @@ const MAX_DEPTH: usize = 4;
 const MAX_ENTRIES: usize = 20_000;
 
 #[derive(Default)]
-struct Live {
+pub(crate) struct Live {
     // Everything a running program has open or as its working directory.
-    open: HashSet<PathBuf>,
+    pub(crate) open: HashSet<PathBuf>,
     // Paths of Unix sockets that something is bound to (/proc/net/unix).
     sockets: HashSet<PathBuf>,
     // Names of the running processes.
-    comms: HashSet<String>,
+    pub(crate) comms: HashSet<String>,
 }
 
 impl Live {
     // Read once per scan or delete. What cannot be read (other users'
     // processes) is skipped.
-    fn capture() -> Self {
+    pub(crate) fn capture() -> Self {
         let mut live = Live::default();
         if let Ok(procs) = std::fs::read_dir("/proc") {
             for proc_entry in procs.flatten() {
@@ -102,7 +102,7 @@ impl Live {
         live
     }
 
-    fn is_open(&self, path: &Path) -> bool {
+    pub(crate) fn is_open(&self, path: &Path) -> bool {
         // Path::starts_with compares whole components: "ibus" is not "ibus2".
         self.open.iter().any(|o| o.starts_with(path))
     }
@@ -182,7 +182,7 @@ fn protection(path: &Path, live: &Live) -> Option<&'static str> {
 
 // ---- Scan ------------------------------------------------------------------
 
-fn dir_size_bytes(path: &Path) -> u64 {
+pub(crate) fn dir_size_bytes(path: &Path) -> u64 {
     Command::new("du")
         .args(["-sb", "--"])
         .arg(path)

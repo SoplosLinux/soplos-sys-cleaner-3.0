@@ -1,4 +1,5 @@
 mod commands;
+pub mod tracker;
 mod system_theme;
 pub(crate) mod utils;
 
@@ -83,6 +84,8 @@ pub fn run(mode: AppMode) {
             commands::jobs::poll_job,
             commands::trash::scan_trash,
             commands::trash::empty_trash,
+            commands::leftovers::scan_leftovers,
+            commands::leftovers::trash_leftovers,
             commands::user_cache::scan_user_cache,
             commands::user_cache::delete_cache_entries,
             commands::flatpak::scan_flatpak_unused,

@@ -414,6 +414,33 @@
     "note": "Non installato; resta solo la sua configurazione. Il purge la cancella per sempre.",
     "noteSystem": "Schermata di accesso, bootloader o base del sistema: non viene eliminato con purge, perché il suo script di purge può cancellare file usati da altri pacchetti."
   },
+  "leftovers": {
+    "title": "Resti dei programmi",
+    "description": "Cartelle della tua cartella personale lasciate da programmi che hai disinstallato.",
+    "concept": "Cartelle di ~/.config, ~/.local/share, ~/.local/state, ~/.var/app, ~/snap e cartelle nascoste della tua cartella personale che appartengono a programmi non più installati. Una cartella viene elencata solo quando nulla di installato la rivendica, e la tabella dice perché sembra abbandonata. Ciò che pulisci va nel cestino, quindi puoi recuperarlo.",
+    "keep": "Le tue cartelle (Documenti, Download, Immagini...), le impostazioni del desktop, chiavi e password, tutto ciò che un programma in esecuzione ha aperto e le cartelle modificate nelle ultime due settimane senza una disinstallazione nota.",
+    "colReason": "Motivo",
+    "recoverable": "Va nel cestino: puoi recuperarla da lì.",
+    "reason": {
+      "package": "Pacchetto {package} rimosso",
+      "packageOn": "Pacchetto {package} rimosso il {date}",
+      "flatpak": "Flatpak non installato",
+      "snap": "Snap non installato",
+      "unclaimed": "Nulla di installato la rivendica",
+      "creator": "Creata da {program}, che non è più installato",
+      "refs": "I suoi file puntano a {program}, che non esiste più"
+    },
+    "notes": {
+      "refs": "I file di questa cartella dicono dove si trovava il loro programma, e non c'è più. Controllala prima di pulire.",
+      "creator": "Il programma che ha creato questa cartella non è più installato.",
+      "package": "Un pacchetto con questo nome è stato rimosso. Se hai installato il programma in un altro modo, conserva la cartella.",
+      "flatpak": "L'applicazione Flatpak non è installata: restano solo i suoi dati.",
+      "snap": "Lo snap non è installato: restano solo i suoi dati.",
+      "unclaimed": "Nulla di installato ha questo nome, il che non prova che il programma sia sparito. Controllala prima di pulire.",
+      "open": "In uso: un programma in esecuzione l'ha aperta. Non viene pulita.",
+      "recent": "Modificata nelle ultime due settimane: potrebbe essere ancora in uso. Non viene pulita."
+    }
+  },
   "orphans": {
     "title": "Pacchetti orfani",
     "description": "Pacchetti installati come dipendenze di cui nulla ha più bisogno: ciò che apt autoremove rimuoverebbe.",

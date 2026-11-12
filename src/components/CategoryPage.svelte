@@ -31,7 +31,7 @@
   // A new scan result resets the selection to the safe rows.
   $: if (rows !== seenRows) {
     seenRows = rows;
-    selected = new Set(rows.filter((r) => r.risk === "safe").map((r) => r.id));
+    selected = new Set(rows.filter((r) => r.risk === "safe" || r.preselected).map((r) => r.id));
   }
   $: selectable = rows.filter((r) => r.risk !== "protected");
   $: needle = query.trim().toLowerCase();
@@ -264,14 +264,15 @@
                   />
                 </td>
                 <td class="border-b border-border px-1.5 py-[5px] align-top">
-                  <b class="font-semibold text-text-bright">{cellText(row.name, $_, $locale)}</b>
+                  <b class="font-semibold text-text-bright {id === 'leftovers' ? 'break-all' : ''}">{cellText(row.name, $_, $locale)}</b>
                   {#if row.noteKey}
-                    <div class="text-[11px] font-normal text-text-muted">{$_(row.noteKey)}</div>
+                    <div class="max-w-[21rem] text-[11px] font-normal text-text-muted">{$_(row.noteKey)}</div>
                   {/if}
                 </td>
                 {#if columns > 1}
                   <!-- A long path breaks inside its cell instead of widening the table past the window -->
-                  <td class="border-b border-border px-1.5 py-[5px] align-top break-all">{cellText(row.detail, $_, $locale)}</td>
+                  <!-- The reason of a leftover is a sentence, not a path: it breaks at its words -->
+                  <td class="border-b border-border px-1.5 py-[5px] align-top {id === 'leftovers' ? 'min-w-[10rem]' : 'break-all'}">{cellText(row.detail, $_, $locale)}</td>
                 {/if}
                 {#if columns > 2}
                   <td class="border-b border-border px-1.5 py-[5px] align-top min-w-[8rem]">{cellText(row.extra, $_, $locale)}</td>

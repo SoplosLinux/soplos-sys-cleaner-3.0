@@ -25,7 +25,7 @@ fn parse_autoremove(output: &str) -> Vec<String> {
         .collect()
 }
 
-fn autoremove_names() -> Result<Vec<String>, String> {
+pub(crate) fn autoremove_names() -> Result<Vec<String>, String> {
     let output = Command::new("apt-get")
         .env("LC_ALL", "C")
         .args(["-s", "autoremove"])

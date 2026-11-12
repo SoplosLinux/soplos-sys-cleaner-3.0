@@ -213,6 +213,11 @@
   </developer>
 
   <releases>
+    <release version="3.0.1-beta" date="2026-11-12">
+      <description>
+        <p>New page, Program leftovers: the folders that uninstalled programs left in the home folder, found by working out which program made each of them and whether it is still installed. What is cleaned goes to the Trash. A small service records which program creates each folder.</p>
+      </description>
+    </release>
     <release version="3.0.0-9-beta" date="2026-11-04">
       <description>
         <p>The button that cleans the selection stays fixed at the bottom of the window, and the manual page describes the Snapshots and Disk space pages.</p>

@@ -1,5 +1,5 @@
 import type { ComponentType } from "svelte";
-import { Trash2, Archive, Box, RotateCcw, AppWindow, FolderClock, PackageX, PackageMinus, FileX, ScrollText, Cpu, Plug, Microchip, Languages, BookOpen, Camera } from "lucide-svelte";
+import { Trash2, Archive, Box, RotateCcw, AppWindow, FolderClock, PackageX, PackageMinus, FileX, ScrollText, Cpu, Plug, Microchip, Languages, BookOpen, Camera, FolderX } from "lucide-svelte";
 import { journalCommand, type JournalPolicy } from "./journal";
 
 export type CategoryId =
@@ -12,6 +12,7 @@ export type CategoryId =
   | "aptCache"
   | "orphans"
   | "residual"
+  | "leftovers"
   | "logs"
   | "kernels"
   | "snapshots"
@@ -50,6 +51,9 @@ export interface Row {
   count?: number;
   // Arguments the cleaner needs for this row (snap name + revision, ...).
   payload?: Record<string, string>;
+  // Preselected although it is not "safe": a leftover whose creator was seen and is not installed
+  // (the quick and full cleanups still skip it).
+  preselected?: boolean;
   // Packages this row removes. Rows that have them get a dry run of the
   // removal in the confirmation dialog.
   packages?: string[];
@@ -180,6 +184,18 @@ export const CATEGORIES: CategoryDef[] = [
     headers: ["cols.item", "cols.description"],
     conceptKey: "residual.concept",
     keepKey: "residual.keep",
+  },
+  {
+    id: "leftovers",
+    icon: FolderX,
+    labelKey: "leftovers.title",
+    titleKey: "leftovers.title",
+    descriptionKey: "leftovers.description",
+    admin: false,
+    command: "gio trash -- <folder>",
+    headers: ["cols.path", "leftovers.colReason"],
+    conceptKey: "leftovers.concept",
+    keepKey: "leftovers.keep",
   },
   {
     id: "logs",

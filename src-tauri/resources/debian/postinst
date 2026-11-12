@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+# The service that records which program creates each folder of the home.
+if [ -d /run/systemd/system ]; then
+    systemctl daemon-reload || true
+    systemctl enable --now soplos-sys-cleaner-tracker.service || true
+fi
+exit 0

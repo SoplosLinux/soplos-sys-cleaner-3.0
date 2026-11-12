@@ -138,7 +138,7 @@
 
     <p class="mt-2 text-[11px] text-text-muted">
       {needsRoot ? $_("page.rootNote") : $_("page.userNote")}
-      {$_("page.irreversible")}
+      {groups.every((g) => g.id === "leftovers") ? $_("leftovers.recoverable") : $_("page.irreversible")}
     </p>
 
     <div class="mt-3 flex justify-end gap-2">

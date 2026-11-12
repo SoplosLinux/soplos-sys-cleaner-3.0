@@ -60,6 +60,19 @@ export interface ResidualPackage {
   systemCritical: boolean;
 }
 
+// Mirrors src-tauri/src/commands/leftovers.rs.
+export interface LeftoverEntry {
+  name: string;
+  path: string;
+  display: string;
+  location: "config" | "share" | "state" | "home" | "flatpak" | "snap";
+  sizeBytes: number;
+  reason: "creator" | "refs" | "package" | "flatpak" | "snap" | "unclaimed";
+  package: string | null;
+  removedOn: string | null;
+  protectedReason: "open" | "recent" | null;
+}
+
 // Mirrors src-tauri/src/commands/orphans.rs.
 export interface OrphanPackage {
   name: string;

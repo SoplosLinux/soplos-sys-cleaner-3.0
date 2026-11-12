@@ -1,6 +1,6 @@
 # Soplos Sys Cleaner 3.0
 
-![Version](https://img.shields.io/badge/version-3.0.0--9--beta-blue)
+![Version](https://img.shields.io/badge/version-3.0.1--beta-blue)
 ![License](https://img.shields.io/badge/license-GPL--3.0--or--later-green)
 ![Platform](https://img.shields.io/badge/platform-Linux-lightgrey)
 ![Tauri](https://img.shields.io/badge/Tauri-2-orange)
@@ -52,6 +52,7 @@ Open Soplos Sys Cleaner from the applications menu. Press F1 for the About dialo
 - Installed apps lists APT, Flatpak, Snap and AppImage apps (the AppImages Soplos AppImage Manager keeps in `~/AppImages`), each with its source. It exports a reinstall script: APT, Flatpak and Snap apps are installed again by command; the AppImages are listed in it with their download address, to download by hand. Base packages every installation has are left out.
 - Orphaned packages: what `apt autoremove` would remove, always as Review, with a dry run first.
 - Residual configuration: packages that were removed but left their configuration files (dpkg state `rc`), purged with `apt-get purge`. Always Review; the privileged side checks each one is really in that state.
+- Program leftovers: the folders of programs that are not installed any more, in `~/.config`, `~/.local/share`, `~/.local/state`, `~/.var/app`, `~/snap` and the hidden folders of the home. A folder is a leftover when its program is gone: the one that made it, which the `soplos-sys-cleaner-tracker` service records when the folder is created, or what the folder itself says (the programs its files point to, the packages that were removed, the Flatpaks and snaps that are not installed). What is cleaned goes to the Trash, never straight to deletion, and a folder that a running program has open is locked.
 - APT package cache listed file by file, so single `.deb` files can be picked. Note that the `apt` command deletes its `.deb` files after installing, while `apt-get` keeps them, so the cache is often empty after updating with `apt`.
 - The health rings and the weekly chart animate from zero to their values.
 - Journal retention by time or by size, with an estimate of what it frees.

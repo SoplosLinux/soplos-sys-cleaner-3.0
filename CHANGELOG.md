@@ -2,6 +2,18 @@
 
 All notable changes to Soplos Sys Cleaner are documented in this file.
 
+## [3.0.1-beta] - 2026-11-12
+
+### Added
+
+- Program leftovers, a new page of the cleaning pages: the folders that programs that are not installed any more left in `~/.config`, `~/.local/share`, `~/.local/state`, the hidden folders of the home, `~/.var/app` and `~/snap`. Each row says why it is a leftover: the program that made the folder is gone, its files point to a program that does not exist any more, a package with that name was removed (dpkg's log, or state `rc`), or it is the data of a Flatpak or a snap that is not installed. Nothing is a leftover on its name alone: a folder is left out when a package, a desktop file, a program, a Flatpak, a snap, an AppImage, an extension of an editor or a running process has it, when the folder of a package installs it in `/usr/share`, `/usr/lib`, `/opt` or `/etc`, or when it holds the folder of a program that is installed (`~/.gemini/antigravity`). The programs that apt would autoremove, and the packages that were removed but kept their configuration (state `rc`), do not count as owners.
+- What is cleaned in that page is moved to the Trash with `gio trash`, never deleted for good; the dialog says it. The command checks every path again before it moves anything: a folder of the home, not open by a running program and a leftover by the same reading of the computer that listed it. Nothing is ever Safe or part of the quick and full cleanups; only the folders whose creator was seen and is gone come selected.
+- `soplos-sys-cleaner-tracker`, a small service that runs as root (`systemd`, started and enabled by the package) and records which program creates each folder of the home: it asks the kernel for the folders that are created (`fanotify`, which gives the process that did it to a group that runs as root), goes up from the tools of the base of the system (read from dpkg, no name in the code) to the program that started them, and keeps the executable, the Flatpak, the snap, the AppImage or the script in `/var/lib/soplos-sys-cleaner/creators.json`, readable by everyone. The page reads it: a folder whose creator is not installed any more is a leftover. It works for apt, Flatpak, snap and AppImage, and for programs that come out later, with no list and no internet. It records only the program, never reads a file of the folders and never changes anything in them. The folders that were made before the service ran have no creator, and are told by what they say themselves.
+
+### Changed
+
+- The notes under the name of a row in the tables are narrower, and in the page of leftovers the path breaks where it needs to, so the table does not grow past the window.
+
 ## [3.0.0-9-beta] - 2026-11-04
 
 ### Changed

@@ -10,6 +10,7 @@ pub mod flatpak;
 pub mod hardware;
 pub mod jobs;
 pub mod kernels;
+pub mod leftovers;
 pub mod languages;
 pub mod launcher;
 pub mod logs;

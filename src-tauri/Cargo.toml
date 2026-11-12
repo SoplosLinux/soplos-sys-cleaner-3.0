@@ -1,6 +1,6 @@
 [package]
 name = "soplos-sys-cleaner"
-version = "3.0.0-9-beta"
+version = "3.0.1-beta"
 description = "Soplos Sys Cleaner"
 authors = ["Sergi Perich <info@soploslinux.com>"]
 license = "GPL-3.0-or-later"
@@ -16,6 +16,11 @@ path = "src/main.rs"
 [[bin]]
 name = "soplos-sys-cleaner-basic"
 path = "src/basic_main.rs"
+
+# Runs as root from systemd and records who creates the folders of the home.
+[[bin]]
+name = "soplos-sys-cleaner-tracker"
+path = "src/tracker_main.rs"
 
 [lib]
 name = "soplos_sys_cleaner_lib"

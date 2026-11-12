@@ -121,6 +121,8 @@ async function runOps(ops: Op[]): Promise<boolean[]> {
 async function cleanUserCategory(id: CategoryId, rows: Row[]): Promise<boolean> {
   try {
     if (id === "trash") await api.invoke("empty_trash");
+    // Leftovers of programs go to the Trash, never straight to deletion.
+    else if (id === "leftovers") await api.invoke("trash_leftovers", { paths: rows.map((r) => r.id) });
     else await api.invoke("delete_cache_entries", { paths: rows.map((r) => r.id) });
     return true;
   } catch (error) {
@@ -140,7 +142,9 @@ export async function cleanGroups(groups: { id: CategoryId; rows: Row[] }[], kin
   const results = new Map<CategoryId, { ok: boolean; freedBytes: number }>();
 
   for (const group of groups.filter((g) => !categoryById(g.id).admin)) {
-    results.set(group.id, { ok: await cleanUserCategory(group.id, group.rows), freedBytes: bytesOf(group.rows) });
+    // What went to the Trash is not freed until the Trash is emptied, so it is
+    // not counted as freed: the Trash page shows it and empties it.
+    results.set(group.id, { ok: await cleanUserCategory(group.id, group.rows), freedBytes: group.id === "leftovers" ? 0 : bytesOf(group.rows) });
   }
 
   // Flatpaks installed for the user are removed without a password. Only the

@@ -1,0 +1,23 @@
+[Unit]
+Description=Soplos Sys Cleaner: records which program creates each folder of the home
+Documentation=man:soplos-sys-cleaner(1)
+After=local-fs.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/soplos-sys-cleaner-tracker
+Restart=on-failure
+RestartSec=10
+Nice=10
+# Only what it needs: to ask the kernel who makes a folder (fanotify), to resolve the handles it
+# gets, and to read what a process is in /proc.
+CapabilityBoundingSet=CAP_SYS_ADMIN CAP_DAC_READ_SEARCH CAP_SYS_PTRACE
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=yes
+StateDirectory=soplos-sys-cleaner
+StateDirectoryMode=0755
+
+[Install]
+WantedBy=multi-user.target

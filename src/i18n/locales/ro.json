@@ -414,6 +414,33 @@
     "note": "Nu este instalat; a rămas doar configurația. Purge o șterge definitiv.",
     "noteSystem": "Ecranul de autentificare, încărcătorul de pornire sau baza sistemului: nu se elimină cu purge, deoarece scriptul său de purge poate șterge fișiere folosite de alte pachete."
   },
+  "leftovers": {
+    "title": "Resturi de programe",
+    "description": "Dosare din dosarul tău personal lăsate de programele pe care le-ai dezinstalat.",
+    "concept": "Dosare din ~/.config, ~/.local/share, ~/.local/state, ~/.var/app, ~/snap și dosarele ascunse din dosarul tău personal care aparțin unor programe care nu mai sunt instalate. Un dosar este listat doar când nimic din ce este instalat nu îl revendică, iar tabelul spune de ce pare abandonat. Ce cureți merge în coșul de gunoi, deci îl poți recupera.",
+    "keep": "Dosarele tale (Documente, Descărcări, Imagini...), setările desktopului, cheile și parolele, tot ce are deschis un program în execuție și dosarele modificate în ultimele două săptămâni fără o dezinstalare cunoscută.",
+    "colReason": "Motiv",
+    "recoverable": "Merge în coșul de gunoi: îl poți recupera de acolo.",
+    "reason": {
+      "package": "Pachetul {package} a fost eliminat",
+      "packageOn": "Pachetul {package} a fost eliminat la {date}",
+      "flatpak": "Flatpak neinstalat",
+      "snap": "Snap neinstalat",
+      "unclaimed": "Nimic din ce este instalat nu îl revendică",
+      "creator": "Creat de {program}, care nu mai este instalat",
+      "refs": "Fișierele lui trimit la {program}, care nu mai există"
+    },
+    "notes": {
+      "refs": "Fișierele acestui dosar spun unde era programul lor, iar acesta a dispărut. Verifică-l înainte de curățare.",
+      "creator": "Programul care a creat acest dosar nu mai este instalat.",
+      "package": "Un pachet cu acest nume a fost eliminat. Dacă ai instalat programul altfel, păstrează dosarul.",
+      "flatpak": "Aplicația Flatpak nu este instalată: au rămas doar datele ei.",
+      "snap": "Snap-ul nu este instalat: au rămas doar datele lui.",
+      "unclaimed": "Nimic din ce este instalat nu are acest nume, ceea ce nu dovedește că programul a dispărut. Verifică-l înainte de curățare.",
+      "open": "În uz: un program în execuție îl are deschis. Nu este curățat.",
+      "recent": "Modificat în ultimele două săptămâni: poate fi încă în uz. Nu este curățat."
+    }
+  },
   "orphans": {
     "title": "Pachete orfane",
     "description": "Pachete instalate ca dependențe de care nu mai are nevoie nimic: ce ar elimina apt autoremove.",
