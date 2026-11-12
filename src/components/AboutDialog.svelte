@@ -25,9 +25,9 @@
 
   onMount(async () => {
     try {
-      // "3.0.0-1-beta" is shown as "3.0.0-beta": the Debian revision never
-      // appears in the interface.
-      version = (await getVersion()).replace(/-\d+-/, "-");
+      // The About dialog shows the full package version, revision included
+      // ("3.0.1-1-beta"). Only the footer of the sidebar leaves the revision out.
+      version = await getVersion();
     } catch {
       version = "";
     }

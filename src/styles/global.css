@@ -91,6 +91,9 @@
    bar never sits on the figures at the right of the rows. */
 .sidebar-scroll {
   scrollbar-gutter: stable;
+  /* A scrollbar that floats over the content (overlay) takes no room, so the
+     padding of the list (pr-3) is what keeps it off the rows. */
+  scrollbar-width: thin;
 }
 
 .sidebar-scroll::-webkit-scrollbar {

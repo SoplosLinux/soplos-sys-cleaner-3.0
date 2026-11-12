@@ -3223,7 +3223,7 @@ dependencies = [
 
 [[package]]
 name = "soplos-sys-cleaner"
-version = "3.0.1-beta"
+version = "3.0.1-1-beta"
 dependencies = [
  "serde",
  "serde_json",

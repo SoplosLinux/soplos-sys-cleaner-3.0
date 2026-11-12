@@ -417,28 +417,21 @@
   "leftovers": {
     "title": "Leftover program data",
     "description": "Folders in your home that programs you uninstalled left behind.",
-    "concept": "Folders in ~/.config, ~/.local/share, ~/.local/state, ~/.var/app, ~/snap and the hidden folders of your home that belong to programs that are no longer installed. A folder is listed only when nothing installed claims it, and the table says why it looks abandoned. What you clean goes to the Trash, so you can recover it.",
-    "keep": "Your own folders (Documents, Downloads, Pictures...), the settings of the desktop, keys and passwords, anything a running program has open, and folders that changed in the last two weeks without a known uninstall.",
+    "concept": "Folders in ~/.config, ~/.local/share, ~/.local/state, ~/.var/app, ~/snap and the hidden folders of your home that belong to programs that are no longer installed. A folder is listed only when the system proves it: the data of a Flatpak or a snap that is not installed, or a folder with exactly the name of a package that was removed, when nothing installed has that name. Everything else is left alone. What you clean goes to the Trash, so you can recover it.",
+    "keep": "Your own folders (Documents, Downloads, Pictures...), every folder with no proof that its program was removed, folders named like something still installed in any format, and anything a running program has open.",
     "colReason": "Why",
     "recoverable": "It goes to the Trash: you can recover it from there.",
     "reason": {
       "package": "Package {package} removed",
       "packageOn": "Package {package} removed on {date}",
       "flatpak": "Flatpak not installed",
-      "snap": "Snap not installed",
-      "unclaimed": "Nothing installed claims it",
-      "creator": "Made by {program}, which is not installed",
-      "refs": "Its files point to {program}, which does not exist any more"
+      "snap": "Snap not installed"
     },
     "notes": {
-      "refs": "The files of this folder say where their program was, and it is gone. Check it before you clean.",
-      "creator": "The program that made this folder is not installed any more.",
-      "package": "A package with this name was removed. If you installed the program another way, keep it.",
+      "package": "The package with exactly this name was removed, and nothing installed has this name.",
       "flatpak": "The Flatpak application is not installed: only its data is left.",
       "snap": "The snap is not installed: only its data is left.",
-      "unclaimed": "Nothing installed has this name, which does not prove the program is gone. Check it before you clean.",
-      "open": "In use: a running program has it open. It is not cleaned.",
-      "recent": "Changed in the last two weeks: it may still be in use. It is not cleaned."
+      "open": "In use: a running program has it open. It is not cleaned."
     }
   },
   "orphans": {

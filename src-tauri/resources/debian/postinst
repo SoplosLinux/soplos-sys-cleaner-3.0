@@ -1,8 +1,16 @@
 #!/bin/sh
 set -e
-# The service that records which program creates each folder of the home.
-if [ -d /run/systemd/system ]; then
-    systemctl daemon-reload || true
-    systemctl enable --now soplos-sys-cleaner-tracker.service || true
+# 3.0.1-beta installed a service, soplos-sys-cleaner-tracker, that recorded which program made
+# each folder of the home in a file that every user could read. It is gone: stop it if it still
+# runs, drop its link and its file.
+if [ "$1" = "configure" ]; then
+    if [ -d /run/systemd/system ]; then
+        systemctl stop soplos-sys-cleaner-tracker.service >/dev/null 2>&1 || true
+    fi
+    rm -f /etc/systemd/system/multi-user.target.wants/soplos-sys-cleaner-tracker.service
+    rm -rf /var/lib/soplos-sys-cleaner
+    if [ -d /run/systemd/system ]; then
+        systemctl daemon-reload || true
+    fi
 fi
 exit 0

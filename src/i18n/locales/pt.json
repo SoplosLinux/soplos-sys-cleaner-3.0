@@ -417,28 +417,21 @@
   "leftovers": {
     "title": "Restos de programas",
     "description": "Pastas da sua pasta pessoal que os programas desinstalados deixaram para trás.",
-    "concept": "Pastas de ~/.config, ~/.local/share, ~/.local/state, ~/.var/app, ~/snap e as pastas ocultas da sua pasta pessoal que pertencem a programas que já não estão instalados. Uma pasta só é listada quando nada do que está instalado a reclama, e a tabela diz porque parece abandonada. O que limpar vai para o lixo, por isso pode recuperá-lo.",
-    "keep": "As suas pastas (Documentos, Transferências, Imagens...), as definições do ambiente de trabalho, chaves e palavras-passe, tudo o que um programa em execução tenha aberto e as pastas que mudaram nas últimas duas semanas sem uma desinstalação conhecida.",
+    "concept": "Pastas de ~/.config, ~/.local/share, ~/.local/state, ~/.var/app, ~/snap e as pastas ocultas da sua pasta pessoal que pertencem a programas que já não estão instalados. Uma pasta só é listada quando o sistema o prova: os dados de um Flatpak ou de um snap que não está instalado, ou uma pasta com exatamente o nome de um pacote que foi removido, quando nada do que está instalado tem esse nome. O resto não é tocado. O que limpar vai para o lixo, por isso pode recuperá-lo.",
+    "keep": "As suas pastas (Documentos, Transferências, Imagens...), todas as pastas sem prova de que o seu programa foi desinstalado, as pastas com o nome de algo ainda instalado em qualquer formato e tudo o que um programa em execução tenha aberto.",
     "colReason": "Motivo",
     "recoverable": "Vai para o lixo: pode recuperá-la a partir daí.",
     "reason": {
       "package": "Pacote {package} removido",
       "packageOn": "Pacote {package} removido em {date}",
       "flatpak": "Flatpak não instalado",
-      "snap": "Snap não instalado",
-      "unclaimed": "Nada do que está instalado a reclama",
-      "creator": "Criada por {program}, que já não está instalado",
-      "refs": "Os seus ficheiros apontam para {program}, que já não existe"
+      "snap": "Snap não instalado"
     },
     "notes": {
-      "refs": "Os ficheiros desta pasta dizem onde estava o seu programa e já não está. Verifique-a antes de limpar.",
-      "creator": "O programa que criou esta pasta já não está instalado.",
-      "package": "Foi removido um pacote com este nome. Se instalou o programa de outra forma, mantenha a pasta.",
+      "package": "Foi removido o pacote com exatamente este nome, e nada do que está instalado tem este nome.",
       "flatpak": "A aplicação Flatpak não está instalada: só restam os seus dados.",
       "snap": "O snap não está instalado: só restam os seus dados.",
-      "unclaimed": "Nada do que está instalado tem este nome, o que não prova que o programa tenha desaparecido. Verifique-a antes de limpar.",
-      "open": "Em uso: um programa em execução tem-na aberta. Não é limpa.",
-      "recent": "Mudou nas últimas duas semanas: pode ainda estar em uso. Não é limpa."
+      "open": "Em uso: um programa em execução tem-na aberta. Não é limpa."
     }
   },
   "orphans": {

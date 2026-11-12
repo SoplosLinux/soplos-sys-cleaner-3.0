@@ -417,28 +417,21 @@
   "leftovers": {
     "title": "Resti dei programmi",
     "description": "Cartelle della tua cartella personale lasciate da programmi che hai disinstallato.",
-    "concept": "Cartelle di ~/.config, ~/.local/share, ~/.local/state, ~/.var/app, ~/snap e cartelle nascoste della tua cartella personale che appartengono a programmi non più installati. Una cartella viene elencata solo quando nulla di installato la rivendica, e la tabella dice perché sembra abbandonata. Ciò che pulisci va nel cestino, quindi puoi recuperarlo.",
-    "keep": "Le tue cartelle (Documenti, Download, Immagini...), le impostazioni del desktop, chiavi e password, tutto ciò che un programma in esecuzione ha aperto e le cartelle modificate nelle ultime due settimane senza una disinstallazione nota.",
+    "concept": "Cartelle di ~/.config, ~/.local/share, ~/.local/state, ~/.var/app, ~/snap e cartelle nascoste della tua cartella personale che appartengono a programmi non più installati. Una cartella viene elencata solo quando il sistema lo dimostra: i dati di un Flatpak o di uno snap non installato, oppure una cartella con esattamente il nome di un pacchetto rimosso, quando nulla di installato ha quel nome. Il resto non viene toccato. Ciò che pulisci va nel cestino, quindi puoi recuperarlo.",
+    "keep": "Le tue cartelle (Documenti, Download, Immagini...), ogni cartella senza prova che il suo programma sia stato disinstallato, le cartelle con il nome di qualcosa ancora installato in qualsiasi formato e tutto ciò che un programma in esecuzione ha aperto.",
     "colReason": "Motivo",
     "recoverable": "Va nel cestino: puoi recuperarla da lì.",
     "reason": {
       "package": "Pacchetto {package} rimosso",
       "packageOn": "Pacchetto {package} rimosso il {date}",
       "flatpak": "Flatpak non installato",
-      "snap": "Snap non installato",
-      "unclaimed": "Nulla di installato la rivendica",
-      "creator": "Creata da {program}, che non è più installato",
-      "refs": "I suoi file puntano a {program}, che non esiste più"
+      "snap": "Snap non installato"
     },
     "notes": {
-      "refs": "I file di questa cartella dicono dove si trovava il loro programma, e non c'è più. Controllala prima di pulire.",
-      "creator": "Il programma che ha creato questa cartella non è più installato.",
-      "package": "Un pacchetto con questo nome è stato rimosso. Se hai installato il programma in un altro modo, conserva la cartella.",
+      "package": "Il pacchetto con esattamente questo nome è stato rimosso, e nulla di installato ha questo nome.",
       "flatpak": "L'applicazione Flatpak non è installata: restano solo i suoi dati.",
       "snap": "Lo snap non è installato: restano solo i suoi dati.",
-      "unclaimed": "Nulla di installato ha questo nome, il che non prova che il programma sia sparito. Controllala prima di pulire.",
-      "open": "In uso: un programma in esecuzione l'ha aperta. Non viene pulita.",
-      "recent": "Modificata nelle ultime due settimane: potrebbe essere ancora in uso. Non viene pulita."
+      "open": "In uso: un programma in esecuzione l'ha aperta. Non viene pulita."
     }
   },
   "orphans": {

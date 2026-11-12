@@ -417,28 +417,21 @@
   "leftovers": {
     "title": "Restes de programmes",
     "description": "Dossiers de votre dossier personnel laissés par des programmes que vous avez désinstallés.",
-    "concept": "Dossiers de ~/.config, ~/.local/share, ~/.local/state, ~/.var/app, ~/snap et dossiers cachés de votre dossier personnel qui appartiennent à des programmes qui ne sont plus installés. Un dossier n'est listé que si rien d'installé ne le revendique, et le tableau dit pourquoi il semble abandonné. Ce que vous nettoyez va à la corbeille, vous pouvez donc le récupérer.",
-    "keep": "Vos propres dossiers (Documents, Téléchargements, Images...), les réglages du bureau, les clés et mots de passe, tout ce qu'un programme en cours d'exécution a ouvert, et les dossiers modifiés ces deux dernières semaines sans désinstallation connue.",
+    "concept": "Dossiers de ~/.config, ~/.local/share, ~/.local/state, ~/.var/app, ~/snap et dossiers cachés de votre dossier personnel qui appartiennent à des programmes qui ne sont plus installés. Un dossier n'est listé que si le système le prouve : les données d'un Flatpak ou d'un snap qui n'est pas installé, ou un dossier portant exactement le nom d'un paquet supprimé, quand rien d'installé ne porte ce nom. Le reste n'est pas touché. Ce que vous nettoyez va à la corbeille, vous pouvez donc le récupérer.",
+    "keep": "Vos propres dossiers (Documents, Téléchargements, Images...), tout dossier sans preuve que son programme a été désinstallé, les dossiers portant le nom de quelque chose encore installé sous n'importe quel format, et tout ce qu'un programme en cours d'exécution a ouvert.",
     "colReason": "Motif",
     "recoverable": "Il va à la corbeille : vous pouvez le récupérer de là.",
     "reason": {
       "package": "Paquet {package} supprimé",
       "packageOn": "Paquet {package} supprimé le {date}",
       "flatpak": "Flatpak non installé",
-      "snap": "Snap non installé",
-      "unclaimed": "Rien d'installé ne le revendique",
-      "creator": "Créé par {program}, qui n'est plus installé",
-      "refs": "Ses fichiers pointent vers {program}, qui n'existe plus"
+      "snap": "Snap non installé"
     },
     "notes": {
-      "refs": "Les fichiers de ce dossier disent où se trouvait leur programme, et il a disparu. Vérifiez-le avant de nettoyer.",
-      "creator": "Le programme qui a créé ce dossier n'est plus installé.",
-      "package": "Un paquet de ce nom a été supprimé. Si vous avez installé le programme autrement, gardez le dossier.",
+      "package": "Le paquet portant exactement ce nom a été supprimé, et rien d'installé ne porte ce nom.",
       "flatpak": "L'application Flatpak n'est pas installée : il ne reste que ses données.",
       "snap": "Le snap n'est pas installé : il ne reste que ses données.",
-      "unclaimed": "Rien d'installé ne porte ce nom, ce qui ne prouve pas que le programme a disparu. Vérifiez-le avant de nettoyer.",
-      "open": "En cours d'utilisation : un programme en cours d'exécution l'a ouvert. Il n'est pas nettoyé.",
-      "recent": "Modifié ces deux dernières semaines : il peut encore être utilisé. Il n'est pas nettoyé."
+      "open": "En cours d'utilisation : un programme en cours d'exécution l'a ouvert. Il n'est pas nettoyé."
     }
   },
   "orphans": {

@@ -67,10 +67,10 @@ export interface LeftoverEntry {
   display: string;
   location: "config" | "share" | "state" | "home" | "flatpak" | "snap";
   sizeBytes: number;
-  reason: "creator" | "refs" | "package" | "flatpak" | "snap" | "unclaimed";
+  reason: "package" | "flatpak" | "snap";
   package: string | null;
   removedOn: string | null;
-  protectedReason: "open" | "recent" | null;
+  protectedReason: "open" | null;
 }
 
 // Mirrors src-tauri/src/commands/orphans.rs.

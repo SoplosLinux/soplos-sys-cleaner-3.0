@@ -51,9 +51,6 @@ export interface Row {
   count?: number;
   // Arguments the cleaner needs for this row (snap name + revision, ...).
   payload?: Record<string, string>;
-  // Preselected although it is not "safe": a leftover whose creator was seen and is not installed
-  // (the quick and full cleanups still skip it).
-  preselected?: boolean;
   // Packages this row removes. Rows that have them get a dry run of the
   // removal in the confirmation dialog.
   packages?: string[];

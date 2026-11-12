@@ -1,5 +1,4 @@
 mod commands;
-pub mod tracker;
 mod system_theme;
 pub(crate) mod utils;
 

@@ -2,6 +2,23 @@
 
 All notable changes to Soplos Sys Cleaner are documented in this file.
 
+## [3.0.1-1-beta] - 2026-11-12
+
+### Changed
+
+- Program leftovers lists a folder only when the system proves that its program is gone, and leaves every other folder alone. The file system does not record which program made a folder, so nothing is guessed any more from a name that looks like another, from what a folder holds or points to, or from how long ago it was used. The proofs are three: the data of a Flatpak in `~/.var/app/<id>` whose application is not installed; the data of a snap in `~/snap/<name>` that is not installed; and a folder whose name, without its leading dot and in lower case, is exactly the name of a package that dpkg removed (its log, or state `rc`), when nothing installed has that same name: no package, no folder that a package installs at the top of `/usr/share`, `/usr/lib`, `/usr/libexec`, `/etc` or `/opt`, no program, no desktop file, no Flatpak (applications, runtimes and extensions), no snap, no AppImage and no running process. Flatpak runtimes and extensions now count, so the settings of a Vulkan layer such as MangoHud or vkBasalt installed as a Flatpak extension are never offered when its `.deb` was removed. A folder that only partly matches a removed package (`libreoffice` and `libreoffice-calc`, `BraveSoftware` and `brave-origin`) is not listed. Nothing in the page comes selected, and the texts no longer ask the user to check a folder before cleaning it.
+- The About dialog shows the full package version, revision included (`3.0.1-1-beta`). The footer of the sidebar keeps leaving the revision out.
+
+### Removed
+
+- The `soplos-sys-cleaner-tracker` service of 3.0.1-beta. It ran as root, watched the creation of every folder on the file system of the homes, and wrote the folders of every user to `/var/lib/soplos-sys-cleaner/creators.json`, readable by all of them. It knew nothing of the folders made before it ran, and it took a program that was updated or moved (an AppImage of a new version, an extension of an editor) for a program that was removed. Upgrading stops it, removes its link and deletes that file.
+- The guesses of Program leftovers: the programs a folder's files point to, the names inside a folder, the extensions of the editors, and the reasons "made by a program that is not installed", "its files point to a program that does not exist any more" and "nothing installed claims it". The page also promised to keep folders changed in the last two weeks, which it never did; that promise is gone from its texts.
+
+### Fixed
+
+- Orphaned packages no longer offers a package that holds the signing key of a repository that is still configured. apt lists such a package (the `-keyring` package of a third-party repository) as removable because no other package depends on it, but removing it left the repository in `/etc/apt/sources.list.d` pointing at a key that was gone, and every `apt update` then failed to verify that repository. The page now leaves a package out when a source names one of its key files in `/usr/share/keyrings` or `/etc/apt/keyrings`, by full path or by file name, the same check Repo Selector uses to tell that a key is in use. The privileged side refuses such a package too.
+- The scrollbar of the sidebar no longer covers the rows: the list keeps room for it at its right, also when the bar floats over the content.
+
 ## [3.0.1-beta] - 2026-11-12
 
 ### Added

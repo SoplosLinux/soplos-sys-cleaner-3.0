@@ -417,28 +417,21 @@
   "leftovers": {
     "title": "Programmreste",
     "description": "Ordner in Ihrem Home-Verzeichnis, die deinstallierte Programme zurückgelassen haben.",
-    "concept": "Ordner in ~/.config, ~/.local/share, ~/.local/state, ~/.var/app, ~/snap und die versteckten Ordner Ihres Home-Verzeichnisses, die zu Programmen gehören, die nicht mehr installiert sind. Ein Ordner wird nur aufgeführt, wenn ihn nichts Installiertes beansprucht, und die Tabelle nennt den Grund, warum er verwaist wirkt. Was Sie bereinigen, kommt in den Papierkorb und lässt sich wiederherstellen.",
-    "keep": "Ihre eigenen Ordner (Dokumente, Downloads, Bilder ...), die Einstellungen der Arbeitsumgebung, Schlüssel und Passwörter, alles, was ein laufendes Programm geöffnet hat, und Ordner, die sich in den letzten zwei Wochen ohne bekannte Deinstallation geändert haben.",
+    "concept": "Ordner in ~/.config, ~/.local/share, ~/.local/state, ~/.var/app, ~/snap und die versteckten Ordner Ihres Home-Verzeichnisses, die zu Programmen gehören, die nicht mehr installiert sind. Ein Ordner wird nur aufgeführt, wenn das System es beweist: die Daten eines Flatpaks oder Snaps, das nicht installiert ist, oder ein Ordner mit genau dem Namen eines entfernten Pakets, wenn nichts Installiertes diesen Namen trägt. Alles andere bleibt unberührt. Was Sie bereinigen, kommt in den Papierkorb und lässt sich wiederherstellen.",
+    "keep": "Ihre eigenen Ordner (Dokumente, Downloads, Bilder ...), jeder Ordner ohne Beweis, dass sein Programm entfernt wurde, Ordner mit dem Namen von etwas, das in irgendeinem Format noch installiert ist, und alles, was ein laufendes Programm geöffnet hat.",
     "colReason": "Grund",
     "recoverable": "Er kommt in den Papierkorb und lässt sich von dort wiederherstellen.",
     "reason": {
       "package": "Paket {package} entfernt",
       "packageOn": "Paket {package} am {date} entfernt",
       "flatpak": "Flatpak nicht installiert",
-      "snap": "Snap nicht installiert",
-      "unclaimed": "Nichts Installiertes beansprucht ihn",
-      "creator": "Von {program} erstellt, das nicht mehr installiert ist",
-      "refs": "Seine Dateien verweisen auf {program}, das es nicht mehr gibt"
+      "snap": "Snap nicht installiert"
     },
     "notes": {
-      "refs": "Die Dateien dieses Ordners sagen, wo ihr Programm war, und es ist weg. Prüfen Sie ihn vor dem Bereinigen.",
-      "creator": "Das Programm, das diesen Ordner erstellt hat, ist nicht mehr installiert.",
-      "package": "Ein Paket mit diesem Namen wurde entfernt. Wenn Sie das Programm anders installiert haben, behalten Sie den Ordner.",
+      "package": "Das Paket mit genau diesem Namen wurde entfernt, und nichts Installiertes trägt diesen Namen.",
       "flatpak": "Die Flatpak-Anwendung ist nicht installiert: Nur ihre Daten sind übrig.",
       "snap": "Das Snap ist nicht installiert: Nur seine Daten sind übrig.",
-      "unclaimed": "Nichts Installiertes trägt diesen Namen, was nicht beweist, dass das Programm weg ist. Prüfen Sie ihn vor dem Bereinigen.",
-      "open": "In Benutzung: Ein laufendes Programm hat ihn geöffnet. Er wird nicht bereinigt.",
-      "recent": "In den letzten zwei Wochen geändert: Er wird möglicherweise noch benutzt. Er wird nicht bereinigt."
+      "open": "In Benutzung: Ein laufendes Programm hat ihn geöffnet. Er wird nicht bereinigt."
     }
   },
   "orphans": {

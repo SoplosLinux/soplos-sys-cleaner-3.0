@@ -31,7 +31,7 @@
   // A new scan result resets the selection to the safe rows.
   $: if (rows !== seenRows) {
     seenRows = rows;
-    selected = new Set(rows.filter((r) => r.risk === "safe" || r.preselected).map((r) => r.id));
+    selected = new Set(rows.filter((r) => r.risk === "safe").map((r) => r.id));
   }
   $: selectable = rows.filter((r) => r.risk !== "protected");
   $: needle = query.trim().toLowerCase();

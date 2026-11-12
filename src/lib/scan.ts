@@ -397,18 +397,16 @@ const scanners: Record<CategoryId, () => Promise<Row[]>> = {
 
   // What uninstalled programs left in the home folder. Nothing here is ever
   // "safe": the quick and full cleanups skip it, and the page preselects
-  // nothing. A folder that is open or that changed lately is shown locked.
+  // nothing. A folder that a running program has open is shown locked.
   async leftovers() {
     const entries = await api.invoke<LeftoverEntry[]>("scan_leftovers");
     return entries.map((e) => {
       const reason =
-        e.reason === "creator" || e.reason === "refs"
-          ? { key: `leftovers.reason.${e.reason}`, values: { program: e.package ?? "" } }
-          : e.reason === "package"
-            ? e.removedOn
-              ? { key: "leftovers.reason.packageOn", values: { package: e.package ?? "", date: e.removedOn } }
-              : { key: "leftovers.reason.package", values: { package: e.package ?? "" } }
-            : { key: `leftovers.reason.${e.reason}` };
+        e.reason === "package"
+          ? e.removedOn
+            ? { key: "leftovers.reason.packageOn", values: { package: e.package ?? "", date: e.removedOn } }
+            : { key: "leftovers.reason.package", values: { package: e.package ?? "" } }
+          : { key: `leftovers.reason.${e.reason}` };
       const noteKey = e.protectedReason ? `leftovers.notes.${e.protectedReason}` : `leftovers.notes.${e.reason}`;
       return {
         id: e.path,
@@ -418,8 +416,6 @@ const scanners: Record<CategoryId, () => Promise<Row[]>> = {
         detail: reason,
         sizeBytes: e.sizeBytes,
         risk: e.protectedReason ? "protected" : "review",
-        // The creator was seen and is gone: that is proof, so the page selects it.
-        preselected: e.reason === "creator" && !e.protectedReason,
         noteKey,
       } as Row;
     });

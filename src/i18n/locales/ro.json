@@ -417,28 +417,21 @@
   "leftovers": {
     "title": "Resturi de programe",
     "description": "Dosare din dosarul tău personal lăsate de programele pe care le-ai dezinstalat.",
-    "concept": "Dosare din ~/.config, ~/.local/share, ~/.local/state, ~/.var/app, ~/snap și dosarele ascunse din dosarul tău personal care aparțin unor programe care nu mai sunt instalate. Un dosar este listat doar când nimic din ce este instalat nu îl revendică, iar tabelul spune de ce pare abandonat. Ce cureți merge în coșul de gunoi, deci îl poți recupera.",
-    "keep": "Dosarele tale (Documente, Descărcări, Imagini...), setările desktopului, cheile și parolele, tot ce are deschis un program în execuție și dosarele modificate în ultimele două săptămâni fără o dezinstalare cunoscută.",
+    "concept": "Dosare din ~/.config, ~/.local/share, ~/.local/state, ~/.var/app, ~/snap și dosarele ascunse din dosarul tău personal care aparțin unor programe care nu mai sunt instalate. Un dosar este listat doar când sistemul o dovedește: datele unui Flatpak sau ale unui snap care nu este instalat, ori un dosar cu exact numele unui pachet eliminat, când nimic din ce este instalat nu are acel nume. Restul nu se atinge. Ce cureți merge în coșul de gunoi, deci îl poți recupera.",
+    "keep": "Dosarele tale (Documente, Descărcări, Imagini...), orice dosar fără dovadă că programul său a fost dezinstalat, dosarele cu numele a ceva încă instalat în orice format și tot ce are deschis un program în execuție.",
     "colReason": "Motiv",
     "recoverable": "Merge în coșul de gunoi: îl poți recupera de acolo.",
     "reason": {
       "package": "Pachetul {package} a fost eliminat",
       "packageOn": "Pachetul {package} a fost eliminat la {date}",
       "flatpak": "Flatpak neinstalat",
-      "snap": "Snap neinstalat",
-      "unclaimed": "Nimic din ce este instalat nu îl revendică",
-      "creator": "Creat de {program}, care nu mai este instalat",
-      "refs": "Fișierele lui trimit la {program}, care nu mai există"
+      "snap": "Snap neinstalat"
     },
     "notes": {
-      "refs": "Fișierele acestui dosar spun unde era programul lor, iar acesta a dispărut. Verifică-l înainte de curățare.",
-      "creator": "Programul care a creat acest dosar nu mai este instalat.",
-      "package": "Un pachet cu acest nume a fost eliminat. Dacă ai instalat programul altfel, păstrează dosarul.",
+      "package": "Pachetul cu exact acest nume a fost eliminat și nimic din ce este instalat nu are acest nume.",
       "flatpak": "Aplicația Flatpak nu este instalată: au rămas doar datele ei.",
       "snap": "Snap-ul nu este instalat: au rămas doar datele lui.",
-      "unclaimed": "Nimic din ce este instalat nu are acest nume, ceea ce nu dovedește că programul a dispărut. Verifică-l înainte de curățare.",
-      "open": "În uz: un program în execuție îl are deschis. Nu este curățat.",
-      "recent": "Modificat în ultimele două săptămâni: poate fi încă în uz. Nu este curățat."
+      "open": "În uz: un program în execuție îl are deschis. Nu este curățat."
     }
   },
   "orphans": {

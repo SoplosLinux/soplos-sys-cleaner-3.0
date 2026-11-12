@@ -51,7 +51,7 @@
   </div>
 
   <!-- The list is what scrolls, so the title and the footer stay in view; its bar keeps its own room to the right of the rows. -->
-  <nav class="content-scroll sidebar-scroll flex min-h-0 flex-1 flex-col gap-px overflow-y-auto pr-1.5">
+  <nav class="content-scroll sidebar-scroll flex min-h-0 flex-1 flex-col gap-px overflow-y-auto pr-3">
     {#each tabs as tab, i}
       {#if tab.group && tab.group !== tabs[i - 1]?.group}
         <p class="px-2 pb-[3px] pt-2.5 text-[10px] tracking-[0.08em] text-text-muted uppercase">{tab.group}</p>
