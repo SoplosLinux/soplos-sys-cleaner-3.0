@@ -213,6 +213,11 @@
   </developer>
 
   <releases>
+    <release version="3.0.1-2-beta" date="2026-11-14">
+      <description>
+        <p>After cleaning drivers or firmware, the initramfs of every kernel is rebuilt with update-initramfs, which also copies it to the EFI partition when the system boots with systemd-boot. Before, only the running kernel was rebuilt.</p>
+      </description>
+    </release>
     <release version="3.0.1-1-beta" date="2026-11-12">
       <description>
         <p>Program leftovers lists only the folders whose program the system proves is gone: the data of a Flatpak or a snap that is not installed, and a folder with exactly the name of a removed package when nothing installed has that name. Nothing is guessed any more, and nothing comes selected. The tracker service of 3.0.1-beta is removed, and upgrading deletes the file it kept. Orphaned packages no longer offers the package that holds the signing key of a repository that is still configured. The scrollbar of the sidebar no longer covers its rows, and the About dialog shows the full package version.</p>

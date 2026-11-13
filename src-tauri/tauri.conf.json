@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "soplos-sys-cleaner",
-  "version": "3.0.1-1-beta",
+  "version": "3.0.1-2-beta",
   "identifier": "org.soplos.syscleaner",
   "build": {
     "beforeDevCommand": "npm run dev",

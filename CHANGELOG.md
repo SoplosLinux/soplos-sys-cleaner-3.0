@@ -2,6 +2,12 @@
 
 All notable changes to Soplos Sys Cleaner are documented in this file.
 
+## [3.0.1-2-beta] - 2026-11-14
+
+### Changed
+
+- After cleaning drivers or firmware, the initramfs is rebuilt with `update-initramfs -u -k all` instead of `dracut -f`. On Soplos it is dracut's own wrapper: it does every kernel, not only the running one, and it runs the hooks of `/etc/initramfs/post-update.d`, which copy the new initramfs to the EFI partition when the system boots with systemd-boot, one of the three boot loaders Soplos Linux Installer offers. `dracut --regenerate-all -f` is used only when the wrapper is missing.
+
 ## [3.0.1-1-beta] - 2026-11-12
 
 ### Changed

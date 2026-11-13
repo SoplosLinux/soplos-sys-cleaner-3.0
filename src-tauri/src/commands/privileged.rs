@@ -333,12 +333,17 @@ fn remove_dir(path: &Path) -> bool {
 
 // Rebuilt once at the end of a batch, never while another operation of the
 // same batch is running (2.x corrupted its protocol by overlapping a rebuild
-// with an autoremove). Debian-family systems use dracut or initramfs-tools.
+// with an autoremove). Debian-family systems use dracut or initramfs-tools,
+// and both are run through `update-initramfs -u -k all` when it is there: on
+// Soplos it is dracut's own wrapper, and unlike `dracut -f` it does every
+// kernel and runs the hooks of /etc/initramfs/post-update.d, which copy the
+// new initramfs to the EFI partition when the system boots with
+// systemd-boot. `dracut` alone is only the fallback.
 fn rebuild_initramfs() -> bool {
-    if command_exists("dracut") {
-        run_command("dracut", &["-f".to_string()])
-    } else if command_exists("update-initramfs") {
+    if command_exists("update-initramfs") {
         run_command("update-initramfs", &["-u".to_string(), "-k".to_string(), "all".to_string()])
+    } else if command_exists("dracut") {
+        run_command("dracut", &["--regenerate-all".to_string(), "-f".to_string()])
     } else {
         true
     }
