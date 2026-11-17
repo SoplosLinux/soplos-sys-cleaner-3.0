@@ -2,6 +2,10 @@
 
 All notable changes to Soplos Sys Cleaner are documented in this file.
 
+## [3.0.0] - 2026-11-17
+
+First stable release.
+
 ## [3.0.1-2-beta] - 2026-11-14
 
 ### Changed

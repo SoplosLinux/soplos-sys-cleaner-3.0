@@ -213,6 +213,11 @@
   </developer>
 
   <releases>
+    <release version="3.0.0" date="2026-11-17">
+      <description>
+        <p>First stable release.</p>
+      </description>
+    </release>
     <release version="3.0.1-2-beta" date="2026-11-14">
       <description>
         <p>After cleaning drivers or firmware, the initramfs of every kernel is rebuilt with update-initramfs, which also copies it to the EFI partition when the system boots with systemd-boot. Before, only the running kernel was rebuilt.</p>
